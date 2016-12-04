@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Annety.Stocks>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    <p class="col-md-4">@Html.ActionLink("Create New", "Create")</p>
+    <p class="col-md-7">@Html.ActionLink("Back to Manage Page", "Manage", "Home") </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsInStocks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colors.ColorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductSize.SizeDesc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsInStocks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colors.ColorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductSize.SizeDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StockCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StockCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StockCode })
+        </td>
+    </tr>
+}
+
+</table>
