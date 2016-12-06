@@ -11,10 +11,7 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Stocks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +19,7 @@ namespace Annety
         {
             this.OrdersDetails = new HashSet<OrdersDetails>();
         }
-        [Key]
+    
         public int StockCode { get; set; }
         public int ProductKey { get; set; }
         public int ProdColorKey { get; set; }
@@ -32,7 +29,7 @@ namespace Annety
         public virtual Colors Colors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdersDetails> OrdersDetails { get; set; }
-        public virtual Product Product { get; set; }
         public virtual ProductSize ProductSize { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

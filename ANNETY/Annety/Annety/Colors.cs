@@ -11,10 +11,7 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Colors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +19,7 @@ namespace Annety
         {
             this.Stocks = new HashSet<Stocks>();
         }
-        [Key]
+    
         public int CodeColor { get; set; }
         public string ColorName { get; set; }
     

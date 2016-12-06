@@ -11,18 +11,15 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class WatchList
-    {   [Key]
+    {
         public int WatchCode { get; set; }
         public int UserCode { get; set; }
         public int ProductKey { get; set; }
         public System.DateTime WatchDate { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
