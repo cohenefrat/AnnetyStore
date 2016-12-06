@@ -26,14 +26,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ParentCategory, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*<div class="form-group">
-                    <select>
-                        <option value="Boys">Boys</option>
-                        <option value="Girls">Girls</option>
-                    </select>
-                </div>*@
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ParentCategory)
+
+                <div>
+                    @*@Html.EditorFor(model => model.ParentCategory)*@
+                    Boys:
+                    @Html.RadioButtonFor(model => model.ParentCategory, true) 
+                    Girls:
+                    @Html.RadioButtonFor(model => model.ParentCategory, false)
                     @Html.ValidationMessageFor(model => model.ParentCategory, "", new { @class = "text-danger" })
                 </div>
             </div>

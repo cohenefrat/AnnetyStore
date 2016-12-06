@@ -11,10 +11,7 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +20,7 @@ namespace Annety
             this.UsersOrders = new HashSet<UsersOrders>();
             this.WatchList = new HashSet<WatchList>();
         }
-        [Key]
+    
         public int Code { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }

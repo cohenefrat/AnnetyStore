@@ -11,12 +11,9 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class OrdersDetails
-    {   [Key]
+    {
         public int Code { get; set; }
         public int OrderCode { get; set; }
         public int StockCode { get; set; }

@@ -28,17 +28,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="AnnetyModel.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
-          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-          <ScalarProperty Name="Desc" ColumnName="Desc" />
-          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductSize">
       <EntityTypeMapping TypeName="AnnetyModel.ProductSize">
         <MappingFragment StoreEntitySet="ProductSize">
@@ -89,6 +78,17 @@
           <ScalarProperty Name="UserCode" ColumnName="UserCode" />
           <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
           <ScalarProperty Name="WatchDate" ColumnName="WatchDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="AnnetyModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

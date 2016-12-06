@@ -253,7 +253,7 @@
           <Property Name="CategoryCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ParentCategory" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_ToCategories" FromRole="Categories" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="AnnetyModel.FK_Product_ToCategories" FromRole="Categories" ToRole="Product" />
         </EntityType>
         <EntityType Name="Colors">
           <Key>
@@ -273,19 +273,6 @@
           <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Stocks" Relationship="Self.FK_OrdersDetails_ToStocks" FromRole="OrdersDetails" ToRole="Stocks" />
           <NavigationProperty Name="UsersOrders" Relationship="Self.FK_OrdersDetails_ToUsersOrders" FromRole="OrdersDetails" ToRole="UsersOrders" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductKey" />
-          </Key>
-          <Property Name="ProductKey" Type="Int32" Nullable="false" />
-          <Property Name="Barcode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="ImagePath" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CategoryCode" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK_Product_ToCategories" FromRole="Product" ToRole="Categories" />
-          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stocks_ToProduct" FromRole="Product" ToRole="Stocks" />
-          <NavigationProperty Name="WatchList" Relationship="Self.FK_WatchList_ToProduct" FromRole="Product" ToRole="WatchList" />
         </EntityType>
         <EntityType Name="ProductSize">
           <Key>
@@ -307,8 +294,8 @@
           <Property Name="CodeSize" Type="Int32" />
           <NavigationProperty Name="Colors" Relationship="Self.FK_Stocks_ToColors" FromRole="Stocks" ToRole="Colors" />
           <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetails_ToStocks" FromRole="Stocks" ToRole="OrdersDetails" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Stocks_ToProduct" FromRole="Stocks" ToRole="Product" />
           <NavigationProperty Name="ProductSize" Relationship="Self.FK_Stocks_ToProductSize" FromRole="Stocks" ToRole="ProductSize" />
+          <NavigationProperty Name="Product" Relationship="AnnetyModel.FK_Stocks_ToProduct" FromRole="Stocks" ToRole="Product" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -343,21 +330,9 @@
           <Property Name="UserCode" Type="Int32" Nullable="false" />
           <Property Name="ProductKey" Type="Int32" Nullable="false" />
           <Property Name="WatchDate" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_WatchList_ToProduct" FromRole="WatchList" ToRole="Product" />
           <NavigationProperty Name="Users" Relationship="Self.FK_WatchList_ToUsers" FromRole="WatchList" ToRole="Users" />
+          <NavigationProperty Name="Product" Relationship="AnnetyModel.FK_WatchList_ToProduct" FromRole="WatchList" ToRole="Product" />
         </EntityType>
-        <Association Name="FK_Product_ToCategories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="CategoryCode" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Stocks_ToColors">
           <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
           <End Role="Stocks" Type="Self.Stocks" Multiplicity="*" />
@@ -391,30 +366,6 @@
             </Principal>
             <Dependent Role="OrdersDetails">
               <PropertyRef Name="OrderCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stocks_ToProduct">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Stocks" Type="Self.Stocks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductKey" />
-            </Principal>
-            <Dependent Role="Stocks">
-              <PropertyRef Name="ProductKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WatchList_ToProduct">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="WatchList" Type="Self.WatchList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductKey" />
-            </Principal>
-            <Dependent Role="WatchList">
-              <PropertyRef Name="ProductKey" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -458,16 +409,11 @@
           <EntitySet Name="Categories" EntityType="Self.Categories" />
           <EntitySet Name="Colors" EntityType="Self.Colors" />
           <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductSize" EntityType="Self.ProductSize" />
           <EntitySet Name="Stocks" EntityType="Self.Stocks" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UsersOrders" EntityType="Self.UsersOrders" />
           <EntitySet Name="WatchList" EntityType="Self.WatchList" />
-          <AssociationSet Name="FK_Product_ToCategories" Association="Self.FK_Product_ToCategories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_Stocks_ToColors" Association="Self.FK_Stocks_ToColors">
             <End Role="Colors" EntitySet="Colors" />
             <End Role="Stocks" EntitySet="Stocks" />
@@ -479,14 +425,6 @@
           <AssociationSet Name="FK_OrdersDetails_ToUsersOrders" Association="Self.FK_OrdersDetails_ToUsersOrders">
             <End Role="UsersOrders" EntitySet="UsersOrders" />
             <End Role="OrdersDetails" EntitySet="OrdersDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stocks_ToProduct" Association="Self.FK_Stocks_ToProduct">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Stocks" EntitySet="Stocks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WatchList_ToProduct" Association="Self.FK_WatchList_ToProduct">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="WatchList" EntitySet="WatchList" />
           </AssociationSet>
           <AssociationSet Name="FK_Stocks_ToProductSize" Association="Self.FK_Stocks_ToProductSize">
             <End Role="ProductSize" EntitySet="ProductSize" />
@@ -500,7 +438,69 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="WatchList" EntitySet="WatchList" />
           </AssociationSet>
+          <EntitySet Name="Product" EntityType="AnnetyModel.Product" />
+          <AssociationSet Name="FK_Product_ToCategories" Association="AnnetyModel.FK_Product_ToCategories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stocks_ToProduct" Association="AnnetyModel.FK_Stocks_ToProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stocks" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WatchList_ToProduct" Association="AnnetyModel.FK_WatchList_ToProduct">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="WatchList" EntitySet="WatchList" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductKey" />
+          </Key>
+          <Property Name="ProductKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ImagePath" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryCode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categories" Relationship="AnnetyModel.FK_Product_ToCategories" FromRole="Product" ToRole="Categories" />
+          <NavigationProperty Name="Stocks" Relationship="AnnetyModel.FK_Stocks_ToProduct" FromRole="Product" ToRole="Stocks" />
+          <NavigationProperty Name="WatchList" Relationship="AnnetyModel.FK_WatchList_ToProduct" FromRole="Product" ToRole="WatchList" />
+        </EntityType>
+        <Association Name="FK_Product_ToCategories">
+          <End Type="AnnetyModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="AnnetyModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryCode" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stocks_ToProduct">
+          <End Type="AnnetyModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="AnnetyModel.Stocks" Role="Stocks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductKey" />
+            </Principal>
+            <Dependent Role="Stocks">
+              <PropertyRef Name="ProductKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WatchList_ToProduct">
+          <End Type="AnnetyModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="AnnetyModel.WatchList" Role="WatchList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductKey" />
+            </Principal>
+            <Dependent Role="WatchList">
+              <PropertyRef Name="ProductKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -531,17 +531,6 @@
                 <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
                 <ScalarProperty Name="StockCode" ColumnName="StockCode" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="AnnetyModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -595,6 +584,17 @@
                 <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
                 <ScalarProperty Name="WatchDate" ColumnName="WatchDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="AnnetyModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

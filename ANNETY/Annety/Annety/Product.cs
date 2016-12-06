@@ -11,10 +11,7 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Linq;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +20,7 @@ namespace Annety
             this.Stocks = new HashSet<Stocks>();
             this.WatchList = new HashSet<WatchList>();
         }
-        [Key]
+    
         public int ProductKey { get; set; }
         public string Barcode { get; set; }
         public byte[] ImagePath { get; set; }
