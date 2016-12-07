@@ -160,3 +160,4 @@ C:\Users\efrat\Desktop\AnnetyStore\ANNETY\Annety\Annety\bin\Microsoft.Owin.Secur
 C:\Users\efrat\Desktop\AnnetyStore\ANNETY\Annety\Annety\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\efrat\Desktop\AnnetyStore\ANNETY\Annety\Annety\obj\Debug\Annety.dll
 C:\Users\efrat\Desktop\AnnetyStore\ANNETY\Annety\Annety\obj\Debug\Annety.pdb
+C:\Users\efrat\Desktop\AnnetyStore\ANNETY\Annety\Annety\obj\Debug\Annety.csprojResolveAssemblyReference.cache
