@@ -50,8 +50,10 @@ namespace Annety.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode")] Product product)
         {
+  
+           
             if (ModelState.IsValid)
-            {
+            { 
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
