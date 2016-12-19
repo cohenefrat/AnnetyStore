@@ -35,7 +35,7 @@
           </Key>
           <Property Name="ProductKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Barcode" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="ImagePath" Type="image" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Desc" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CategoryCode" Type="int" Nullable="false" />
         </EntityType>
@@ -451,14 +451,14 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="WatchList" EntitySet="WatchList" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductKey" />
           </Key>
           <Property Name="ProductKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Barcode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ImagePath" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CategoryCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categories" Relationship="AnnetyModel.FK_Product_ToCategories" FromRole="Product" ToRole="Categories" />
@@ -501,7 +501,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

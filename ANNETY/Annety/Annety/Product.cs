@@ -23,7 +23,7 @@ namespace Annety
     
         public int ProductKey { get; set; }
         public string Barcode { get; set; }
-        public byte[] ImagePath { get; set; }
+        public string ImagePath { get; set; }
         public string Desc { get; set; }
         public int CategoryCode { get; set; }
     

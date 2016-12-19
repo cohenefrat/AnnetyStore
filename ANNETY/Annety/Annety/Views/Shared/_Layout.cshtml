@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@{ AnnetyEntities db = new AnnetyEntities();}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,10 +18,39 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer style="padding-top:30em;">
+    <div>
+        <div class="row">
+            <div class="col-xs-1" style="padding-top:1em; padding-left:2em;">
+                <h4>Boys</h4> <hr />
+                @foreach (var item in db.Categories)
+            {
+                if (item.ParentCategory == true)
+                {   <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })' >
+
+                    @Html.DisplayFor(modelItem => item.Desc)
+                    <hr />
+                </a>
+                    }
+                }
+                <h4>Girls</h4>
+                @foreach (var item in db.Categories)
+            {
+                if (item.ParentCategory != true)
+                {  <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
+
+                    @Html.DisplayFor(modelItem => item.Desc)
+                    <hr />
+                  </a>
+                    }
+                }
+
+            </div>
+            <div style="padding-left:2em;">
+                @RenderBody()
+                <hr />
+            </div>
+        </div>
+        <footer class="navbar-fixed-bottom">
             <div style="text-align:center">@Html.ActionLink("New Arrival", "Index", "Home")</div>
             <div class="navbar-collapse collapse" style="text-align:center">
                 <ol class="nav navbar-nav" style="text-align:center">
