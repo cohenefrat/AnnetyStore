@@ -46,7 +46,7 @@
     <Key>
       <PropertyRef Name="StockCode" />
     </Key>
-    <Property Name="StockCode" Type="int" Nullable="false" />
+    <Property Name="StockCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProductKey" Type="int" Nullable="false" />
     <Property Name="ProdColorKey" Type="int" Nullable="false" />
     <Property Name="UnitsInStocks" Type="int" />

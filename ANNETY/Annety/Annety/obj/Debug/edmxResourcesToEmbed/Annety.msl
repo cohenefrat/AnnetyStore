@@ -37,17 +37,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Stocks">
-      <EntityTypeMapping TypeName="AnnetyModel.Stocks">
-        <MappingFragment StoreEntitySet="Stocks">
-          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
-          <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
-          <ScalarProperty Name="ProdColorKey" ColumnName="ProdColorKey" />
-          <ScalarProperty Name="UnitsInStocks" ColumnName="UnitsInStocks" />
-          <ScalarProperty Name="CodeSize" ColumnName="CodeSize" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="AnnetyModel.Users">
         <MappingFragment StoreEntitySet="Users">
@@ -89,6 +78,17 @@
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Barcode" ColumnName="Barcode" />
           <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="AnnetyModel.Stocks">
+        <MappingFragment StoreEntitySet="Stocks">
+          <ScalarProperty Name="CodeSize" ColumnName="CodeSize" />
+          <ScalarProperty Name="UnitsInStocks" ColumnName="UnitsInStocks" />
+          <ScalarProperty Name="ProdColorKey" ColumnName="ProdColorKey" />
+          <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
+          <ScalarProperty Name="StockCode" ColumnName="StockCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
