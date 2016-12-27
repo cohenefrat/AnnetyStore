@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+.MainMenu {
+   
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 60px;
+    width: 300px;
+        background-color: #5f6474;
+}
+header {
+position:absolute;
+}
+footer {
+
+position:fixed;
+}
