@@ -31,7 +31,7 @@ textarea {
     overflow-y: auto;
     position: fixed;
     top: 60px;
-    width: 250px;
+    width: 200px;
         background-color: #5f6474;
 }
 header {
@@ -47,23 +47,7 @@ width:270px;
 }
 row {
    
-overflow-x: hidden; 
-display:inline;
-}
-Homepage {
-    
-overflow-x: hidden; 
-}
-navbar-collapse collapse {
 
-overflow-x: hidden;
-}
-js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths {
-     
-overflow-x: hidden;
-}
-Body1 {
-    
-overflow-x: hidden;
+display:inline;
 }
 
