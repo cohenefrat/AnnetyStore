@@ -19,7 +19,7 @@ namespace Annety
         public int StockCode { get; set; }
         public Nullable<int> Quantity { get; set; }
     
-        public virtual Stocks Stocks { get; set; }
         public virtual UsersOrders UsersOrders { get; set; }
+        public virtual Stocks Stocks { get; set; }
     }
 }

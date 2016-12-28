@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Annety.Product>
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <img src="@Url.Content(item.ImagePath)" alt="IMAGES" />
+    </div>
+}

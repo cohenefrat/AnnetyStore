@@ -55,6 +55,7 @@ html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+      overflow-X: hidden !important;
 }
 
 body {
@@ -308,6 +309,8 @@ table {
 html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-x: hidden !important;
+  /*overflow-y: hidden;*/
 }
 
 body {
@@ -327,12 +330,13 @@ textarea {
   line-height: inherit;
 }
 
-button,
-input,
-select[multiple],
-textarea {
-  background-image: none;
-}
+    button,
+    input,
+    select[multiple],
+    textarea {
+        /*background-image: none;*/
+        background-image: url('../Images/1299-1705_big.JPG');
+    }
 
 a {
   color: #428bca;
@@ -384,9 +388,10 @@ img {
 
 hr {
   margin-top: 20px;
+  width:240px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid rgba(59, 62, 55, 0.19);
 }
 
 .sr-only {

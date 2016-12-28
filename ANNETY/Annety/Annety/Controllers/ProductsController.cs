@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using Annety;
 
 namespace Annety.Controllers
@@ -48,10 +49,11 @@ namespace Annety.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode")] Product product)
+        public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode")] Product product, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                product.ImagePath = Path.Combine(Server.MapPath("~/App_Data/Images"), product.ProductKey.ToString());
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
