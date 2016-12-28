@@ -29,10 +29,10 @@ namespace Annety
         public virtual DbSet<Colors> Colors { get; set; }
         public virtual DbSet<OrdersDetails> OrdersDetails { get; set; }
         public virtual DbSet<ProductSize> ProductSize { get; set; }
-        public virtual DbSet<Stocks> Stocks { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersOrders> UsersOrders { get; set; }
         public virtual DbSet<WatchList> WatchList { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Stocks> Stocks { get; set; }
     }
 }
