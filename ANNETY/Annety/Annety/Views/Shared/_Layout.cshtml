@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body class="Body1">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="row">
@@ -20,7 +20,7 @@
     </div>
     <div  class="MainMenu">
        
-            <div  style="padding-top:3em; padding-left:2em; ">
+            <div  style="padding-top:3em; padding-left:20px; ">
                 <h4>Boys</h4> <hr />
                 @foreach (var item in db.Categories)
             {
@@ -47,7 +47,7 @@
             </div>
            
         </div>
-    <div style="padding-bottom:2em; padding-left:30em;">
+    <div style="padding-bottom:2em; padding-left:300px;">
             @RenderBody()
             <hr />
         </div>
@@ -55,7 +55,7 @@
             <div style="text-align:center">@Html.ActionLink("New Arrival", "Index", "Home")</div>
             <div class="navbar-collapse collapse" style="text-align:center">
                 <ol class="nav navbar-nav" style="text-align:center">
-                    <a href='@Html.ActionLink("About Us1", "About", "Home")'>
+                   
                         <li style="align-content:flex-start">@Html.ActionLink("About Us", "About", "Home")</li>
                         <li style="align-content:center">@Html.ActionLink("Sale", "Index", "Home")</li>
                         <li style="align-content:center">@Html.ActionLink("Contact Us", "Contact", "Home")</li>

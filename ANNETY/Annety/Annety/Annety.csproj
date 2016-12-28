@@ -275,6 +275,7 @@
     <Content Include="App_Data\Annety_log.ldf">
       <DependentUpon>Annety.mdf</DependentUpon>
     </Content>
+    <Content Include="Images\1299-1705_big.JPG" />
     <Content Include="Images\shutterstock_80097694-337x239.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
