@@ -276,6 +276,23 @@
       <DependentUpon>Annety.mdf</DependentUpon>
     </Content>
     <Content Include="Images\1299-1705_big.JPG" />
+    <Content Include="Images\blue down.png" />
+    <Content Include="Images\blue left.png" />
+    <Content Include="Images\blue right.png" />
+    <Content Include="Images\blue up.png" />
+    <Content Include="Images\boys BW.jpg" />
+    <Content Include="Images\boys color.jpg" />
+    <Content Include="Images\cart blue.png" />
+    <Content Include="Images\cart pink.png" />
+    <Content Include="Images\girls BW.jpg" />
+    <Content Include="Images\girls color.jpg" />
+    <Content Include="Images\header.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\pay now.png" />
+    <Content Include="Images\pink down.png" />
+    <Content Include="Images\pink left.png" />
+    <Content Include="Images\pink right.png" />
+    <Content Include="Images\pink up.png" />
     <Content Include="Images\shutterstock_80097694-337x239.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

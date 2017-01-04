@@ -10,17 +10,17 @@
 
 </head>
 <body class="Body1">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-image: url('../../Images/header.jpg');background-repeat:no-repeat;background-size:cover;display:flex;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6"><h1 style="text-align:center; color:white">Annety</h1></div>
+                <div class="col-lg-6"><h1 style="text-align:center; color:transparent;">Annety</h1></div>
                 <div class="col-lg-6">@Html.Partial("_LoginPartial")</div>
             </div>
         </div>
     </div>
     <div  class="MainMenu">
        
-            <div  style="padding-top:3em; padding-left:20px; ">
+            <div  style="padding-top: 3em; padding-left: 20px;background-color:white; ">
                 <h4>Boys</h4> <hr />
                 @foreach (var item in db.Categories)
             {
@@ -49,7 +49,7 @@
         </div>
     <div style="padding-bottom:2em; padding-left:300px;">
             @RenderBody()
-            <hr />
+            @*<hr />*@
         </div>
         <footer style="background-color:darkslategrey"  class="navbar-fixed-bottom" style="fixed" >
             <div style="text-align:center">@Html.ActionLink("New Arrival", "Index", "Home")</div>
