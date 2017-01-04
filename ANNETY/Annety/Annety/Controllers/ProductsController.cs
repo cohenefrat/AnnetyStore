@@ -53,7 +53,11 @@ namespace Annety.Controllers
         {
             if (ModelState.IsValid)
             {
-                product.ImagePath = Path.Combine(Server.MapPath("~/App_Data/Images"), product.ProductKey.ToString());
+                var targetfolder = Server.MapPath("~/Images");
+                var imagename = product.ProductKey.ToString();
+                product.ImagePath = Path.Combine(Server.MapPath("~/Images"),imagename);
+
+                image.SaveAs(product.ImagePath);
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
