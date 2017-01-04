@@ -275,7 +275,13 @@
     <Content Include="App_Data\Annety_log.ldf">
       <DependentUpon>Annety.mdf</DependentUpon>
     </Content>
+    <Content Include="easyResponsiveTabs.js" />
+    <Content Include="jquery-3.1.1.min.js" />
+    <Content Include="Scripts\easyResponsiveTabs.js" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\11.png" />
     <Content Include="Images\1299-1705_big.JPG" />
+
     <Content Include="Images\blue down.png" />
     <Content Include="Images\blue left.png" />
     <Content Include="Images\blue right.png" />
@@ -293,6 +299,10 @@
     <Content Include="Images\pink left.png" />
     <Content Include="Images\pink right.png" />
     <Content Include="Images\pink up.png" />
+    <Content Include="Images\pic1.png" />
+    <Content Include="Images\pic2.png" />
+    <Content Include="Images\pic3.png" />
+    <Content Include="Images\pic4.png" />
     <Content Include="Images\shutterstock_80097694-337x239.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -306,6 +316,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Resources\shutterstock_80097694-337x239.jpg" />
+    <Content Include="Images\tick-mark1.png" />
+    <Content Include="Images\visa.png" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -330,6 +344,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="style.css" />
+    <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -337,7 +353,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
