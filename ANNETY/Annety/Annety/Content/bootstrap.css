@@ -6819,3 +6819,11 @@ td.visible-print {
     display: none !important;
   }
 }
+.navbar navbar-inverse navbar-fixed-top {
+    background-repeat: no-repeat !important;
+    background-size: cover;
+  
+    background-image: url('../Images/header.jpg')
+  
+}
+}
