@@ -19,8 +19,8 @@ namespace Annety.Controllers
         public ActionResult FromMenu(int CategoryCode)
         {
             var products = db.Product.Where(p => p.CategoryCode == CategoryCode).ToList();
-            return RedirectToAction("Index");
-
+            return View(products.ToList());
+      
 
         }
     }
