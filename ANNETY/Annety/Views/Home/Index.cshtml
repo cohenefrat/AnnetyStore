@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="HomePage">
+    <div class="row">
+        <div class="col-md-4" >
+            @*<h2>בנות</h2>
+            <p>
+                תמונה של ילדה חמודה
+            </p>*@
+                <a href='@Url.Action("Index", "SearchResult")'>
+
+                    <img src="~/Images/shutterstock_80097694-337x239.jpg"  style="width:400px; height:400px; margin:auto" />
+                </a>
+           
+        </div>
+        <div class="lead_col-md-4" >
+            @*<h2>בנים</h2>
+            <p>
+                תמונה של ילד חמוד
+            </p>*@
+                <a href='@Url.Action("Index", "SearchResult")'>
+                    <img src="~/Images/smiling-baby-boy-cute-wallpaper-768x480.jpg" style="width:400px; height:400px;" />
+                </a>
+            
+        </div>
+    </div>
+   @*<div class="row">
+       <div>תמונה 1</div>
+       <div>תמונה 2</div>
+       <div>תמונה 3</div>
+       <div>תמונה 4</div>
+       <div>תמונה 5</div>
+       <div>תמונה 6</div>
+   </div>*@
+</div>

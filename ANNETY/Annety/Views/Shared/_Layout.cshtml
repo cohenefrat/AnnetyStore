@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+@{ AnnetyEntities db = new AnnetyEntities();}
+<html>
+<head style="fixed">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="Body1">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6"><h1 style="text-align:center; color:white">Annety</h1></div>
+                <div class="col-lg-6">@Html.Partial("_LoginPartial")</div>
+            </div>
+        </div>
+    </div>
+    <div  class="MainMenu">
+       
+            <div  style="padding-top:3em; padding-left:20px; ">
+                <h4>Boys</h4> <hr />
+                @foreach (var item in db.Categories)
+            {
+                if (item.ParentCategory == true)
+                {   <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
+
+                    @Html.DisplayFor(modelItem => item.Desc)
+                    <hr />
+                </a>
+                    }
+                }
+                <h4>Girls</h4>
+                @foreach (var item in db.Categories)
+            {
+                if (item.ParentCategory != true)
+                {  <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
+
+                    @Html.DisplayFor(modelItem => item.Desc)
+                    <hr />
+                </a>
+                    }
+                }
+
+            </div>
+           
+        </div>
+    <div style="padding-bottom:2em; padding-left:300px;">
+            @RenderBody()
+            <hr />
+        </div>
+        <footer style="background-color:darkslategrey"  class="navbar-fixed-bottom" style="fixed" >
+            <div style="text-align:center">@Html.ActionLink("New Arrival", "Index", "Home")</div>
+            <div class="navbar-collapse collapse" style="text-align:center">
+                <ol class="nav navbar-nav" style="text-align:center">
+                   
+                        <li style="align-content:flex-start">@Html.ActionLink("About Us", "About", "Home")</li>
+                        <li style="align-content:center">@Html.ActionLink("Sale", "Index", "Home")</li>
+                        <li style="align-content:center">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+                        <li style="align-content:flex-end">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+</ol>
+
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

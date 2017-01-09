@@ -7,10 +7,10 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
@@ -26,7 +26,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="image" id="image" />
+                @*<input type="file" name="image" id="image" />*@
+                @Html.TextBoxFor(model => model.image, new { type = "file" })
+     
                 @*@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })*@
             </div>
@@ -43,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryCode, "CategoryCode", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CategoryCode", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Category",null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CategoryCode, "", new { @class = "text-danger" })
             </div>
         </div>

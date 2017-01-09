@@ -1,0 +1,39 @@
+﻿@model Annety.Categories
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categories</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentCategory)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+</p>
+<div class="col-md-4">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryCode }) |
+    @Html.ActionLink("Back to List", "Index")
+    <p class="col-md-7">@Html.ActionLink("Back to Manage Page", "Manage", "Home") </p>
+</div>
