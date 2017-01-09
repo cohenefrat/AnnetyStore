@@ -1,0 +1,69 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.MainMenu {
+   
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 60px;
+    width: 250px;
+        background-color: #5f6474;
+}
+header {
+position:absolute;
+}
+footer {
+
+position:fixed;
+}
+hr {
+border-style:groove;
+width:270px;
+}
+row {
+   
+overflow-x: hidden; 
+display:inline;
+}
+Homepage {
+    
+overflow-x: hidden; 
+}
+navbar-collapse collapse {
+
+overflow-x: hidden;
+}
+js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths {
+     
+overflow-x: hidden;
+}
+Body1 {
+    
+overflow-x: hidden;
+}
+

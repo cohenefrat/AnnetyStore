@@ -1,0 +1,43 @@
+﻿@model Annety.OrdersDetails
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrdersDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stocks.StockCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stocks.StockCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsersOrders.OrderCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsersOrders.OrderCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Code }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

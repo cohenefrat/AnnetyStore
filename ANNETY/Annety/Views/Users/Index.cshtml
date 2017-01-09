@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Annety.Users>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    <p class="col-md-4">@Html.ActionLink("Create New", "Create")</p>
+    <p class="col-md-7">@Html.ActionLink("Back to Manage Page", "Manage", "Home") </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Code })
+        </td>
+    </tr>
+}
+
+</table>

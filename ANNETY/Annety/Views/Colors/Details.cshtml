@@ -1,0 +1,28 @@
+﻿@model Annety.Colors
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Colors</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodeColor }) |
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Manage Page", "Manage", "Home")
+</p>

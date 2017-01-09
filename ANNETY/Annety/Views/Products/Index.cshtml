@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Annety.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    <p class="col-md-4">@Html.ActionLink("Create New", "Create")</p>
+    <p class="col-md-7">@Html.ActionLink("Back to Manage Page", "Manage", "Home") </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categories.Desc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categories.Desc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductKey }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductKey }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductKey })
+        </td>
+    </tr>
+}
+
+</table>

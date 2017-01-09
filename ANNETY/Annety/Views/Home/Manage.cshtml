@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage</h2>
+
+<div>
+    <div class="row">
+        <h4>Categories</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Add New Category", "Create", "Categories")</li>
+            <li class="col-md-7">@Html.ActionLink("All Categories", "Index", "Categories")</li>
+        </ol>
+    </div>
+    <div class="row">
+        <h4>Colors</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Add New Color", "Create", "Colors")</li>
+            <li class="col-md-7">@Html.ActionLink("All Colors", "Index", "Colors")</li>
+        </ol>
+    </div>
+    <div class="row">
+        <h4>Products</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Add New Product", "Create", "Products")</li>
+            <li class="col-md-7">@Html.ActionLink("All Products", "Index", "Products")</li>
+        </ol>
+   </div>
+    <div class="row">
+        <h4>Sizes</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Add New Size", "Create", "ProductSizes")</li>
+            <li class="col-md-7">@Html.ActionLink("All Sizes", "Index", "ProductSizes")</li>
+        </ol>
+    </div>
+    <div class="row">
+        <h4>Stock</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Add Products To Stock", "Create", "Stocks")</li>
+            <li class="col-md-7">@Html.ActionLink("All In Stocks", "Index", "Stocks")</li>
+        </ol>
+    </div>
+    <div class="row">
+        <h4>Users</h4>
+        <ol class="nav navbar-nav row">
+            <li class="col-md-7">@Html.ActionLink("All Users", "Index", "Users")</li>
+        </ol>
+    </div>
+    <div class="row">
+        <h4>UsersOrders</h4>
+        <ol class="nav navbar-nav row">
+            <li class="co-md-7">@Html.ActionLink("Create New Order", "Create", "UsersOrders")</li>
+            <li class="col-md-7">@Html.ActionLink("All The Orders", "Index", "UsersOrders")</li>
+        </ol>
+    </div>
+    </div>

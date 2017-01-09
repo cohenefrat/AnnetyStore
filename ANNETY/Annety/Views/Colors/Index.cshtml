@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Annety.Colors>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    <p class="col-md-4">@Html.ActionLink("Create New", "Create")</p>
+    <p class="col-md-7">@Html.ActionLink("Back to Manage Page", "Manage", "Home") </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ColorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ColorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CodeColor }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CodeColor }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CodeColor })
+        </td>
+    </tr>
+}
+
+</table>

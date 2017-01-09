@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+
 using System.Web.Mvc;
 using System.IO;
 using Annety;
@@ -40,7 +41,7 @@ namespace Annety.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc");
+            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc", "ParentCategory");
             return View();
         }
 
@@ -49,15 +50,16 @@ namespace Annety.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode")] Product product, HttpPostedFileBase image)
+        public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode,image")] Product product)
         {
             if (ModelState.IsValid)
             {
-                var targetfolder = Server.MapPath("~/Images");
-                var imagename = product.ProductKey.ToString();
-                product.ImagePath = Path.Combine(Server.MapPath("~/Images"),imagename);
-
-                image.SaveAs(product.ImagePath);
+                var ext = Path.GetExtension(product.image.FileName);
+                string imagename = product.Barcode.ToString();
+                string myimage = imagename + ext;
+                product.ImagePath = Path.Combine(Server.MapPath("~/ProductImages"), myimage);
+                //httppostedfilebase image = new httppostedfilebase();
+                product.image.SaveAs(product.ImagePath);
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");

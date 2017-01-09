@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb9e372c451c432fa02714d4758cd6cb" Name="Diagram1">
+        <EntityTypeShape EntityType="AnnetyModel.Categories" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.Colors" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.OrdersDetails" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.ProductSize" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.Users" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.UsersOrders" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnnetyModel.WatchList" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="AnnetyModel.FK_OrdersDetails_ToUsersOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="AnnetyModel.FK_UsersOrders_ToUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="AnnetyModel.FK_WatchList_ToUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AnnetyModel.Product" Width="1.5" PointX="3" PointY="3.625" />
+        <AssociationConnector Association="AnnetyModel.FK_Product_ToCategories" />
+        <AssociationConnector Association="AnnetyModel.FK_WatchList_ToProduct" />
+        <EntityTypeShape EntityType="AnnetyModel.Stocks" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToColors" />
+        <AssociationConnector Association="AnnetyModel.FK_OrdersDetails_ToStocks" />
+        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProduct" />
+        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProductSize" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

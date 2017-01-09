@@ -281,7 +281,6 @@
     <Content Include="Images\1.png" />
     <Content Include="Images\11.png" />
     <Content Include="Images\1299-1705_big.JPG" />
-
     <Content Include="Images\blue down.png" />
     <Content Include="Images\blue left.png" />
     <Content Include="Images\blue right.png" />
@@ -438,6 +437,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Resource1.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProductImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
