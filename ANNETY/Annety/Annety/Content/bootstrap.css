@@ -1098,7 +1098,7 @@ pre code {
   .col-md-9,
   .col-md-10,
   .col-md-11 {
-    float: left;
+    float: right;
   }
   .col-md-1 {
     width: 8.333333333333332%;
@@ -1248,7 +1248,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px;
+    max-width: 1270px;
   }
   .col-lg-1,
   .col-lg-2,
@@ -6826,4 +6826,24 @@ td.visible-print {
     background-image: url('../Images/header.jpg')
   
 }
+}
+  /*#cf {
+            position:relative;
+            height:281px;
+            width:450px;
+            margin:0 auto;
+        }*/
+
+.srchbtn {
+    width:50px;
+    height:50px;
+    background:pink;
+    position:absolute;
+    /*left:220px;
+    top:30px;*/
+    cursor:pointer;
+
+
+
+
 }

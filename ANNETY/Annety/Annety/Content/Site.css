@@ -32,10 +32,11 @@ textarea {
     position: fixed;
     top: 60px;
     width: 200px;
-        background-color: #5f6474;
+        /*background-color: #5f6474;*/
 }
 header {
 position:absolute;
+
 }
 footer {
 
