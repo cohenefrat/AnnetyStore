@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace Annety.Controllers
 {
@@ -21,6 +22,14 @@ namespace Annety.Controllers
             var products = db.Product.Where(p => p.CategoryCode == CategoryCode).ToList();
             return View(products.ToList());
       
+
+        }
+        public ActionResult SearchBox(String SearchKey)
+        {
+            String[] splited = SearchKey.split("\\s+");
+
+            return View();
+
 
         }
     }

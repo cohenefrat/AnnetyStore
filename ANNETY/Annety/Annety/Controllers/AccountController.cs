@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Annety.Models;
+using System.Text;
 
 namespace Annety.Controllers
 {
@@ -423,6 +424,19 @@ namespace Annety.Controllers
             base.Dispose(disposing);
         }
 
+        public static string HashPass(string pass)
+        {
+            var hash1 = System.Security.Cryptography.SHA1.Create();
+            var inputBytes = Encoding.ASCII.GetBytes(pass);
+            var hash = hash1.ComputeHash(inputBytes);
+            var sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

@@ -277,6 +277,45 @@
     </Content>
     <Content Include="easyResponsiveTabs.js" />
     <Content Include="Images\background.png" />
+    <Content Include="Images\boy1.PNG" />
+    <Content Include="Images\boy10.PNG" />
+    <Content Include="Images\boy11.PNG" />
+    <Content Include="Images\boy12.PNG" />
+    <Content Include="Images\boy13.PNG" />
+    <Content Include="Images\boy14.PNG" />
+    <Content Include="Images\boy15.PNG" />
+    <Content Include="Images\boy16.PNG" />
+    <Content Include="Images\boy17.PNG" />
+    <Content Include="Images\boy18.PNG" />
+    <Content Include="Images\boy19.PNG" />
+    <Content Include="Images\boy2.PNG" />
+    <Content Include="Images\boy20.PNG" />
+    <Content Include="Images\boy3.PNG" />
+    <Content Include="Images\boy4.PNG" />
+    <Content Include="Images\boy5.PNG" />
+    <Content Include="Images\boy6.PNG" />
+    <Content Include="Images\boy7.PNG" />
+    <Content Include="Images\boy8.PNG" />
+    <Content Include="Images\boy9.PNG" />
+    <Content Include="Images\girl1.PNG" />
+    <Content Include="Images\girl10.PNG" />
+    <Content Include="Images\girl11.PNG" />
+    <Content Include="Images\girl12.PNG" />
+    <Content Include="Images\girl13.PNG" />
+    <Content Include="Images\girl14.PNG" />
+    <Content Include="Images\girl15.PNG" />
+    <Content Include="Images\girl16.PNG" />
+    <Content Include="Images\girl17.PNG" />
+    <Content Include="Images\girl18.PNG" />
+    <Content Include="Images\girl19.PNG" />
+    <Content Include="Images\girl2.PNG" />
+    <Content Include="Images\girl3.PNG" />
+    <Content Include="Images\girl4.PNG" />
+    <Content Include="Images\girl5.PNG" />
+    <Content Include="Images\girl6.PNG" />
+    <Content Include="Images\girl7.PNG" />
+    <Content Include="Images\girl8.PNG" />
+    <Content Include="Images\girl9.PNG" />
     <Content Include="jquery-3.1.1.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Images\1.png" />
@@ -424,6 +463,7 @@
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
     <Content Include="Views\SearchResult\FromMenu.cshtml" />
+    <Content Include="Views\ProductPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
