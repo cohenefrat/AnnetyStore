@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -36,6 +35,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchWords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchWords)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Categories.Desc)
         </dt>
 
@@ -48,4 +63,5 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductKey }) |
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Manage Page", "Manage", "Home")
 </p>

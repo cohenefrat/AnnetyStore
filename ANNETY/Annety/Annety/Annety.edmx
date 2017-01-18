@@ -36,8 +36,10 @@
           <Property Name="ProductKey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Barcode" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Desc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CategoryCode" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="SearchWords" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSize">
           <Key>
@@ -51,7 +53,7 @@
           <Key>
             <PropertyRef Name="StockCode" />
           </Key>
-          <Property Name="StockCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockCode" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductKey" Type="int" Nullable="false" />
           <Property Name="ProdColorKey" Type="int" Nullable="false" />
           <Property Name="UnitsInStocks" Type="int" />
@@ -409,11 +411,13 @@
           <Property Name="ProductKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Barcode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Desc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CategoryCode" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categories" Relationship="AnnetyModel.FK_Product_ToCategories" FromRole="Product" ToRole="Categories" />
           <NavigationProperty Name="WatchList" Relationship="AnnetyModel.FK_WatchList_ToProduct" FromRole="Product" ToRole="WatchList" />
           <NavigationProperty Name="Stocks" Relationship="AnnetyModel.FK_Stocks_ToProduct" FromRole="Product" ToRole="Stocks" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SearchWords" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Product_ToCategories">
           <End Type="AnnetyModel.Categories" Role="Categories" Multiplicity="1" />
@@ -579,6 +583,8 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="AnnetyModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="SearchWords" ColumnName="SearchWords" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />

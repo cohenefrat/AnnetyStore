@@ -1,46 +1,40 @@
 ﻿@model IEnumerable<Annety.Product>
 @{
-    ViewBag.Title = "New Arravial";
+    ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>View</h2>
 
 @foreach (var item in Model)
-{<p>@item.Barcode</p>
-        <p>  @item.CategoryCode</p>
-           <img src= @item.ImagePath />}
-          
-     
-
-
-      < div class="w3-row w3-grayscale"style="float:left; margin:5px">
+{
+    
+    <div class="w3-row w3-grayscale"style="float:left; margin:5px">
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src = "~/Images/boy10.PNG" style="width:150px;height:270px  ">
-                <p>Shirt<br><b>$29.99</b></p>
+                @*<img src="~/Images/cart pink.png" style="width:150px; ">*@
+                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;"  />
+                <p>@item.Desc<br><b>@item.Price</b></p>
             </div>
-            <div class="w3-container" style="float:left;">
-                <img src = "~/Images/girl1.PNG" style="width:150px;height:270px ">
-                <p>Coat<br><b>$49.99</b></p><br/>
-            </div>
+            @*<div class="w3-container" style="float:left;">
+                <img src="~/Images/boys color.jpg" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p><br/>
+            </div>*@
             </div>
     </div>
-
-     <!-- Product grid -->
+     @*<!-- Product grid -->
     <div class="w3-row w3-grayscale"style="float:left;margin:5px">
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src = "~/Images/girl10.PNG" style="width:150px;height:270px ">
-                <p>Beautiful Dress<br><b>$59.99</b></p>
+                <img src="~/Images/blue down.png" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
             <div class="w3-container">
-                <img src = "~/Images/boy5.PNG" style="width:150px;height:270px ">
-                <p>Paints<br><b>$39.99</b></p>
+                <img src="~/Images/boys color.jpg" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
-
         </div>
     </div>
      <!-- Product grid -->
@@ -48,29 +42,26 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src = "~/Images/girl3.PNG" style="width:150px;height:270px ">
-                <p>Dress<br><b>$19.99</b></p>
+                <img src="~/Images/blue down.png" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
             <div class="w3-container">
-                <img src = "~/Images/girl9.PNG" style="width:150px;height:270px ">
-                <p>Shirt<br><b>$24.99</b></p>
+                <img src="~/Images/boys color.jpg" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
-
         </div>
     </div>
-
     <!-- Product grid -->
     <div class="w3-row w3-grayscale"style="float:left;margin:5px">
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src = "~/Images/girl19.PNG" style="width:150px;height:270px ">
-                <p>Shirt<br><b>$24.99</b></p>
+                <img src="~/Images/blue down.png" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
             <div class="w3-container">
-
-                <img src = "~/Images/girl16.PNG" style="width:150px;height:270px ">
-                <p>Coat<br><b>$79.99</b></p>
+                <img src="~/Images/boys color.jpg" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
         </div>
     </div>
@@ -79,62 +70,18 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src = "~/Images/girl12.PNG" style="width:150px;height:270px ">
-                <p>Dress<br><b>$49.99</b></p>
+                <img src="~/Images/blue down.png" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
             <div class="w3-container">
-                <img src = "~/Images/boy6.PNG" style="width:150px;height:270px ">
-                <p>Jecket<br><b>$59.99</b></p>
+                <img src="~/Images/boys color.jpg" style="width:150px">
+                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
         </div>
-    </div>
+    </div>*@
 }
-<!-- Product grid -->
-<div class="w3-row w3-grayscale" style="float:left; margin:5px">
-    <div class="w3-col l3 s6">
-        <div class="w3-container">
-            
-            <img src="~/Images/boy4.PNG" style="width:150px;height:270px  ">
-            <p>Jacket<br><b>$69.99</b></p>
-        </div>
-       
-        <div class="w3-container" style="float:left;">
-            <img src="~/Images/boy3.PNG" style="width:150px;height:270px ">
-            <p>Shirt<br><b>$29.99</b></p><br />
-        </div>
-    </div>
-</div>
-<!-- Product grid -->
-<div class="w3-row w3-grayscale" style="float:left; margin:5px">
-    <div class="w3-col l3 s6">
-        <div class="w3-container">
-            
-            <img src="~/Images/boy20.PNG" style="width:150px;height:270px ">
-            <p>Coat<br><b>$69.99</b></p>
-        </div>
-       
-        <div class="w3-container" style="float:left;">
-            <img src="~/Images/boy2.PNG" style="width:150px;height:270px">
-            <p>Coat<br><b>$89.99</b></p><br />
-        </div>
-    </div>
-</div>
 
-<!-- Product grid -->
-<div class="w3-row w3-grayscale" style="float:left; margin:5px">
-    <div class="w3-col l3 s6">
-        <div class="w3-container">
 
-            <img src="~/Images/boy18.PNG" style="width:150px;height:270px ">
-            <p>Paints<br><b>$49.99</b></p>
-        </div>
-        
-        <div class="w3-container" style="float:left;">
-            <img src="~/Images/boy16.PNG" style="width:150px;height:270px">
-            <p>Shirt<br><b>$89.99</b></p><br />
-        </div>
-    </div>
-</div>
     @*<div class="w3-col l3 s6">
         <div class="w3-container">
             <div class="w3-display-container">
