@@ -9,22 +9,21 @@
 @foreach (var item in Model)
 {
     
-    <!-- Product grid -->
     <div class="w3-row w3-grayscale"style="float:left; margin:5px">
         <div class="w3-col l3 s6">
             <div class="w3-container">
 
-                <img src="~/Images/cart pink.png" style="width:150px; ">
-                
-                <p>Mega Ripped Jeans<br><b>$19.99</b></p>
+                @*<img src="~/Images/cart pink.png" style="width:150px; ">*@
+                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;"  />
+                <p>@item.Desc<br><b>@item.Price</b></p>
             </div>
-            <div class="w3-container" style="float:left;">
+            @*<div class="w3-container" style="float:left;">
                 <img src="~/Images/boys color.jpg" style="width:150px">
                 <p>Mega Ripped Jeans<br><b>$19.99</b></p><br/>
-            </div>
+            </div>*@
             </div>
     </div>
-     <!-- Product grid -->
+     @*<!-- Product grid -->
     <div class="w3-row w3-grayscale"style="float:left;margin:5px">
         <div class="w3-col l3 s6">
             <div class="w3-container">
@@ -79,7 +78,7 @@
                 <p>Mega Ripped Jeans<br><b>$19.99</b></p>
             </div>
         </div>
-    </div>
+    </div>*@
 }
 
 

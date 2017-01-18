@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -23,6 +22,12 @@
             @Html.DisplayNameFor(model => model.Desc)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SearchWords)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Categories.Desc)
         </th>
         <th></th>
@@ -34,10 +39,17 @@
             @Html.DisplayFor(modelItem => item.Barcode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
+            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:60px;" />
+             @*@Html.DisplayFor(modelItem => item.ImagePath)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SearchWords)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Categories.Desc)

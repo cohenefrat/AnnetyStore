@@ -5,10 +5,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-
 using System.Web.Mvc;
-using System.IO;
 using Annety;
+using System.IO;
 
 namespace Annety.Controllers
 {
@@ -41,7 +40,7 @@ namespace Annety.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc", "ParentCategory");
+            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc");
             return View();
         }
 
@@ -50,16 +49,15 @@ namespace Annety.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode,image")] Product product)
+        public ActionResult Create([Bind(Include = "ProductKey,Barcode,Image,ImagePath,Desc,CategoryCode,Price,SearchWords")] Product product)
         {
             if (ModelState.IsValid)
             {
-                var ext = Path.GetExtension(product.image.FileName);
-                string imagename = product.Barcode.ToString();
-                string myimage = imagename + ext;
+                var ext = Path.GetExtension(product.Image.FileName);
+                string imageName = product.Barcode.ToString();
+                string myimage = imageName + ext;
                 product.ImagePath = Path.Combine(Server.MapPath("~/ProductImages"), myimage);
-                //httppostedfilebase image = new httppostedfilebase();
-                product.image.SaveAs(product.ImagePath);
+                product.Image.SaveAs(product.ImagePath);
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,7 +88,7 @@ namespace Annety.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductKey,Barcode,ImagePath,Desc,CategoryCode,Price,SearchWords")] Product product)
         {
             if (ModelState.IsValid)
             {
