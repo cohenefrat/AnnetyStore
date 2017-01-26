@@ -14,8 +14,8 @@
             <div class="w3-container">
 
                 @*<img src="~/Images/cart pink.png" style="width:150px; ">*@
-                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;"  />
-                <p>@item.Desc<br><b>@item.Price</b></p>
+                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px;"  />
+                <p style="width:150px;">@item.Desc<br><b>@item.Price</b></p>
             </div>
             @*<div class="w3-container" style="float:left;">
                 <img src="~/Images/boys color.jpg" style="width:150px">

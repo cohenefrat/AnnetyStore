@@ -7,36 +7,36 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     .container {
     max-width: 1270px;
 </head>
 <body class="Body1">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-image: url('../../Images/header.jpg');background-repeat:no-repeat;background-size:100% 100%;height:70px;">
-       
-        <div class="srchbtn" style="width:35px;height:25px;background:transparent;position:absolute;left:320px;top:25px;cursor:pointer;">
-            @*<a href='@Url.Action("SearchBox", "SearchResult", new { SearchBox = Page.SearchBox.Value })'>*@
-</div>
-        <div class="homebtn" style="width:170px;height:77px;background:transparent;position:absolute;left:590px;top:0;cursor:pointer;" onclick="location.href ='../Home/Index';">
-            <a href="#"></a>
-           
-        </div>
-         <div class="container">
-           
-            <input type="text" id="SearchBox" placeholder="Search" style="margin-top:28px;height:11px;border-color:transparent;border-style:hidden;left:0; width:20%" />
-          
-              @*<input type="button" style="margin-left:50px;width:25px;height:25px;border-color:transparent;backface-visibility:hidden;cursor:pointer;" />*@
-            @*<div class="row">*@
-                @*<div class="col-lg-6"><h1 style="text-align:center; color:transparent;">Annety</h1></div>*@
+
+        <form >
+            <div class="srchbtn" id="srchbtn" style="width:35px;height:25px;background:transparent;position:absolute;left:320px;top:25px;cursor:pointer;" on></div>
+        </form>
+
+            <div class="homebtn" style="width:170px;height:77px;background:transparent;position:absolute;left:590px;top:0;cursor:pointer;" onclick="location.href ='../Home/Index';">
+                <a href="#"></a>
+                <input id="testbtn" type="button" value="test"/>
+            </div>
+            <div class="container">
+
+                <input type="text" id="Search_Box" placeholder="Search" style="margin-top:28px;height:11px;border-color:transparent;border-style:hidden;left:0; width:20%" />
+
                 <div class="col-lg-6" style="float:right;">@Html.Partial("_LoginPartial")</div>
             </div>
-        </div>
-    @*</div>*@
-    <div  class="MainMenu">
-       
-            <div  style="padding-top: 3em; padding-left: 20px;background-color:white; ">
-                <h4>Boys</h4> <hr />
+        
+    </div>    
+    
+    <div class="MainMenu">
 
-                @foreach (var item in db.Categories)
+        <div style="padding-top: 3em; padding-left: 20px;background-color:white; ">
+            <h4>Boys</h4> <hr />
+
+            @foreach (var item in db.Categories)
             {
                 if (item.ParentCategory == true)
                 {   <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
@@ -44,10 +44,10 @@
                     @Html.DisplayFor(modelItem => item.Desc)
                     <br />
                 </a>
-                    }
                 }
-                <br /><h4>Girls</h4><hr />
-                @foreach (var item in db.Categories)
+            }
+            <br /><h4>Girls</h4><hr />
+            @foreach (var item in db.Categories)
             {
                 if (item.ParentCategory != true)
                 {  <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
@@ -55,34 +55,49 @@
                     @Html.DisplayFor(modelItem => item.Desc)
                     <br />
                 </a>
-                    }
                 }
+            }
 
-            </div>
-           
         </div>
+
+    </div>
     <div style="padding-bottom:2em; padding-left:215px;">
-            @RenderBody()
-            @*<hr />*@
-        </div>
+        @RenderBody()
+        @*<hr />*@
+    </div>
     <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "Index", "Home")</div>
-        <footer   class="navbar-fixed-bottom"  >
-           
-            <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
-                <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
-                   
-                        <li style="margin-right:150px" >@Html.ActionLink("About Us", "About", "Home")</li>
-                        <li style="margin-right:150px" >@Html.ActionLink("Contact Us", "Contact", "Home")</li>
-                        <li style="margin-right:150px" >@Html.ActionLink("For Manager", "Manage", "Home")</li>
-                        <li style="margin-right:150px" >@Html.ActionLink("Sale", "Index", "Home")</li>
-</ol>
+    <footer class="navbar-fixed-bottom">
 
-            </div>
-        </footer>
-    
+        <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
+            <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
+
+                <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
+                <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
+
+                @*@if (Session["isManager"].ToString() == "yes")*@
+                {
+                <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>}
+                <li style="margin-right:150px">@Html.ActionLink("Sale", "Index", "Home")</li>
+            </ol>
+
+        </div>
+    </footer>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        srchbtn.onclick = Search_Box();
+        testbtn.onclick = Search_Box();
+        Search_Box()
+        {
+           
+        }
+
+    </script>
 </body>
+
+
+
 </html>

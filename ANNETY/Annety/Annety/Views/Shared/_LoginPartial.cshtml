@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@*@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -19,4 +19,10 @@ else
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
-}
+}*@
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div id="loginLink" style="float:right; margin-left:10px;"><a href="../LoginPage.html">Login</a></div>
+
+<div id="registerLink" style="float:right"><a href="@Url.Action("Create","Users")">Register</a></div>
+@*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>
+<li id="registerLink" style="float:right;"><a href="~/Views/Registration.html">Register</a></li>*@
