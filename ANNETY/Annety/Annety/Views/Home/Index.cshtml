@@ -20,7 +20,8 @@
 <div class="HomePage">
     <div class="row" >
         <div class="cf1" id="cf1">
-            <a href='@Url.Action("Index", "SearchResult")'>
+            @{ bool TypeParent = true ; }
+            <a href='@Url.Action("Index", "SearchResult" , new { TypeParent  })'>
 
                 <img class="bottom" src="~/Images/girls color.jpg" style="width:570px; height:500px; margin:auto;left:200px;" />
                 <img class="top" src="~/Images/girls BW.jpg" style="width:570px; height:500px; margin:auto;position:absolute; left:200px;" />
@@ -30,7 +31,8 @@
            
         </div>
     <div class="cf1" id="cf1">
-                <a href='@Url.Action("Index", "SearchResult")'>
+        @{ string Parent = bool.TrueString ;}
+                <a href='@Url.Action("Index", "SearchResult" , new { Parent = bool.TrueString })'>
                     <img class="bottom" src="~/Images/boys color.jpg" style="width:570px; height:500px;left:770px;margin:auto" />
                     <img class="top" src="~/Images/boys BW.jpg" style="width:570px; height:500px;position:absolute; left:770px;" />
                 </a>

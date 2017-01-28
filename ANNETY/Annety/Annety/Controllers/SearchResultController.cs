@@ -12,7 +12,7 @@ namespace Annety.Controllers
         private AnnetyEntities db = new AnnetyEntities();
 
         // GET: SearchResult
-        public ActionResult Index()
+        public ActionResult Index( string type)
         {
             return View("SearchResult");
         }
@@ -28,6 +28,7 @@ namespace Annety.Controllers
         [HttpGet]
         public ActionResult Search_Box(String Search_Box)
         {
+            
             var products = db.Product.ToList();
             string a = "Dress";
             char[] delimiterChars = { ' ', ',', ':', '.' };
