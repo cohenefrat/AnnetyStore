@@ -40,7 +40,7 @@ namespace Annety.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc");
+            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "LongName");
             return View();
         }
 
@@ -63,7 +63,7 @@ namespace Annety.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "Desc", product.CategoryCode);
+            ViewBag.CategoryCode = new SelectList(db.Categories, "CategoryCode", "LongName", product.CategoryCode);
             return View(product);
         }
 
