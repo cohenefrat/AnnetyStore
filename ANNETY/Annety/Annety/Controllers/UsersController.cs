@@ -49,11 +49,11 @@ namespace Annety.Controllers
         public ActionResult Create([Bind(Include = "Code,UserName,Email,Password,Address,Phone")] Users users)
         {
             if (ModelState.IsValid)
-            {
+            {   //users.Password
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }   
 
             return View(users);
         }

@@ -8,19 +8,19 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    .container {
-    max-width: 1270px;
+    @*.container {
+    max-width: 1270px;}*@
 </head>
 <body class="Body1">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-image: url('../../Images/header.jpg');background-repeat:no-repeat;background-size:100% 100%;height:70px;">
 
-        <form >
-            <div class="srchbtn" id="srchbtn" style="width:35px;height:25px;background:transparent;position:absolute;left:320px;top:25px;cursor:pointer;" on></div>
-        </form>
+        <a >
+            <div @*class="srchbtn"*@ id="srchbtn" style="width:35px;height:25px;background:transparent;position:absolute;left:320px;top:25px;cursor:pointer;" onclick="Search_Box()" ></div>
+        </a>
 
             <div class="homebtn" style="width:170px;height:77px;background:transparent;position:absolute;left:590px;top:0;cursor:pointer;" onclick="location.href ='../Home/Index';">
                 <a href="#"></a>
-                <input id="testbtn" type="button" value="test"/>
+                
             </div>
             <div class="container">
 
@@ -65,9 +65,9 @@
         @RenderBody()
         @*<hr />*@
     </div>
-    <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "Index", "Home")</div>
+    
     <footer class="navbar-fixed-bottom">
-
+        <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "Index", "Home")</div>
         <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
             <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
 
@@ -87,15 +87,39 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        srchbtn.onclick = Search_Box();
-        testbtn.onclick = Search_Box();
-        Search_Box()
+    <script >
+        srchbtn.onclick = Search_Box
+       
+        function Search_Box()
         {
-            
-           
+            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            else
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+       
+
+            $.ajax({
+                url: '@Url.Action("../SearchResult/Search_Box")',
+                type: 'GET',
+                dataType: 'json',
+                // we set cache: false because GET requests are often cached by browsers
+                // IE is particularly aggressive in that respect
+                cache: false,
+                data: { Search_Box: srchbtn },
+
+            });
+
+        //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
+
+        //    $.ajax({
+        //        url: url,
+        //        data: {}, //parameters go here in object literal form
+        //        type: 'GET',
+        //        datatype: 'json'
+        //    });
         }
 
+     
     </script>
 </body>
 

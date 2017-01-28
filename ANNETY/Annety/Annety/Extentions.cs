@@ -12,13 +12,14 @@ namespace Annety
         {
             get
             {
+                
                 string girlOrChild = "";
                 if (this.ParentCategory)
-                    girlOrChild = "girls";
+                    girlOrChild = "Boys";
                 else
-                    girlOrChild = "boys";
+                    girlOrChild = "Girls";
 
-                return this.Desc+" "+girlOrChild  ;
+                return girlOrChild+" "+this.Desc  ;
 
             }
          }
@@ -26,14 +27,21 @@ namespace Annety
     }
     //public partial class Users
     //{
- 
-    //    public string DisplayPassword
-    //    {
-    //      //  get { return Password .decript(); }
-    //        set { Password  = value.להצפין(); }
-    //    }
 
-    //}
+        //public string DisplayPassword
+        //{
+        //    get { return string.Empty; }
+        //    set
+        //    {
+        //        Password = value.HashPass();
+        //    }
+        //}
+
+        //}
+        //public static MySessionObject GetMySessionObject(this HttpContext current)
+        //{
+        //    return current != null ? (MySessionObject)current.Session["__MySessionObject"] : null;
+        //}
 
 
-}
+    }

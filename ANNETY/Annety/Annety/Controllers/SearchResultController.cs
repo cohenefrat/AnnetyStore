@@ -24,7 +24,20 @@ namespace Annety.Controllers
 
 
         }
-        //add another parameter which symbol the source
+
+
+        public ActionResult BoyOrGirl(int? CategoryCode)
+        {
+            //db.Product.OrderByDescending(u => u.DateEntered).Take(30);
+            //if (ViewBag.gender == "Boy")
+            //    var products = db.Product.Where(p => p.SearchWords.Contains("Boy")).ToList();
+            //else
+            //    var products = db.Product.Where(p => p.SearchWords.Contains(ViewBag.gender)).ToList();
+            //return View(products.ToList());
+            return View();
+
+        }
+      //  add another parameter which symbol the source
         [HttpGet]
         public ActionResult Search_Box(String Search_Box)
         {
@@ -55,5 +68,14 @@ namespace Annety.Controllers
 
 
             }
-        }
+        
+
+    public ActionResult Product(int ProductKey)
+    {
+        var products = db.Product.Where(p => p.ProductKey == ProductKey);
+        return View();
+
+
+    }
+}
 }
