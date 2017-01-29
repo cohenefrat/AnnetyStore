@@ -28,6 +28,18 @@ namespace Annety.Controllers
 
         public ActionResult BoyOrGirl(int? CategoryCode)
         {
+            IQueryable <Annety.Product> products ;
+            
+            if (CategoryCode == 1)
+            { bool b = true;
+                var categories = db.Categories.Where(c => c.ParentCategory == b).ToList();
+                foreach (var item in categories)
+                {   
+                    var prod = db.Product.Where(p => p.CategoryCode == item.CategoryCode);
+                     //products.  Add((Product)prod);
+                }
+                
+            }
             //db.Product.OrderByDescending(u => u.DateEntered).Take(30);
             //if (ViewBag.gender == "Boy")
             //    var products = db.Product.Where(p => p.SearchWords.Contains("Boy")).ToList();
@@ -41,6 +53,7 @@ namespace Annety.Controllers
         [HttpGet]
         public ActionResult Search_Box(String Search_Box)
         {
+            
             var products = db.Product.ToList();
             string a = "Dress";
             char[] delimiterChars = { ' ', ',', ':', '.' };
