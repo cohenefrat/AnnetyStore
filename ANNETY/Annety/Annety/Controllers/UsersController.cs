@@ -50,6 +50,7 @@ namespace Annety.Controllers
         {
             if (ModelState.IsValid)
             {   //users.Password
+                users.Password = AccountController.HashPass(users.Password);
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
