@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "LoginPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LoginPage</h2>
+
+
+
+@*<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>*@
+<body>
+    <form >
+    <h1>Login</h1>
+    <input type="text" id="UserName_login" placeholder="User Name / E-mail" /><br />
+    <input type="password"  id="Password_login" placeholder="Password" /><br />
+    <input type="submit" id="LoginSbmt" value="Login" onclick="LoginFunc"  /><br />
+</form>
+
+
+
+    <script>
+
+        LoginSbmt.onclick = LoginFunc
+
+        function LoginFunc() {
+            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            else
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+
+
+            $.ajax({
+                url: '@Url.Action("../Home/Index")',
+                type: 'GET',
+                dataType: 'json',
+                // we set cache: false because GET requests are often cached by browsers
+                // IE is particularly aggressive in that respect
+                cache: false,
+                data: { LoginFunc: UserName_login, Password_login },
+
+            });
+        }
+    </script>
+</body>
+
