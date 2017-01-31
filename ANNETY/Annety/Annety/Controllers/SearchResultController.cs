@@ -28,25 +28,25 @@ namespace Annety.Controllers
 
         public ActionResult BoyOrGirl(int? CategoryCode)
         {
-            IQueryable <Annety.Product> products ;
-            
+            List<Product> pl = new List<Annety.Product>();
+            bool b;
             if (CategoryCode == 1)
-            { bool b = true;
-                var categories = db.Categories.Where(c => c.ParentCategory == b).ToList();
+                b = true;
+            else
+                b = false;
+            //עבור כל הקטגוריות שמצאתי שולפת את כל המוצרים ויוצרת רשימה
+            var categories = db.Categories.Where(c => c.ParentCategory == b).ToList();
                 foreach (var item in categories)
                 {   
-                    var prod = db.Product.Where(p => p.CategoryCode == item.CategoryCode);
-                     //products.  Add((Product)prod);
+                    var products = db.Product.Where(p => p.CategoryCode == item.CategoryCode);
+                    foreach (var product in products)
+                    {
+                        pl.Add(product);
+                    }
+                    
                 }
-                
-            }
-            //db.Product.OrderByDescending(u => u.DateEntered).Take(30);
-            //if (ViewBag.gender == "Boy")
-            //    var products = db.Product.Where(p => p.SearchWords.Contains("Boy")).ToList();
-            //else
-            //    var products = db.Product.Where(p => p.SearchWords.Contains(ViewBag.gender)).ToList();
-            //return View(products.ToList());
-            return View();
+
+            return View("FromMenu", pl.ToList());
 
         }
       //  add another parameter which symbol the source
@@ -90,5 +90,12 @@ namespace Annety.Controllers
 
 
     }
-}
+
+     public ActionResult ProductDetails(int? ProductKey)
+     {
+         var product = db.Product.Where(p => p.ProductKey == ProductKey);
+         return View("Item",product);
+
+     }
+    }
 }
