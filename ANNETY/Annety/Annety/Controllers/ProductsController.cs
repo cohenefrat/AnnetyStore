@@ -58,6 +58,7 @@ namespace Annety.Controllers
                 string myimage = imageName + ext;
                 product.ImagePath = Path.Combine(Server.MapPath("~/ProductImages"), myimage);
                 product.Image.SaveAs(product.ImagePath);
+                product.ChangeDate = DateTime.Now;
                 db.Product.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");

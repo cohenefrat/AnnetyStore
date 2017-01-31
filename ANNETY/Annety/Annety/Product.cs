@@ -19,8 +19,8 @@ namespace Annety
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.WatchList = new HashSet<WatchList>();
             this.Stocks = new HashSet<Stocks>();
+            this.WatchList = new HashSet<WatchList>();
         }
     
         public int ProductKey { get; set; }
@@ -30,13 +30,14 @@ namespace Annety
         public int CategoryCode { get; set; }
         public decimal Price { get; set; }
         public string SearchWords { get; set; }
-        
+        public System.DateTime ChangeDate { get; set; }
+
         [NotMapped]
-         public HttpPostedFileBase Image { get; set; }
+        public HttpPostedFileBase Image { get; set; }
         public virtual Categories Categories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WatchList> WatchList { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stocks> Stocks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WatchList> WatchList { get; set; }
     }
 }

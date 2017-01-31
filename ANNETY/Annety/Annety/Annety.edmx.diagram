@@ -15,14 +15,14 @@
         <AssociationConnector Association="AnnetyModel.FK_OrdersDetails_ToUsersOrders" ManuallyRouted="false" />
         <AssociationConnector Association="AnnetyModel.FK_UsersOrders_ToUsers" ManuallyRouted="false" />
         <AssociationConnector Association="AnnetyModel.FK_WatchList_ToUsers" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="AnnetyModel.Product" Width="1.5" PointX="3" PointY="3.625" />
-        <AssociationConnector Association="AnnetyModel.FK_Product_ToCategories" />
-        <AssociationConnector Association="AnnetyModel.FK_WatchList_ToProduct" />
         <EntityTypeShape EntityType="AnnetyModel.Stocks" Width="1.5" PointX="5.25" PointY="3.5" />
         <AssociationConnector Association="AnnetyModel.FK_Stocks_ToColors" />
         <AssociationConnector Association="AnnetyModel.FK_OrdersDetails_ToStocks" />
-        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProduct" />
         <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProductSize" />
+        <EntityTypeShape EntityType="AnnetyModel.Product" Width="1.5" PointX="1.125" PointY="9.625" />
+        <AssociationConnector Association="AnnetyModel.FK_Product_ToCategories" />
+        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProduct" />
+        <AssociationConnector Association="AnnetyModel.FK_WatchList_ToProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
