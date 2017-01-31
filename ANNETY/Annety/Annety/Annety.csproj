@@ -279,6 +279,7 @@
     </Content>
     <Content Include="easyResponsiveTabs.js" />
     <Content Include="Images\background.png" />
+    <Content Include="Images\Picture2.jpg" />
     <Content Include="jquery-3.1.1.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Images\1.png" />
