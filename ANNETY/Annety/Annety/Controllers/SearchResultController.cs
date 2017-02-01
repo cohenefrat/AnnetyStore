@@ -77,7 +77,7 @@ namespace Annety.Controllers
                 var max = array.Max();
           //select the products according the array
 
-            return View(products.ToList());
+            return View("FromMenu",products.ToList());
 
 
             }
