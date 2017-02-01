@@ -105,7 +105,7 @@
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
                 cache: false,
-                data: { Search_Box: srchbtn },
+                data: { Search_Box: document.getElementById('Search_Box').value },
 
             });
 
