@@ -10,12 +10,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Annety.Models;
 using System.Text;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace Annety.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private AnnetyEntities db = new AnnetyEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -493,6 +496,7 @@ namespace Annety.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+            
         }
         #endregion
     }
