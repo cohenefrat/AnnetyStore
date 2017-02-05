@@ -135,5 +135,38 @@ namespace Annety.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Item(int? id)
+        {
+            int mone = 0;
+            Product p = db.Product.SingleOrDefault(i=>i.ProductKey == id);
+
+            //add to session
+            if (Session["kk"] == null)
+                Session["kk"] = new Stack<Product>();
+            Stack<Product> f = (Stack<Product>)Session["kk"];
+            foreach (var x in f)
+            {
+                if (p.ProductKey == x.ProductKey)
+                    mone = 1;
+            }
+            if(mone==0)
+            f.Push(p);
+            Session["kk"] = f;
+           
+            return View(p);
+        }
+
+        public ActionResult WatchList( )
+        {
+            //get from to session
+            if (Session["kk"] != null)
+            {
+                List<Product> l = ((Stack<Product>)Session["kk"]).ToList();
+                return View(l.Take(10));
+            }
+            return View( );
+        }
+
     }
 }
