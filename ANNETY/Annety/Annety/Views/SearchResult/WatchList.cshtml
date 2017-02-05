@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Annety.Product>
+@{
+    ViewBag.Title = "Watch list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yatch list</h2>
+
+@foreach (var item in Model)
+{
+
+    <div class="w3-row w3-grayscale" style="float:left; margin:5px">
+        <div class="w3-col l3 s6">
+            <a href='../Products/Item/  @item.ProductKey '>
+
+                <div class="w3-container" style="cursor:pointer;" onclick='ShowItem( @item.ProductKey )'>
+                    <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                    <p style="width:150px;height:150px;padding-bottom:30px;">@item.Desc<br><b>@item.Price</b></p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+}
+<script>
+    function ShowItem(p) {
+        if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+            document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+        else
+            document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+
+        $.ajax({
+            url: '@Url.Action("../Products/Item")',
+            @* url: '@Url.Action("../SearchResult/ProductDetails")',*@
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: { id: p }
+
+        });
+    }
+</script>
+
+

@@ -1,0 +1,74 @@
+﻿@model Product
+
+@{
+    ViewBag.Title = "Item";
+   // Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-top:40px">
+    <h4>Buy Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductKey)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductKey)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchWords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchWords)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProductKey  }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

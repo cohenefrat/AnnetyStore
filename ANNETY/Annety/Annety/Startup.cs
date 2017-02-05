@@ -10,5 +10,6 @@ namespace Annety
         {
             ConfigureAuth(app);
         }
+        
     }
 }
