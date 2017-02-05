@@ -349,7 +349,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="style.css" />
     <Content Include="StyleSheet1.css" />
-    <Content Include="LoginPage.html" />
+    <Content Include="LoginPage0.html" />
     <Content Include="Registration.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -429,8 +429,16 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Products\Item.cshtml" />
     <Content Include="Views\SearchResult\WatchList.cshtml" />
+=======
+<<<<<<< HEAD
+    <Content Include="Views\LoginPage.cshtml" />
+=======
+    <Content Include="Views\Item.cshtml" />
+>>>>>>> ca51040e88f181dc9c695429ab55d0808a825745
+>>>>>>> 0aacddc990fa7dc6bac66094bc83ba4e13cb9cdc
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

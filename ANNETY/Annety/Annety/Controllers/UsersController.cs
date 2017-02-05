@@ -124,5 +124,22 @@ namespace Annety.Controllers
             }
             base.Dispose(disposing);
         }
+        public  bool LoginFunc(string UserName_Login, string Password_Login)
+        {
+            var user = db.Users.Where(u => u.UserName == UserName_Login).ToList();
+            if (user == null)
+                return false;
+            else
+            {
+                Password_Login = AccountController.HashPass(Password_Login);
+                var password = db.Users.Where(u => u.Password == Password_Login).ToList();
+                //  var products = db.us.Where(p => p.UserName == UserName_Login).ToList();
+
+                if (password == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
     }
 }

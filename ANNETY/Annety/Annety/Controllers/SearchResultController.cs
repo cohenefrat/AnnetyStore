@@ -58,6 +58,7 @@ namespace Annety.Controllers
             List<Product> pl = new List<Annety.Product>();
 
             var products = db.Product.ToList();
+<<<<<<< HEAD
             //string a = "Dress";
             char[] delimiterChars = { ' ', ',', ':', '.' };
             String[] splited = Search_Box.Split(delimiterChars);
@@ -83,6 +84,42 @@ namespace Annety.Controllers
 
         }
 
+=======
+            string a = Search_Box;
+            //הגדרת הסימנים- בכל פעם שיופיע במילות החיפוש שהמשתמש הכניס אחד מהתווים הללו- המילה תתחיל משורה אחרת במערך
+            //כלומר הוא יחלק את המערך למילים לפי הסימנים הללו
+            char[] delimiterChars = { ' ', ',', ':', '.' };
+            String[] splited = a.Split(delimiterChars);
+            //יצירת מערך מונים שימנה כמה ממילות החיפוש הופיעו בתאור עבור כל מוצר
+            int[] array = new int[products.Count() ];
+            //כאן נעבור על המוצרים הנמצאים במבנה הנתונים שלנו
+            //כאשר עבור כל מילה הנמצאת בתאור המוצר- נוסיף כביכול נקודת זכות למוצר
+            //בסיום- המוצר בעל המס' הרב ביותר של נקודות זכות יוצג בהתחלה
+            //וכך הולך ופוחת עד אלו שיש להם נקודת זכות אחת בלבד
+            //יש לציין כי מוצרים- אשר להם 0 נקודות זכות לא יוצגו בדף התוצאות
+            //ואם לא היו מוצרים התואמים את מילות החיפוש של המשתמש כלל
+            //יוצר דף קולקציה חדשה למשתמש
+            foreach (string s in  splited)
+            {
+                products.Where(u=>u.Desc.Contains(s)).ToList().ForEach(p=>array[products.IndexOf(p)]++);
+                //foreach (var item in products)
+                //{
+                //    if (item.Desc.Contains(s))
+                //        array[products.IndexOf(item)]++;
+                //}
+            }
+            //
+            //if (Session["user"]==null )
+            //    Session["user"] = new Stack <Product>();
+
+            //Stack <Product> f = (Stack <Product>)Session["kk"];
+            //f.Push();
+            
+                var max = array.Max();
+          //select the products according the array
+
+            return View("FromMenu",products.ToList());
+>>>>>>> 0aacddc990fa7dc6bac66094bc83ba4e13cb9cdc
 
         public ActionResult Product(int ProductKey)
         {
