@@ -9,66 +9,14 @@
 <div style="margin-top:40px">
     <h4>Buy Product</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductKey)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductKey)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Barcode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Barcode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Desc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Desc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SearchWords)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SearchWords)
-        </dd>
-
-    </dl>
+    <div class="w3-col l3 s6">
+        <div class="w3-container" style="cursor:pointer;">
+            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+            <p style="width:150px;height:150px;padding-bottom:30px;">@Model.Desc<br><b>@Model.Price</b></p>
+        </div>
+        @Html.DisplayFor(model => model.Barcode)
+        <p>@Model.Barcode</p>
+        @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
+    </div>
 </div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProductKey  }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -153,7 +153,8 @@ namespace Annety.Controllers
             if(mone==0)
             f.Push(p);
             Session["kk"] = f;
-           
+
+            ViewBag.ProductSize = new SelectList(db.ProductSize, "CodeSize", "SizeDesc");
             return View(p);
         }
 
