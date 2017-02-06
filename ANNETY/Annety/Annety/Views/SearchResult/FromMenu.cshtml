@@ -25,10 +25,6 @@
 }
 <script>
     function ShowItem(p) {
-        if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-            document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-        else
-            document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
 
         $.ajax({
             url: '@Url.Action("../Products/Item")',

@@ -48,7 +48,7 @@ namespace Annety.Controllers
 
             }
 
-            return View("FromMenu", pl.ToList());
+            return View("FromMenu", pl);
 
         }
         //  add another parameter which symbol the source
@@ -74,12 +74,12 @@ namespace Annety.Controllers
                         if(array[i]==max)
                         { 
                         var prod = products[i];
-                        pl.Add(prod);
+                        pl.Add((Product)prod);
                         }
                     }
                     max--;
                 }
-            return View("FromMenu", pl.ToList());
+            return View("../SearchResult/FromMenu", pl);
 
         }
 
@@ -114,6 +114,11 @@ namespace Annety.Controllers
 
             return View("../SearchResult/FromMenu", f.ToList());
             
+        }
+
+       public ActionResult DisplayProducts(List<Product> p)
+        {
+            return View("FromMenu", p.ToList());
         }
     }
 }
