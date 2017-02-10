@@ -346,10 +346,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="slick.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="slick.css" />
     <Content Include="style.css" />
     <Content Include="StyleSheet1.css" />
-    <Content Include="LoginPage.html" />
     <Content Include="Registration.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -431,6 +432,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Item.cshtml" />
     <Content Include="Views\SearchResult\WatchList.cshtml" />
+    <Content Include="Views\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

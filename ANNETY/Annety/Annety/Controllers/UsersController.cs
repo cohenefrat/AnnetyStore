@@ -54,8 +54,8 @@ namespace Annety.Controllers
                 db.Users.Add(users);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }   
-
+            }
+            Session["UserDetails"] = users;
             return View(users);
         }
 

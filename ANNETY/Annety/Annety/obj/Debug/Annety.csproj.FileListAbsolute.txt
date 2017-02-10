@@ -331,6 +331,6 @@ C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\bin\Microsoft.Owin.Sec
 C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\obj\Debug\Annety.csprojResolveAssemblyReference.cache
 C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\obj\Debug\Annety.dll
 C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\obj\Debug\Annety.pdb
+C:\Users\DANA\Desktop\New folder (3)\ANNETY\Annety\Annety\obj\Debug\Annety.csprojResolveAssemblyReference.cache
