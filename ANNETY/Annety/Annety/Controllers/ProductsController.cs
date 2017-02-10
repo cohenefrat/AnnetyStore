@@ -168,6 +168,10 @@ namespace Annety.Controllers
             }
             return View( );
         }
-
+      
+        public ActionResult GoToPayment(int? Price )
+        {
+            return View("../Index", Price);
+        }
     }
 }

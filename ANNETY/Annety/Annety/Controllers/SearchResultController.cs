@@ -51,8 +51,9 @@ namespace Annety.Controllers
             return View("FromMenu", pl);
 
         }
+
         //  add another parameter which symbol the source
-        [HttpGet]
+       // [HttpGet]
         public ActionResult Search_Box(String Search_Box)
         {
             List<Product> pl = new List<Annety.Product>();
@@ -74,12 +75,12 @@ namespace Annety.Controllers
                         if(array[i]==max)
                         { 
                         var prod = products[i];
-                        pl.Add((Product)prod);
+                        pl.Add(prod);
                         }
                     }
                     max--;
                 }
-            return View("../SearchResult/FromMenu", pl);
+             return View("FromMenu", pl);
 
         }
 
