@@ -4,19 +4,125 @@
     ViewBag.Title = "Item";
    // Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+@*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<style>
+    .w3-container{
+        height:350px;
+     
+    }
+    .CartImg {
+    width:60px;
+    margin-top:20px;
+    margin-left:28px;
+    }
+    .w3-container .itemInfo{
+        width: 350px;
+    display: inline-block;
+    height: 350px;
+    padding-bottom: 30px;
+    top: 0;
+    vertical-align: top;
+    }
+    .price{
+        float:left;
+        width:45%
+    }
+    .buy{
+        float:right;
+        width:45%
+    }
+    .PayNowBtn img{
+        width:130px;
 
-
+    }
+</style>
 <div style="margin-top:40px">
     <h4>Buy Product</h4>
     <hr />
     <div class="w3-col l3 s6">
         <div class="w3-container" style="cursor:pointer;">
-            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
-            <p style="width:150px;height:150px;padding-bottom:30px;">@Model.Desc<br><b>@Model.Price</b></p>
+            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="margin-left:10px; " />
+            <div class="itemInfo">
+                <p style="">@Model.Desc</p>
+                <div class="price">
+                <p>Price: @Model.Price</p>
+                <p>Size </p>
+                <select>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select>
+                <input type="number" value="1"  />
+                    </div>
+                <div class="buy">
+                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now">
+                        <img src="~/Images/pay now.png" />
+                    </div>
+
+                    <div class="AddToCartBtn" id="AddToCartBtn">
+                        <img src="~/Images/cart pink.png" id="CartImg"/>
+                    </div>
+                </div>
+                <div class="your-class">
+                    <div>your content</div>
+                    <div>your content</div>
+                    <div>your content</div>
+                </div>
+            </div>
+           
         </div>
+        
+      
         @Html.DisplayFor(model => model.Barcode)
         <p>@Model.Barcode</p>
         @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.your-class').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+      });  
+    });
+</script>
+<script>
+        PayNowBtn.onclick = Pay_Now
+
+        function Pay_Now()
+        {
+            //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            //else
+            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+         
+            //window.open('http://localhost:42601/index.html');
+            $.ajax({
+                url: '@Url.Action("~/index.html")',
+                type: 'GET',
+                dataType: 'json',
+                // we set cache: false because GET requests are often cached by browsers
+                // IE is particularly aggressive in that respect
+                cache: false,
+                data: { PayNowBtn: document.getElementById('model.price').value },
+
+            });
+
+        //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
+
+        //    $.ajax({
+        //        url: url,
+        //        data: {}, //parameters go here in object literal form
+        //        type: 'GET',
+        //        datatype: 'json'
+        //    });
+        }
+
+
+</script>
 
