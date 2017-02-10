@@ -31,7 +31,7 @@ namespace Annety
         public decimal Price { get; set; }
         public string SearchWords { get; set; }
         public System.DateTime ChangeDate { get; set; }
-
+        
         [NotMapped]
         public HttpPostedFileBase Image { get; set; }
         public virtual Categories Categories { get; set; }
