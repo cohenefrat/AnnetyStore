@@ -20,7 +20,7 @@
             <div class="srchbtn" id="srchbtn" style="width:35px;height:25px;background:transparent;position:absolute;left:320px;top:25px;cursor:pointer;" onclick="Search_Box()" ></div>
         </a>
 
-            <div class="homebtn" style="width:170px;height:77px;background:transparent;position:absolute;left:590px;top:0;cursor:pointer;" onclick="location.href ='../Home/Index';">
+            <div class="homebtn" style="width:170px;height:77px;background:transparent;position:absolute;left:590px;top:0;cursor:pointer;" onclick="location.href ='../../Home/Index';">
                 <a href="#"></a>
                 
             </div>
@@ -103,7 +103,7 @@
 
             $.ajax({
                 url: '@Url.Action("../SearchResult/Search_Box")',
-                type: 'GET',
+                type: 'document.location.replace(../controller/view?parameterName=value&if you want more paremetars)',
                 dataType: 'json',
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
