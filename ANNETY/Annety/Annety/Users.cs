@@ -11,7 +11,9 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +24,15 @@ namespace Annety
         }
     
         public int Code { get; set; }
+        [Required(ErrorMessage="Please enter a UserName between 6 to 12 chars")]
+       
+        [Remote("IsUserExist","Users",HttpMethod="GET", AdditionalFields ="UserName",ErrorMessage ="This USerName is already in use.")]
         public string UserName { get; set; }
+        [EmailAddress(ErrorMessage ="Please enter a valid E-mail")]
+        [Required(ErrorMessage ="Please enter an Email")]
+        [Remote("IsEmailExist","Users",HttpMethod ="GET",AdditionalFields ="Email",ErrorMessage ="This Email is already in use.")]
         public string Email { get; set; }
+        [Required(ErrorMessage ="Please enter a password between 6 to 10 chars")]
         public string Password { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

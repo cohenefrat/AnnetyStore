@@ -59,29 +59,40 @@ namespace Annety.Controllers
             List<Product> pl = new List<Annety.Product>();
 
             var products = db.Product.ToList();
-            //string a = "Dress";
+            //מורה לפונקציה באיזה סימנים עליה לחלק את המערך מילים שקיבלה 
             char[] delimiterChars = { ' ', ',', ':', '.' };
             String[] splited = Search_Box.Split(delimiterChars);
+            //מערך מונים - לדעת כמה מילים מופיעות בכל תיאור מוצר
             int[] array = new int[products.Count];
             foreach (string s in splited)
-            {
+            {//עובר על כל המוצרים ןמחפש את אחת המילים ממילות חיפוש - כל מילה שנמצאת בתיאור המוצר - יעלה ערכו ב1
                 db.Product.Where(u => u.Desc.Contains(s)).ToList().ForEach(p => array[products.IndexOf(p)]++);
             }
+            //מציאת המילה בה נמצאה הכמות הגדולה ביותר ממילות החיפוש
             var max = array.Max();
+            //במקרה שנמצאה לפחות מילה אחת ממילות החיפוש באחד מהמוצרים שבחנות
             if (max > 0)
+            {
+                //הצגת המוצרים בסדר מהגבוה לנמוך - קודם יוצר המוצר בו היו הכי הרבה מילים ממילות החיפוש - והולך פוחת
                 for (int j = max; j > 0; j--)
-                { for (int i = 0; i < array.Length; i++)
+                {
+                    for (int i = 0; i < array.Length; i++)
                     {
-                        if(array[i]==max)
-                        { 
-                        var prod = products[i];
-                        pl.Add(prod);
+                        if (array[i] == max)
+                        {
+                            var prod = products[i];
+                            pl.Add(prod);
                         }
                     }
                     max--;
                 }
-             return View("FromMenu", pl);
-
+                return View("FromMenu", pl);
+            }
+            //במקרה שיוזר הקיש מילות חיפוש שלא קיימות בכלל במאגר מילות החיפוש של המוצרים - הוא יובל לדף קולקציה חדשה
+            else {
+                return RedirectToAction("NewArrival");
+                 }
+    
         }
 
 
@@ -96,22 +107,22 @@ namespace Annety.Controllers
         //{
         //    Product product = db.Product.Where(p => p.ProductKey == ProductKey).SingleOrDefault();
 
-        //    if (Session["kk"] == null)
-        //        Session["kk"] = new Stack<Product>();
+        //    if (Session["MyWatchList"] == null)
+        //        Session["MyWatchList"] = new Stack<Product>();
 
-        //    Stack<Product> f = (Stack<Product>)Session["kk"];
+        //    Stack<Product> f = (Stack<Product>)Session["MyWatchList"];
         //    f.Push(product);
-        //    Session["kk"] = f;
-             
+        //    Session["MyWatchList"] = f;
+
         //  return   RedirectToAction("../Products/Item" , product);
         //}
 
         public ActionResult WatchList()
         {
-            if (Session["kk"] == null)
-                Session["kk"] = new Stack<Product>();
+            if (Session["MyWatchList"] == null)
+                Session["MyWatchList"] = new Stack<Product>();
 
-            Stack<Product> f = (Stack<Product>)Session["kk"];
+            Stack<Product> f = (Stack<Product>)Session["MyWatchList"];
 
             return View("../SearchResult/FromMenu", f.ToList());
             
@@ -121,5 +132,18 @@ namespace Annety.Controllers
         {
             return View("FromMenu", p.ToList());
         }
+
+
+
+        public ActionResult NewArrival()
+        {
+            List<Product> products;
+           //הצגת המוצרים שהוכנסו לאתר בחודש האחרון
+                products = db.Product.Where(p => p.ChangeDate.Month == DateTime.Now.Month).ToList();
+          
+                
+            return View("FromMenu",products);
+        }
+
     }
 }

@@ -70,16 +70,16 @@
     </div>
     
     <footer class="navbar-fixed-bottom">
-        <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "Index", "Home")</div>
+        <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</div>
         <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
             <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
 
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-                @*@if (Session["isManager"].ToString() == "yes")*@
-                
+              @*@if (Session["UserDetails"].ToString() == "Bella-Dom")*@ 
                 <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+             
                 <li style="margin-right:150px; ">@Html.ActionLink("Sale", "Index", "Home")</li>
             </ol>
 
@@ -108,7 +108,7 @@
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
                 cache: false,
-                data: { Search_Box: document.getElementById('Search_Box').value },
+                data: { Search_Box: document.getElementById('Search_Box').value }
 
             });
 
