@@ -21,23 +21,24 @@ else
     </ul>
 }*@
 
-@if (Session["UserDetails"] == null)
-{
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<div id="loginLink" style="float:right; margin-left:10px;"><a href='../Users/LoginPage' >Login</a></div>
+    @if (Session["UserDetails"] == null)
+    {
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <div id="loginLink" style="float:right; margin-left:10px;"><a href='../Users/LoginPage'>Login</a></div>
 
-<div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
-}
+        <div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
+    }
 
-else {
-<p style="font-size:15px; font-family:Tahoma;width:100px;float:right;">Hi @Session["UserDetails"].ToString()</p>
-<div><a href="../../Home/Index" onclick="Logout()"  id="LogoutBtn">Logout</a></div>
-}
+    else
+    {
+        <p style="font-size:15px; font-family:Tahoma;width:100px;float:right;">Hi @Session["UserDetails"].ToString()</p>
+        <div><a href="../../Home/Index" onclick="Logout()" id="LogoutBtn">Logout</a></div>
+    }
 
-@*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>
-<li id="registerLink" style="float:right;"><a href="~/Views/Registration.html">Register</a></li>*@
-<script>
-    LogoutBtn.onclick = Logout
+    @*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>
+        <li id="registerLink" style="float:right;"><a href="~/Views/Registration.html">Register</a></li>*@
+    <script>
+        LogoutBtn.onclick = Logout
 
         function Logout()
         {
@@ -47,8 +48,8 @@ else {
             window.location.reload();
             return ("Index","Home");
 
-            }
-        
+        }
 
 
-</script>
+
+    </script>
