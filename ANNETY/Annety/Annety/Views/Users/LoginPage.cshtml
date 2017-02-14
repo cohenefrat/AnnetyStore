@@ -18,12 +18,14 @@
        
     function Login(UserName,Password)
     {
-        $.ajax({
-            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-            else
-                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+        if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+            document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+        else
+            document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
        
+
+        $.ajax({
+          
             url: '@Url.Action("../Users/Login")',
             type: 'document.location.replace(../controller/view?parameterName=value&if you want more paremetars)',
             dataType: 'json',
