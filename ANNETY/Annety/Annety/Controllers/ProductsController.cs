@@ -142,9 +142,9 @@ namespace Annety.Controllers
             Product p = db.Product.SingleOrDefault(i=>i.ProductKey == id);
 
             //add to session
-            if (Session["kk"] == null)
-                Session["kk"] = new Stack<Product>();
-            Stack<Product> f = (Stack<Product>)Session["kk"];
+            if (Session["MyWatchList"] == null)
+                Session["MyWatchList"] = new Stack<Product>();
+            Stack<Product> f = (Stack<Product>)Session["MyWatchList"];
             foreach (var x in f)
             {
                 if (p.ProductKey == x.ProductKey)
@@ -152,7 +152,7 @@ namespace Annety.Controllers
             }
             if(mone==0)
             f.Push(p);
-            Session["kk"] = f;
+            Session["MyWatchList"] = f;
 
             ViewBag.ProductSize = new SelectList(db.ProductSize, "CodeSize", "SizeDesc");
             return View(p);
@@ -161,9 +161,9 @@ namespace Annety.Controllers
         public ActionResult WatchList( )
         {
             //get from to session
-            if (Session["kk"] != null)
+            if (Session["MyWatchList"] != null)
             {
-                List<Product> l = ((Stack<Product>)Session["kk"]).ToList();
+                List<Product> l = ((Stack<Product>)Session["MyWatchList"]).ToList();
                 return View(l.Take(10));
             }
             return View( );

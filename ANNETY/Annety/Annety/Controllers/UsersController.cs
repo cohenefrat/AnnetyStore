@@ -40,7 +40,7 @@ namespace Annety.Controllers
         {
             return View();
         }
-
+        
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -52,12 +52,15 @@ namespace Annety.Controllers
             {   //users.Password
                 users.Password = AccountController.HashPass(users.Password);
                 db.Users.Add(users);
+                Session["UserDetails"] = users.UserName;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
-            Session["UserDetails"] = users;
+            Session["User"] = users;
             return View(users);
         }
+
+        
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
@@ -123,6 +126,42 @@ namespace Annety.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult LoginPage()
+        {
+            return View();
+        }
+        public ActionResult Login(string email, string password)
+        {
+            Session["EmailLogin"] = email;
+            Session["PassLogin"] = password;
+            Session["PassLogin"] = AccountController.HashPass(Session["PassLogin"].ToString());
+            Users u = db.Users.SingleOrDefault(i => i.Email == Session["EmailLogin"].ToString());
+            if (u.Password == Session["PassLogin"].ToString())
+            {
+                Session["UserDetails"] = u;
+                return View("Index", "Home");
+            }
+            else
+            //add error message for user theat insert incorrect password or email
+
+            return View();
+        }
+        public JsonResult IsUserExist(string UserName)
+        {
+
+            return IsExist1(UserName) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
+        }
+
+        public bool IsExist1(string UserName)
+        {
+            Users u = db.Users.SingleOrDefault(i => i.UserName == UserName);
+            if (u == null)
+                return true;
+            else
+            return false;
+
         }
     }
 }

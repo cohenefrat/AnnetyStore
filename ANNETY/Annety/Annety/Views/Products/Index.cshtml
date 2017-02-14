@@ -30,7 +30,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Categories.Desc)
         </th>
-        <th></th>
+        <th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChangeDate)
+        </th>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -53,6 +57,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Categories.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChangeDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProductKey }) |
