@@ -95,21 +95,24 @@
        
         function Search_Box()
         {
-            //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-            //else
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            else
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
        
 
             $.ajax({
                 url: '@Url.Action("../SearchResult/Search_Box")',
-                type: 'GET',
+                type: 'Post',
                 dataType: 'json',
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
                 cache: false,
                 data: { Search_Box: document.getElementById('Search_Box').value },
-
+                success: function (DisplayProduct)
+                { document.location.replace('../SearchResult/ParameterName=pl')
+                    
+                },
             });
 
         //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
