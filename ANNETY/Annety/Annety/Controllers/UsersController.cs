@@ -136,20 +136,23 @@ namespace Annety.Controllers
         {
             Users u = new Users();
              
-            Session["EmailLogin"] = Email;
-            Session["PassLogin"] = password;
-            Session["PassLogin"] = AccountController.HashPass(Session["PassLogin"].ToString());
-            var em = Session["EmailLogin"].ToString();
-            u = db.Users.SingleOrDefault(i => i.Email == em );
-            if (u.Password == Session["PassLogin"].ToString())
-            {
-                Session["UserDetails"] = u;
-                return View("Index", "Home");
-            }
-            else
-            //add error message for user theat insert incorrect password or email
+            //Session["EmailLogin"] = Email;
+            //Session["PassLogin"] = password;
+            password = AccountController.HashPass(password);
+            //var em = Session["EmailLogin"].ToString();
+            u = db.Users.SingleOrDefault(i => i.Email == Email);
+            if (u != null)
+                if (u.Password == password)
+                {
+                    Session["UserDetails"] = u;
+                    return View("Index", "Home");
+                }
+                else
+                    //add error message for user theat insert incorrect password or email
 
-            return View();
+                    return View();
+            else
+                return View();
         }
         public JsonResult IsUserExist(string UserName)
         {
@@ -159,7 +162,7 @@ namespace Annety.Controllers
 
         public bool IsExist1(string UserName)
         {
-            Users u = db.Users.SingleOrDefault(i => i.UserName == UserName);
+            Users u = db.Users.FirstOrDefault(i => i.UserName == UserName);
             if (u == null)
                 return true;
             else

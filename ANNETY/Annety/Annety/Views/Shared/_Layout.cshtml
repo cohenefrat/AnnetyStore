@@ -50,7 +50,7 @@
                 }
             }
             <br /><h4>Girls</h4><hr />
-            @foreach (var item in db.Categories)
+            @foreach (var item  in db.Categories)
             {
                 if (item.ParentCategory != true)
                 {  <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
