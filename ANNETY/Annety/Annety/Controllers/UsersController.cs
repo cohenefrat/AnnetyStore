@@ -132,12 +132,15 @@ namespace Annety.Controllers
         {
             return View();
         }
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(string Email, string password)
         {
-            Session["EmailLogin"] = email;
+            Users u = new Users();
+             
+            Session["EmailLogin"] = Email;
             Session["PassLogin"] = password;
             Session["PassLogin"] = AccountController.HashPass(Session["PassLogin"].ToString());
-            Users u = db.Users.SingleOrDefault(i => i.Email == Session["EmailLogin"].ToString());
+            var em = Session["EmailLogin"].ToString();
+            u = db.Users.SingleOrDefault(i => i.Email == em );
             if (u.Password == Session["PassLogin"].ToString())
             {
                 Session["UserDetails"] = u;

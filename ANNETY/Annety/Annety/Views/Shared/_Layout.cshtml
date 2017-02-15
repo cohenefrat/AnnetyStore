@@ -95,21 +95,33 @@
        
         function Search_Box()
         {
-            //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-            //else
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            else
+                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
        
 
             $.ajax({
                 url: '@Url.Action("../SearchResult/Search_Box")',
+<<<<<<< HEAD
+                type: 'Post',
+=======
                 type: 'document.location.replace(../controller/view?parameterName=value&if you want more paremetars)',
+>>>>>>> 2389b95756ce87832fd212848a0c0bff75ea4638
                 dataType: 'json',
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
                 cache: false,
+<<<<<<< HEAD
+                data: { Search_Box: document.getElementById('Search_Box').value },
+                success: function (DisplayProduct)
+                { document.location.replace('../SearchResult/ParameterName=pl')
+                    
+                },
+=======
                 data: { Search_Box: document.getElementById('Search_Box').value }
 
+>>>>>>> 2389b95756ce87832fd212848a0c0bff75ea4638
             });
 
         //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
