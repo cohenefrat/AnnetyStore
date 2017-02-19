@@ -1,11 +1,9 @@
-﻿
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--<!DOCTYPE html>-->
 <html>
 <head>
   <!--  <link rel="StyleSsheet" type="text/css" href="Style.css" media="all">-->
@@ -27,9 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="style.css" rel="stylesheet" type="text/css" media="all">
 <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 </head>
+
 <body>
 	<div class="main">
-		<h1>Payment Form Widget</h1>
+		<p>Total payment @Session["TotalPayment"].ToString()</p>
 		<div class="content">
 			
 			<!--<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>

@@ -10,12 +10,15 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Annety.Models;
 using System.Text;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace Annety.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private AnnetyEntities db = new AnnetyEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -389,10 +392,34 @@ namespace Annety.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            if (Session["MyWatchlist"] != null)
+            {
+                List<WatchList> WL = new List<WatchList>();
+                List<Product> f = (List<Product>)Session["MyWatchList"];
+                int mone = 0;
+                for (int i = 0; i < f.Count()||mone==10; i++)
+                {
+                    
+                    WL[i].ProductKey = f[i].ProductKey;
+                    WL[i].UserCode = (int)Session["UserCode"];
+                    WL[i].WatchDate = DateTime.Now;
+                    db.WatchList.Add(WL[i]);
+                    db.SaveChanges();
+                    mone++;
+                }
+                //todo sava the WL in the db
+               
+            }
+            //session מאפס את ה
+            Session["UserDetails"] = null;
+            Session["User"] = null;
+            //ToDo Clear the sesion 
+            //   AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+           
             return RedirectToAction("Index", "Home");
         }
 

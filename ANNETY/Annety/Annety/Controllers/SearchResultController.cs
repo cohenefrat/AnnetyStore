@@ -124,7 +124,7 @@ namespace Annety.Controllers
 
             Stack<Product> f = (Stack<Product>)Session["MyWatchList"];
 
-            return View("../SearchResult/FromMenu", f.ToList());
+            return View("../SearchResult/FromMenu", f.ToList().Take(10));
             
         }
 

@@ -53,6 +53,7 @@ namespace Annety.Controllers
                 users.Password = AccountController.HashPass(users.Password);
                 db.Users.Add(users);
                 Session["UserDetails"] = users.UserName;
+                Session["UserCode"] = users.Code;
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
@@ -132,20 +133,21 @@ namespace Annety.Controllers
         {
             return View();
         }
-        public ActionResult Login(string Email, string password)
+        [HttpPost]
+        public ActionResult Login(string UserName_login, string Password_login)
         {
             Users u = new Users();
              
             //Session["EmailLogin"] = Email;
             //Session["PassLogin"] = password;
-            password = AccountController.HashPass(password);
+            Password_login = AccountController.HashPass(Password_login);
             //var em = Session["EmailLogin"].ToString();
-            u = db.Users.SingleOrDefault(i => i.Email == Email);
-            if (u != null)
-                if (u.Password == password)
+            u = db.Users.FirstOrDefault (i => i.Email == UserName_login );
+            if (u != null && u.UserName!=string.Empty )
+                if (u.Password.Trim() == Password_login)
                 {
-                    Session["UserDetails"] = u;
-                    return View("Index", "Home");
+                    Session["UserDetails"] = u.UserName;
+                    return View("../Home/Index");
                 }
                 else
                     //add error message for user theat insert incorrect password or email
@@ -162,8 +164,8 @@ namespace Annety.Controllers
 
         public bool IsExist1(string UserName)
         {
-            Users u = db.Users.FirstOrDefault(i => i.UserName == UserName);
-            if (u == null)
+            bool u = db.Users.Any(i => i.UserName == UserName);
+            if (u)
                 return true;
             else
             return false;

@@ -154,7 +154,10 @@ namespace Annety.Controllers
             f.Push(p);
             Session["MyWatchList"] = f;
 
-            ViewBag.ProductSize = new SelectList(db.ProductSize, "CodeSize", "SizeDesc");
+            IEnumerable<ProductSize> l = from s in db.ProductSize
+                                  where s.Stocks.Any(pr => pr.ProductKey == p.ProductKey)
+                                  select s;
+            ViewBag.ProductSize = new SelectList(l, "CodeSize", "SizeDesc");
             return View(p);
         }
 
@@ -163,8 +166,9 @@ namespace Annety.Controllers
             //get from to session
             if (Session["MyWatchList"] != null)
             {
-                List<Product> l = ((Stack<Product>)Session["MyWatchList"]).ToList();
-                return View(l.Take(10));
+                List<Product> l = ((Stack<Product>)Session["MyWatchList"]).ToList().Take(10).ToList();
+
+                return View(l);
             }
             return View( );
         }

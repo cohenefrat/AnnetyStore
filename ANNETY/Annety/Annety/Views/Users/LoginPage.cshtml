@@ -4,14 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @*<h2>LoginPage</h2>*@
+@using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "LoginPage", @class = "navbar-right" }))
+{
+    <h1>Login</h1>
+    <input class="UserName_login" type="text" name="UserName_login" id="UserName_login" placeholder="User Name / E-mail" /><br />
+    <input class="Password_login" type="password" name="Password_login" id="Password_login" placeholder="Password" /><br />
+    <div><a href="javascript:document.getElementById('LoginPage').submit()" id="LogInBtn">Login</a></div>
 
-<h1>Login</h1>
-<input class="UserName_login" type="text" id="UserName_login" placeholder="User Name / E-mail" /><br />
-<input class="Password_login" type="password" id="Password_login" placeholder="Password" /><br />
-<input class="LoginSbmt" type="button" id="LoginSbmt" @*value="Login"*@ onclick="Login()" /><br />
-
-@Html.ActionLink("Login", "Login", "Users")
+    <input type="submit" value="login" />
+}
 <html>
 <body>
     <script>
@@ -25,7 +28,7 @@
 
             $.ajax({
                 url: '@Url.Action("../Users/Login")',
-               // type: 'document.location.replace(../controller/view?parameterName=value&if you want more paremetars)',
+                // type: 'document.location.replace(../controller/view?parameterName=value&if you want more paremetars)',
                 type: 'Get',
                 dataType: 'json',
                 // we set cache: false because GET requests are often cached by browsers

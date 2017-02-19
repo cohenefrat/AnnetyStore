@@ -22,39 +22,32 @@
     }*@
 <html>
 <body>
-
-    @if (Session["UserDetails"] == null)
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOff", name = "LogOff", @class = "navbar-right" }))
     {
-        <link href="~/Content/bootstrap.css" rel="stylesheet" />
-        <div id="loginLink" style="float:right; margin-left:10px;"><a href='../Users/LoginPage'>Login</a></div>
-
-        <div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
-    }
-
-    else
-    {
-        <p style="font-size:15px; font-family:Tahoma;width:100px;float:right;">Hi @Session["UserDetails"].ToString()</p>
-        <div><a href="../../Home/Index" onclick="Logout()" id="LogoutBtn">Logout</a></div>
-    }
-
-    @*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>
-        <li id="registerLink" style="float:right;"><a href="~/Views/Registration.html">Register</a></li>*@
-    <script>
-        LogoutBtn.onclick = Logout
-
-        function Logout()
+        if (Session["UserDetails"] == null)//לא מאומת
         {
-            //session מאפס את ה
-            @Session["UserDetails"]=null;
-            @Session["User"]=null;
-            //window.location.reload();
-            return ("Index","Home");
+            <link href="~/Content/bootstrap.css" rel="stylesheet" />
+            <div id="loginLink" style="float:right; margin-left:10px;">
+                <a href='../Users/LoginPage'>Login</a>
+            </div>
 
+            <div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
         }
 
-
-
-    </script>
+        else//מאומת
+        {
+            <p style="font-size:15px; font-family:Tahoma;width:100px;float:right;">Hi @Session["UserDetails"].ToString()</p>
+            <div>
+                <a href="javascript:document.getElementById('LogOff').submit()" id="LogoutBtn">Logout</a>
+            </div>
+            <br />
+            <div id="registerLink" style="float:right"><a href="@Url.Action("LogOff", "Account")">Register</a></div>
+            <br />
+            <input type="submit" value="logout" />
+        }
+    }
+    @*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>
+        <li id="registerLink" style="float:right;"><a href="~/Views/Registration.html">Register</a></li>*@
 
 </body>
 

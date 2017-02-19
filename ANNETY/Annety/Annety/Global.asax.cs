@@ -19,6 +19,12 @@ namespace Annety
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             
         }
+        //protected void Session_End()
+        //{
+        //    //todo:
+        //    //אם היוזר מאושר
+        //    //לשמןר את כל הרשימה שצפנה - ב- DB
+        //}
         //override onerror();
     }
 }

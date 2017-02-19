@@ -2,105 +2,126 @@
 
 @{
     ViewBag.Title = "Item";
-   // Layout = "~/Views/Shared/_Layout.cshtml";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-@*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-<style>
-    .w3-container{
-        height:350px;
-     
-    }
-    .CartImg {
-    width:60px;
-    margin-top:20px;
-    margin-left:28px;
-    }
-    .w3-container .itemInfo{
-        width: 350px;
-    display: inline-block;
-    height: 350px;
-    padding-bottom: 30px;
-    top: 0;
-    vertical-align: top;
-    }
-    .price{
-        float:left;
-        width:45%
-    }
-    .buy{
-        float:right;
-        width:45%
-    }
-    .PayNowBtn img{
-        width:130px;
+@*//@{ AnnetyEntities db = new AnnetyEntities();}*@
+<html>
+<body>
 
-    }
-</style>
-<div style="margin-top:40px">
-    <h4>Buy Product</h4>
-    <hr />
-    <div class="w3-col l3 s6">
-        <div class="w3-container" style="cursor:pointer;">
-            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="margin-left:10px; " />
-            <div class="itemInfo">
-                <p style="">@Model.Desc</p>
-                <div class="price">
-                <p>Price: @Model.Price</p>
-                <p>Size </p>
-                <select>
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-                <input type="number" value="1"  />
-                    </div>
-                <div class="buy">
-                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now">
-                        <img src="~/Images/pay now.png" />
-                    </div>
 
-                    <div class="AddToCartBtn" id="AddToCartBtn">
-                        <img src="~/Images/cart pink.png" id="CartImg"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    @*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <style>
+        .w3-container {
+            height: 350px;
+        }
+
+        .CartImg {
+            width: 60px;
+            margin-top: 20px;
+            margin-left: 28px;
+        }
+
+        .w3-container .itemInfo {
+            width: 350px;
+            display: inline-block;
+            height: 350px;
+            padding-bottom: 30px;
+            top: 0;
+            vertical-align: top;
+        }
+
+        .price {
+            float: left;
+            width: 45%;
+        }
+
+        .buy {
+            float: right;
+            width: 45%;
+        }
+
+        .PayNowBtn img {
+            width: 130px;
+        }
+    </style>
+    <div style="margin-top:40px">
+        <h4>Buy Product</h4>
+        <hr />
+        <div class="w3-col l3 s6">
+            <div class="w3-container" style="cursor:pointer;">
+                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="margin-left:10px; width:350px;height:500px;" />
+                <div class="itemInfo" style="margin-left:35px;">
+                    <p style="width:650px;font-size:25px;">@Model.Desc</p>
+                    <div class="price">
+                        <label >Price: @Model.Price</label><br />
+                        <label style="display:inline">Size </label>
+                        @Session["TotalPayment"]= @Model.Price;
+                        @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
+
+
+                        @*<select >
+                            @foreach (var item in db.ProductSize)
+                            {
+                                <option value="Choose size">@item.SizeDesc</option>
+                            }
+                        </select>*@
+                        <label style="display:inline">Quantity</label>
+                        <input type="number" value="1" style="width:50px;margin-top:10px;" />
                     </div>
+                    <div class="buy" style="margin-right:-150px;">
+                        <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now" >
+                            <a href="../PaymentPage.cshtml">
+                                <img src="~/Images/pay now.png" />
+                            </a>
+                        </div>
+                        <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
+
+                        <div class="AddToCartBtn" id="AddToCartBtn" style="margin-left:35px">
+                            <img src="~/Images/cart pink.png" id="CartImg" onclick="AddToCart" style="width:60px;margin-top:10px;"/>
+                        </div>
+                    </div>
+                    @*<div class="your-class">
+                        <div>your content</div>
+                        <div>your content</div>
+                        <div>your content</div>
+                    </div>*@
                 </div>
-                <div class="your-class">
-                    <div>your content</div>
-                    <div>your content</div>
-                    <div>your content</div>
-                </div>
+
             </div>
-           
-        </div>
-        
-      
-        @Html.DisplayFor(model => model.Barcode)
-        <p>@Model.Barcode</p>
-        @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function(){
-      $('.your-class').slick({
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 2000,
-      });  
-    });
-</script>
-<script>
-        PayNowBtn.onclick = Pay_Now
+            <div>
+                <label>More things you may like</label>
 
-        function Pay_Now()
+            </div>
+            <p @Html.DisplayFor(model => model.Barcode)
+               style="display:none">@Model.Barcode</p>
+            @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
+        
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.your-class').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        });
+    </script>
+    <script>
+        PayNowBtn.onclick = Pay_Now
+        function  AddToCart()
         {
+            
+
+        }
+        function Pay_Now() {
             //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
             //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
             //else
             //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
-         
+
             //window.open('http://localhost:42601/index.html');
             $.ajax({
                 url: '@Url.Action("~/index.html")',
@@ -113,16 +134,18 @@
 
             });
 
-        //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
+            //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
 
-        //    $.ajax({
-        //        url: url,
-        //        data: {}, //parameters go here in object literal form
-        //        type: 'GET',
-        //        datatype: 'json'
-        //    });
+            //    $.ajax({
+            //        url: url,
+            //        data: {}, //parameters go here in object literal form
+            //        type: 'GET',
+            //        datatype: 'json'
+            //    });
         }
 
 
-</script>
+    </script>
 
+</body>
+</html>
