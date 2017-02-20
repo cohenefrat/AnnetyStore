@@ -145,5 +145,11 @@ namespace Annety.Controllers
             return View("FromMenu",products);
         }
 
+        public ActionResult Payment()
+        {
+
+            return View("index");
+        }
+
     }
 }

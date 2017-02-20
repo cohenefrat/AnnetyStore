@@ -158,7 +158,6 @@ namespace Annety.Controllers
         }
         public JsonResult IsUserExist(string UserName)
         {
-
             return IsExist1(UserName) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
         }
 

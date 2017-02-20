@@ -71,10 +71,11 @@
                         <input type="number" value="1" style="width:50px;margin-top:10px;" />
                     </div>
                     <div class="buy" style="margin-right:-150px;">
-                        <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now" >
-                            <a href="../PaymentPage.cshtml">
-                                <img src="~/Images/pay now.png" />
-                            </a>
+                        <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()" >
+                            @*<a href="../PaymentPage.cshtml">*@
+                             <button id="btry" name="btry">ty</button>
+                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()"/>
+                            @* </a> *@
                         </div>
                         <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
@@ -110,6 +111,8 @@
         });
     </script>
     <script>
+        PayImg.onclick = Pay_Now
+        btry.onclick = Pay_Now
         PayNowBtn.onclick = Pay_Now
         function  AddToCart()
         {
@@ -117,13 +120,17 @@
 
         }
         function Pay_Now() {
+
+            sessionStorage["P"] = @Model.Price;
+            var url = '@Url.Action("Payment", "SearchResult")';
+            document.location.href = url;
             //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
             //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
             //else
             //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
 
             //window.open('http://localhost:42601/index.html');
-            $.ajax({
+            @*$.ajax({
                 url: '@Url.Action("~/index.html")',
                 type: 'GET',
                 dataType: 'json',
@@ -132,7 +139,7 @@
                 cache: false,
                 data: { Price: document.getElementById('model.price').value },
 
-            });
+            });*@
 
             //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
 
