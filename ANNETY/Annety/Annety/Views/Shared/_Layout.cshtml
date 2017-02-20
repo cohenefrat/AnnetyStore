@@ -29,7 +29,7 @@
                 <input type="text" id="Search_Box" placeholder="Search" style="margin-top:28px;height:11px;border-color:transparent;border-style:hidden;left:0; width:20%" />
 
                 <div class="col-lg-6" style="float:right; margin-left:50px;width:25px;">@Html.Partial("_LoginPartial")</div>
-                <a href='../../SearchResult/WatchList' style="float: right;margin-top: -5px;margin-left: 900px;">My WatchList</a>
+                <a href='../../SearchResult/WatchList' style="float: right;margin-top: -5px;margin-left: 900px;margin-right:17px;">My WatchList</a>
             </div>
         
     </div>    
@@ -70,16 +70,16 @@
     </div>
     
     <footer class="navbar-fixed-bottom">
-        <div style="text-align:center;background-color:white;position:fixed;">@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</div>
+        <div style="text-align:center;background-color:white;position:fixed;margin-left:670px;">@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</div>
         <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
             <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
 
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-              @*@if (Session["UserDetails"].ToString() == "Bella-Dom")*@ 
-                <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
-             
+          @if (Session["UserDetails"].ToString() == "Bella-Dom")
+          { <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+          }
                 <li style="margin-right:150px; ">@Html.ActionLink("Sale", "Index", "Home")</li>
             </ol>
 

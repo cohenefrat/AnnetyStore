@@ -22,13 +22,13 @@
     }*@
 <html>
 <body>
-    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOff", name = "LogOff", @class = "navbar-right" }))
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOff", name = "LogOff" , @class = "navbar-right" , @style="width:175px;margin-top:10px;"}))
     {
         if (Session["UserDetails"] == null)//לא מאומת
         {
             <link href="~/Content/bootstrap.css" rel="stylesheet" />
             <div id="loginLink" style="float:right; margin-left:10px;">
-                <a href='../Users/LoginPage'>Login</a>
+                <a href='../Users/LoginPage' style="display:inline">Login</a>
             </div>
 
             <div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
@@ -41,9 +41,9 @@
                 <a href="javascript:document.getElementById('LogOff').submit()" id="LogoutBtn">Logout</a>
             </div>
             <br />
-            <div id="registerLink" style="float:right"><a href="@Url.Action("LogOff", "Account")">Register</a></div>
+            @*<div id="registerLink" style="float:right"><a href="@Url.Action("LogOff", "Account")">Register</a></div>*@
             <br />
-            <input type="submit" value="logout" />
+            
         }
     }
     @*<li id="loginLink" style="float:right;margin-top:20px;margin-left:10px;" ><a href="~/Views/LoginPage.html">Login</a></li>

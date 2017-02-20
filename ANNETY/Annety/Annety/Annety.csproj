@@ -434,6 +434,7 @@
     <Content Include="Views\SearchResult\WatchList.cshtml" />
     <Content Include="Views\Users\LoginPage.cshtml" />
     <Content Include="Views\Products\PaymentPage.cshtml" />
+    <Content Include="Views\Products\PayNow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
