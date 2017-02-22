@@ -5,15 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="margin-left:270px">Join Now</h2>
+<h2 style="margin-left:395px;font-family:cursive;">Join Now</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal" style="margin-left:160px;font-family:cursive;">
         @*<h4>Join Now</h4>*@
-        <hr style="float:left;margin-left:210px"/>
+        <hr style="float:left;margin-left:185px"/>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@

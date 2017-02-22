@@ -3,28 +3,28 @@
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="page1">
+<div class="page1" style="margin-left:400px">
     <h2>Manage</h2>
 
     <div>
-        <div class="row" style="margin-left:20px">
+        <div class="row" @*style="margin-left:-400px;width:170px;"*@>
             <h4>Categories</h4>
             <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Add New Category", "Create", "Categories")</li>
-                <li class="col-md-7">@Html.ActionLink("All Categories", "Index", "Categories")</li>
+                <li class="co-md-7" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Category", "Create", "Categories")</li>
+                <li class="col-md-7" @*style="margin-left:-30px; width:150px;"*@>@Html.ActionLink("All Categories", "Index", "Categories")</li>
             </ol>
         </div>
-        <div class="row">
+        <div class="row" @*style="margin-top:-137px;margin-left:-220px;"*@>
             <h4>Colors</h4>
             <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Add New Color", "Create", "Colors")</li>
-                <li class="col-md-7">@Html.ActionLink("All Colors", "Index", "Colors")</li>
+                <li class="co-md-7" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Color", "Create", "Colors")</li>
+                <li class="col-md-7" @*style="margin-left:-30px;"*@>@Html.ActionLink("All Colors", "Index", "Colors")</li>
             </ol>
         </div>
         <div class="row">
             <h4>Products</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Add New Product", "Create", "Products")</li>
+            <ol class="nav navbar-nav row" @*style="margin-top:-137px;margin-left:-75px;"*@>
+                <li class="co-md-7" @*style="margin-left:-70px;"*@>@Html.ActionLink("Add New Product", "Create", "Products")</li>
                 <li class="col-md-7">@Html.ActionLink("All Products", "Index", "Products")</li>
             </ol>
         </div>

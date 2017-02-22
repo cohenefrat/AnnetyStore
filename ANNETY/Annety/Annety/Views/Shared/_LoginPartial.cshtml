@@ -22,13 +22,13 @@
     }*@
 <html>
 <body>
-    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOff", name = "LogOff" , @class = "navbar-right" , @style="width:175px;margin-top:10px;"}))
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogOff", name = "LogOff" , @class = "navbar-right" , @style="width:175px;margin-top:10px;margin-left:-175px;"}))
     {
         if (Session["UserDetails"] == null)//לא מאומת
         {
             <link href="~/Content/bootstrap.css" rel="stylesheet" />
             <div id="loginLink" style="float:right; margin-left:10px;">
-                <a href='../Users/LoginPage' style="display:inline">Login</a>
+                <a href='../../Users/LoginPage' style="display:inline">Login</a>
             </div>
 
             <div id="registerLink" style="float:right"><a href="@Url.Action("Create", "Users")">Register</a></div>
