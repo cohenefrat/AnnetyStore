@@ -80,6 +80,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -88,6 +92,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -212,6 +224,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Carts.cs">
+      <DependentUpon>Annety.tt</DependentUpon>
+    </Compile>
     <Compile Include="Categories.cs">
       <DependentUpon>Annety.tt</DependentUpon>
     </Compile>
@@ -235,6 +250,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IServiceCollection.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -277,10 +293,10 @@
     <Content Include="App_Data\Annety_log.ldf">
       <DependentUpon>Annety.mdf</DependentUpon>
     </Content>
-    <Content Include="Views\SearchResult\easyResponsiveTabs.js" />
+    <Content Include="easyResponsiveTabs.js" />
     <Content Include="Images\background.png" />
     <Content Include="Images\Picture2.jpg" />
-    <Content Include="Views\SearchResult\jquery-3.1.1.min.js" />
+    <Content Include="jquery-3.1.1.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Images\1.png" />
     <Content Include="Images\11.png" />
@@ -321,7 +337,7 @@
     <None Include="Resources\shutterstock_80097694-337x239.jpg" />
     <Content Include="Images\tick-mark1.png" />
     <Content Include="Images\visa.png" />
-    <Content Include="Views\SearchResult\index.html" />
+    <Content Include="index.html" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -349,7 +365,7 @@
     <Content Include="slick.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="slick.css" />
-    <Content Include="Views\SearchResult\style.css" />
+    <Content Include="style.css" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Registration.html" />
     <Content Include="Web.config" />

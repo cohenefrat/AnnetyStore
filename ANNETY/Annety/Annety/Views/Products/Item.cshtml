@@ -1,13 +1,12 @@
-﻿@model Product
-
+﻿@model Annety.Item
 @{
-    ViewBag.Title = "Item";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
+      ViewBag.Title = "Item";
+     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*//@{ AnnetyEntities db = new AnnetyEntities();}*@
 <html>
 <body>
-
+ 
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     @*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
@@ -52,52 +51,45 @@
         </div>
         <div class="w3-col l3 s6">
             <div class="w3-container" style="cursor:pointer;">
-                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.ImagePath))" style="margin-left:10px; width:350px;height:500px;" />
+                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.DisProd.ImagePath))" style="margin-left:10px; width:350px;height:500px;" />
                 <div class="itemInfo" style="margin-left:35px;">
-                    <p style="width:650px;font-size:25px;">@Model.Desc</p>
+                    <p style="width:650px;font-size:25px;">@Model.DisProd.Desc</p>
                     <div class="price">
-                        <label >Price: @Model.Price</label><br />
+                        <label >Price: @Model.DisProd.Price</label><br />
                         <label style="display:inline">Size </label>
-                        @Session["TotalPayment"]= @Model.Price;
+                        @Session["TotalPayment"]= @Model.DisProd.Price;
                         @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
 
-
-                        @*<select >
-                            @foreach (var item in db.ProductSize)
-                            {
-                                <option value="Choose size">@item.SizeDesc</option>
-                            }
-                        </select>*@
                         <label style="display:inline">Quantity</label>
                         <input type="number" value="1" style="width:50px;margin-top:10px;" />
                     </div>
                     <div class="buy" style="margin-right:-150px;">
                         <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()" >
-                            @*<a href="../PaymentPage.cshtml">*@
-                             <button id="btry" name="btry">ty</button>
                                 <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()"/>
-                            @* </a> *@
                         </div>
                         <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
                         <div class="AddToCartBtn" id="AddToCartBtn" style="margin-left:35px">
-                            <img src="~/Images/cart pink.png" id="CartImg" onclick="AddToCart" style="width:60px;margin-top:10px;"/>
+                            <img src="~/Images/cart pink.png" id="CartImg" onclick="AddToCart()" style="width:60px;margin-top:10px;"/>
                         </div>
                     </div>
-                    @*<div class="your-class">
-                        <div>your content</div>
-                        <div>your content</div>
-                        <div>your content</div>
-                    </div>*@
+              
                 </div>
 
             </div>
             <div>
                 <label>More things you may like</label>
+                @{ foreach (var item in Model.UMayLike)
+                    {
+                       <div class="row">
+                           <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                       </div>
+                    }
 
+                }
             </div>
-            <p @Html.DisplayFor(model => model.Barcode)
-               style="display:none">@Model.Barcode</p>
+            <p @Html.DisplayFor(model => Model.DisProd.Barcode)
+               style="display:none">@Model.DisProd.Barcode</p>
             @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
         
     </div>
@@ -113,43 +105,30 @@
     </script>
     <script>
         PayImg.onclick = Pay_Now
-        btry.onclick = Pay_Now
         PayNowBtn.onclick = Pay_Now
+        AddToCartBtn = AddToCart
+
         function  AddToCart()
         {
-            
-
-        }
-        function Pay_Now() {
-
-            sessionStorage["P"] = @Model.Price;
-            var url = '@Url.Action("Payment", "SearchResult")';
-            document.location.href = url;
-            //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-            //else
-            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
-
-            //window.open('http://localhost:42601/index.html');
-            @*$.ajax({
-                url: '@Url.Action("~/index.html")',
+            $.ajax({
+                url: '@Url.Action("../Products/AddToCart")',
                 type: 'GET',
                 dataType: 'json',
                 // we set cache: false because GET requests are often cached by browsers
                 // IE is particularly aggressive in that respect
                 cache: false,
-                data: { Price: document.getElementById('model.price').value },
+                data: { Product: @Model.DisProd.ProductKey  }
 
-            });*@
+            });
+           
 
-            //    var url = 'Controllers/SearchResult/Search_Box/' + Search_Box.value;
+        }
+        function Pay_Now() {
+           
+            sessionStorage["P"] = @Model.DisProd.Price;
+            var url = '@Url.Action("Payment", "SearchResult")';
+            document.location.href = url;
 
-            //    $.ajax({
-            //        url: url,
-            //        data: {}, //parameters go here in object literal form
-            //        type: 'GET',
-            //        datatype: 'json'
-            //    });
         }
 
 

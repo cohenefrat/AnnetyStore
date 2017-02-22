@@ -18,12 +18,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <!--<link rel="StyleSsheet"  href="Style.css" />
     <link href="//fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet" type="text/css">-->
-    <link href="~/Views/SearchResult/style.css" rel="stylesheet" type="text/css" media="all">
-<script type="text/javascript" src="~/Views/SearchResult/jquery-3.1.1.min.js"></script>
+    <link href="../../style.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="../../jquery-3.1.1.min.js"></script>
 </head>
 <body onload="DispalyPayment()">
 	<div class="main">
-		<p id="Payment"/>
+
 		<div class="content">
 			
 			<!--<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
@@ -41,6 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 								<div class="pay-tabs">
 									<h2>Select Payment Method</h2>
+                                    <p name="Payment" id="Payment" onload="DispalyPayment()"></p>
 									  <ul class="resp-tabs-list">
 										  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span><label class="pic1"></label>Credit Card</span></li>
 										  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span><label class="pic3"></label>Net Banking</span></li>
@@ -214,10 +215,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
  
 		
-    <script src="~/Views/SearchResult/easyResponsiveTabs.js" type="text/javascript"></script>
-        
+    <script src="../../easyResponsiveTabs.js" type="text/javascript"></script>
+
 <script>
-   
+    
+    Payment.onload = DispalyPayment
 
 						$(document).ready(function () {
 							$('#horizontalTab').easyResponsiveTabs({

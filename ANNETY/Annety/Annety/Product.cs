@@ -29,7 +29,7 @@ namespace Annety
         public string Desc { get; set; }
         public int CategoryCode { get; set; }
         public decimal Price { get; set; }
-        public string SearchWords { get; set; }
+        public Nullable<int> SearchWords { get; set; }
         public System.DateTime ChangeDate { get; set; }
 
         [NotMapped]

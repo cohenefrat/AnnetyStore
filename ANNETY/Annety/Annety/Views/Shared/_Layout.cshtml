@@ -6,7 +6,7 @@
     
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Annety</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -77,9 +77,9 @@
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-          @if (Session["UserDetails"].ToString() == "Bella-Dom")
-          { <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
-          }
+          @*@if (Session["UserDetails"].ToString() == "Bella-Dom")*@
+           <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+          
                 <li style="margin-right:150px; ">@Html.ActionLink("Sale", "Index", "Home")</li>
             </ol>
 

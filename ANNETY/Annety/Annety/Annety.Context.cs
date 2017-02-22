@@ -33,6 +33,7 @@ namespace Annety
         public virtual DbSet<UsersOrders> UsersOrders { get; set; }
         public virtual DbSet<WatchList> WatchList { get; set; }
         public virtual DbSet<Stocks> Stocks { get; set; }
+        public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<Product> Product { get; set; }
     }
 }

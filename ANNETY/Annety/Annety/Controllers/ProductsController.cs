@@ -138,6 +138,7 @@ namespace Annety.Controllers
 
         public ActionResult Item(int? id)
         {
+            Item item = new Annety.Item();
             int mone = 0;
             Product p = db.Product.SingleOrDefault(i=>i.ProductKey == id);
 
@@ -153,12 +154,57 @@ namespace Annety.Controllers
             if(mone==0)
             f.Push(p);
             Session["MyWatchList"] = f;
-
+             
             IEnumerable<ProductSize> l = from s in db.ProductSize
                                   where s.Stocks.Any(pr => pr.ProductKey == p.ProductKey)
                                   select s;
             ViewBag.ProductSize = new SelectList(l, "CodeSize", "SizeDesc");
-            return View(p);
+
+            item.DisProd = p;
+            item.UMayLike = this.MayLike(p.Desc);
+
+            return View(item);
+        }
+        private List<Product> MayLike(string Desc)
+        {
+            List<Product> pl = new List<Annety.Product>();
+            List<Product> fpl = new List<Annety.Product>();
+
+            var products = db.Product.ToList();
+            //מורה לפונקציה באיזה סימנים עליה לחלק את המערך מילים שקיבלה 
+            char[] delimiterChars = { ' ', ',', ':', '.' };
+            String[] splited = Desc.Split(delimiterChars);
+            //מערך מונים - לדעת כמה מילים מופיעות בכל תיאור מוצר
+            int[] array = new int[products.Count];
+            foreach (string s in splited)
+            {//עובר על כל המוצרים ןמחפש את אחת המילים ממילות חיפוש - כל מילה שנמצאת בתיאור המוצר - יעלה ערכו ב1
+                db.Product.Where(u => u.Desc.Contains(s)).ToList().ForEach(p => array[products.IndexOf(p)]++);
+            }
+            //מציאת המילה בה נמצאה הכמות הגדולה ביותר ממילות החיפוש
+            var max = array.Max();
+            //במקרה שנמצאה לפחות מילה אחת ממילות החיפוש באחד מהמוצרים שבחנות
+            if (max > 0)
+            {
+                //הצגת המוצרים בסדר מהגבוה לנמוך - קודם יוצר המוצר בו היו הכי הרבה מילים ממילות החיפוש - והולך פוחת
+                for (int j = max; j > 0; j--)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (array[i] == max)
+                        {
+                            var prod = products[i];
+                            pl.Add(prod);
+                        }
+                    }
+                    max--;
+                }   
+            }
+
+            for (int i = 1; i < 10; i++)
+            {
+                fpl.Add(pl[i]);
+            }
+            return fpl;
         }
 
         public ActionResult WatchList( )
@@ -176,6 +222,17 @@ namespace Annety.Controllers
         public ActionResult GoToPayment(int? Price )
         {
             return View("../Index", Price);
+        }
+
+        public void AddToCart(int Product)
+        {
+            if (Session["MyCart"] == null)
+                Session["MyCart"] = new Stack<Product>();
+            Stack<Product> f = (Stack<Product>)Session["MyCart"];
+            Product p = db.Product.First(pr=>pr.ProductKey == Product);
+            f.Push(p);
+            Session["MyCart"] = f;
+            
         }
     }
 }

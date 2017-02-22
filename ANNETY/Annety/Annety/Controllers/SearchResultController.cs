@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -88,13 +89,9 @@ namespace Annety.Controllers
                 }
                 return View("FromMenu", pl);
             }
-            //במקרה שיוזר הקיש מילות חיפוש שלא קיימות בכלל במאגר מילות החיפוש של המוצרים - הוא יובל לדף קולקציה חדשה
-            else {
-                return RedirectToAction("NewArrival");
-                 }
-    
-        }
 
+            return RedirectToAction("NewArrival");
+        }
 
         public ActionResult Product(int ProductKey)
         {
@@ -146,9 +143,9 @@ namespace Annety.Controllers
         }
 
         public ActionResult Payment()
-        {
-
-            return View("index");
+        {  
+            return File("../index.html", "text/html");
+        
         }
 
     }
