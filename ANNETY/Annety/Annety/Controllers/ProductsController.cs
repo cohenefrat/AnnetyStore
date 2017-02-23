@@ -138,6 +138,7 @@ namespace Annety.Controllers
 
         public ActionResult Item(int? id)
         {
+            List<Colors> colorsl = new List<Colors>();
             Item item = new Annety.Item();
             int mone = 0;
             Product p = db.Product.SingleOrDefault(i=>i.ProductKey == id);
@@ -158,12 +159,32 @@ namespace Annety.Controllers
             IEnumerable<ProductSize> l = from s in db.ProductSize
                                   where s.Stocks.Any(pr => pr.ProductKey == p.ProductKey)
                                   select s;
-            ViewBag.ProductSize = new SelectList(l, "CodeSize", "SizeDesc");
-
+            ViewBag.ProductSize = new SelectList(l, "CodeSize", "SizeDesc",item);
             item.DisProd = p;
             item.UMayLike = this.MayLike(p.Desc);
+            //get product colors list
+            colorsl = this.GetColorsList(item.DisProd);
+            ViewBag.ProductColors = new SelectList(colorsl, "CodeColor", "ColorName",item);
 
             return View(item);
+        }
+        private List<Colors> GetColorsList( Product p)
+        {
+            List<Colors> colorsl = new List<Colors>();
+            List<Colors> Finalcl = new List<Colors>();
+            IQueryable<Stocks> stackl = db.Stocks.Where(s=>s.ProductKey == p.ProductKey);
+            foreach (var pr in stackl)
+            { 
+                Colors c = db.Colors.SingleOrDefault(i => i.CodeColor == pr.ProdColorKey);
+                colorsl.Add(c);
+            }
+
+            foreach (var item in colorsl)
+            {
+                if (Finalcl.Exists(x => x.CodeColor == item.CodeColor) == false)
+                    Finalcl.Add(item);
+            }
+            return Finalcl;
         }
         private List<Product> MayLike(string Desc)
         {
@@ -226,6 +247,7 @@ namespace Annety.Controllers
 
         public void AddToCart(int Product)
         {
+            
             if (Session["MyCart"] == null)
                 Session["MyCart"] = new Stack<Product>();
             Stack<Product> f = (Stack<Product>)Session["MyCart"];

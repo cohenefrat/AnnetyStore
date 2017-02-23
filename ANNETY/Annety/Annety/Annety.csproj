@@ -363,11 +363,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Slick\slick-theme.css" />
-    <Content Include="Scripts\slick.js" />
+    <Content Include="slick.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Slick\slick.css" />
-    <Content Include="Scripts\slick.min.js" />
+    <Content Include="slick.css" />
     <Content Include="style.css" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Registration.html" />
@@ -454,8 +452,7 @@
     <Content Include="Views\Users\LoginPage.cshtml" />
     <Content Include="Views\Products\PaymentPage.cshtml" />
     <Content Include="Views\Products\PayNow.cshtml" />
-    <Content Include="Slick\slick-theme.scss" />
-    <Content Include="Slick\slick.scss" />
+    <Content Include="Views\Home\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -14,17 +14,9 @@ namespace Annety
     {
         public Product DisProd { get; set; }
         public List<Product> UMayLike { get; set; }
-        //public int ProductKey { get; set; }
-        //public string Barcode { get; set; }
-        //public string ImagePath { get; set; }
-        //public string Desc { get; set; }
-        //public int CategoryCode { get; set; }
-        //public decimal Price { get; set; }
-        //public Nullable<int> SearchWords { get; set; }
-        //public System.DateTime ChangeDate { get; set; }
+        //public int ProdColor { get; set; }
+        //public int ProdSize { get; set; }
+        //public int ProdUnits { get; set; }
 
-        //[NotMapped]
-        //public HttpPostedFileBase Image { get; set; }
-        //public List<Product> MayLike { get; set; }
     }
 }
