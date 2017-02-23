@@ -147,6 +147,8 @@ namespace Annety.Controllers
                 if (u.Password.Trim() == Password_login)
                 {
                     Session["UserDetails"] = u.UserName;
+                    Session["UserCode"] = u.Code;
+                    Session["User"] = u;
                     return View("../Home/Index");
                 }
                 else

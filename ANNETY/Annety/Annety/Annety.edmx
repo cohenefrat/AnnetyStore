@@ -5,16 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AnnetyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Carts">
+        <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartCode" />
           </Key>
           <Property Name="CartCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserCode" Type="int" Nullable="false" />
-          <Property Name="ProductKey" Type="int" Nullable="false" />
-          <Property Name="Size" Type="int" Nullable="false" />
-          <Property Name="Color" Type="int" Nullable="false" />
-          <Property Name="Units" Type="int" Nullable="false" />
+          <Property Name="UserCode" Type="int" />
+          <Property Name="ProductKey" Type="int" />
+          <Property Name="Size" Type="int" />
+          <Property Name="Color" Type="int" />
+          <Property Name="Units" Type="int" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -49,8 +49,8 @@
           <Property Name="ImagePath" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Desc" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CategoryCode" Type="int" Nullable="false" />
-          <Property Name="Price" Type="money" Nullable="false" />
-          <Property Name="SearchWords" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="SearchWords" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="ChangeDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSize">
@@ -65,7 +65,7 @@
           <Key>
             <PropertyRef Name="StockCode" />
           </Key>
-          <Property Name="StockCode" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StockCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductKey" Type="int" Nullable="false" />
           <Property Name="ProdColorKey" Type="int" Nullable="false" />
           <Property Name="UnitsInStocks" Type="int" />
@@ -210,7 +210,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AnnetyModelStoreContainer">
-          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" Schema="dbo" store:Type="Tables" />
@@ -403,7 +403,6 @@
             <End Role="ProductSize" EntitySet="ProductSize" />
             <End Role="Stocks" EntitySet="Stocks" />
           </AssociationSet>
-          <EntitySet Name="Carts" EntityType="AnnetyModel.Carts" />
           <EntitySet Name="Product" EntityType="AnnetyModel.Product" />
           <AssociationSet Name="FK_Product_ToCategories" Association="AnnetyModel.FK_Product_ToCategories">
             <End Role="Categories" EntitySet="Categories" />
@@ -417,6 +416,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="WatchList" EntitySet="WatchList" />
           </AssociationSet>
+          <EntitySet Name="Cart" EntityType="AnnetyModel.Cart" />
           </EntityContainer>
         <EntityType Name="Stocks">
           <Key>
@@ -468,17 +468,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Carts">
-          <Key>
-            <PropertyRef Name="CartCode" />
-          </Key>
-          <Property Name="CartCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserCode" Type="Int32" Nullable="false" />
-          <Property Name="ProductKey" Type="Int32" Nullable="false" />
-          <Property Name="Size" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="Int32" Nullable="false" />
-          <Property Name="Units" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductKey" />
@@ -488,8 +477,8 @@
           <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Desc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CategoryCode" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="SearchWords" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="SearchWords" Type="Int32" Nullable="false" />
           <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Categories" Relationship="AnnetyModel.FK_Product_ToCategories" FromRole="Product" ToRole="Categories" />
           <NavigationProperty Name="Stocks" Relationship="AnnetyModel.FK_Stocks_ToProduct" FromRole="Product" ToRole="Stocks" />
@@ -531,6 +520,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartCode" />
+          </Key>
+          <Property Name="CartCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserCode" Type="Int32" />
+          <Property Name="ProductKey" Type="Int32" />
+          <Property Name="Size" Type="Int32" />
+          <Property Name="Color" Type="Int32" />
+          <Property Name="Units" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -617,18 +617,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="AnnetyModel.Carts">
-              <MappingFragment StoreEntitySet="Carts">
-                <ScalarProperty Name="Units" ColumnName="Units" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="CartCode" ColumnName="CartCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="AnnetyModel.Product">
               <MappingFragment StoreEntitySet="Product">
@@ -640,6 +628,18 @@
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Barcode" ColumnName="Barcode" />
                 <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="AnnetyModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Units" ColumnName="Units" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="CartCode" ColumnName="CartCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

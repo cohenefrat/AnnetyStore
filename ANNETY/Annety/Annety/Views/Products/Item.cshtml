@@ -6,11 +6,19 @@
 @*//@{ AnnetyEntities db = new AnnetyEntities();}*@
 <html>
 <body>
- 
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    @*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+ <head>
+     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+     // Add the new slick-theme.css if you want the default styling
+     <link rel="stylesheet" type="text/css" href="~/Slick/slick-theme.css" />
+ </head>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"
+            integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/slick.min.js"></script>
     <style>
         .w3-container {
             height: 350px;
@@ -79,30 +87,26 @@
             </div>
             <div>
                 <label>More things you may like</label>
-                @{ foreach (var item in Model.UMayLike)
-                    {
-                       <div class="row">
-                           <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
-                       </div>
-                    }
+                <div class="your-class" style="display:inline;">
 
-                }
+
+                    @{ foreach (var item in Model.UMayLike)
+                        {
+                            <div class="row">
+                                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                            </div>
+                        }
+
+                    }
+                </div>
             </div>
             <p @Html.DisplayFor(model => Model.DisProd.Barcode)
                style="display:none">@Model.DisProd.Barcode</p>
             @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
         
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.your-class').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
-            });
-        });
-    </script>
+ 
+   
     <script>
         PayImg.onclick = Pay_Now
         PayNowBtn.onclick = Pay_Now
@@ -133,6 +137,16 @@
 
 
     </script>
-
+    <script>
+        $(function(){
+            $('.your-class').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+        })
+    </script>
+   
 </body>
 </html>

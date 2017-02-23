@@ -19,12 +19,8 @@
         <AssociationConnector Association="AnnetyModel.FK_Stocks_ToColors" />
         <AssociationConnector Association="AnnetyModel.FK_OrdersDetails_ToStocks" />
         <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProductSize" />
-        <EntityTypeShape EntityType="AnnetyModel.Carts" Width="1.5" PointX="7.375" PointY="6.75" />
-        <EntityTypeShape EntityType="AnnetyModel.Product" Width="1.5" PointX="3" PointY="13.375" />
-        <AssociationConnector Association="AnnetyModel.FK_Product_ToCategories" />
-        <AssociationConnector Association="AnnetyModel.FK_Stocks_ToProduct" />
-        <AssociationConnector Association="AnnetyModel.FK_WatchList_ToProduct" />
-      </Diagram>
+        <EntityTypeShape EntityType="AnnetyModel.Cart" Width="1.5" PointX="7.375" PointY="6.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
