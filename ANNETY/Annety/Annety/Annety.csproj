@@ -224,7 +224,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Carts.cs">
+    <Compile Include="Cart.cs">
       <DependentUpon>Annety.tt</DependentUpon>
     </Compile>
     <Compile Include="Categories.cs">

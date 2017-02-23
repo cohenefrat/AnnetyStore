@@ -12,13 +12,13 @@ namespace Annety
     using System;
     using System.Collections.Generic;
     
-    public partial class Carts
+    public partial class Cart
     {
         public int CartCode { get; set; }
-        public int UserCode { get; set; }
-        public int ProductKey { get; set; }
-        public int Size { get; set; }
-        public int Color { get; set; }
-        public int Units { get; set; }
+        public Nullable<int> UserCode { get; set; }
+        public Nullable<int> ProductKey { get; set; }
+        public Nullable<int> Size { get; set; }
+        public Nullable<int> Color { get; set; }
+        public Nullable<int> Units { get; set; }
     }
 }

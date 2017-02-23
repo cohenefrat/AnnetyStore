@@ -28,7 +28,13 @@ namespace Annety.Controllers
             return View(products );
         }
 
+        public ActionResult Sale()
+        {
+           // List<Product> pl = new List<Product>();
+            var pl = db.Product.Where(p => p.SearchWords > 0);
+            return View("FromMenu", pl);
 
+        }
         public ActionResult BoyOrGirl(int? CategoryCode)
         {
             List<Product> pl = new List<Annety.Product>();
