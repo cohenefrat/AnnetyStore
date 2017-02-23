@@ -1,7 +1,7 @@
 ﻿@model Annety.Item
 @{
-      ViewBag.Title = "Item";
-     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*//@{ AnnetyEntities db = new AnnetyEntities();}*@
 <html>
@@ -46,7 +46,7 @@
         }
     </style>
     <div style="margin-top:40px">
-        <h4>Buy Product</h4>
+        <h4></h4>
         <hr />
         </div>
         <div class="w3-col l3 s6">
@@ -56,12 +56,15 @@
                     <p style="width:650px;font-size:25px;">@Model.DisProd.Desc</p>
                     <div class="price">
                         <label >Price: @Model.DisProd.Price</label><br />
-                        <label style="display:inline">Size </label>
-                        @Session["TotalPayment"]= @Model.DisProd.Price;
-                        @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
-
+                        <label style="display:inline">Size:</label>
+                           @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
+                          @{ Session["TotalPayment"] = Model.DisProd.Price;
+                        }
                         <label style="display:inline">Quantity</label>
-                        <input type="number" value="1" style="width:50px;margin-top:10px;" />
+                        <input type="number" value="1" style="width:50px;margin-top:10px;" /><br>
+                        <label style="display:inline">Color:</label>
+                         @*Html.DropDownListFor(Model.ProdColor, "ProductColors", htmlAttributes: new { @class = "form-control" })*@
+                        @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="buy" style="margin-right:-150px;">
                         <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()" >
@@ -93,46 +96,47 @@
             @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
         
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.your-class').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2000,
+    <a href='@Url.Action("EditDetails", "Home")'>Edith user details</a>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.your-class').slick({
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                });
             });
-        });
-    </script>
-    <script>
-        PayImg.onclick = Pay_Now
-        PayNowBtn.onclick = Pay_Now
-        AddToCartBtn = AddToCart
+        </script>
+        <script>
+            PayImg.onclick = Pay_Now
+            PayNowBtn.onclick = Pay_Now
+            AddToCartBtn = AddToCart
 
-        function  AddToCart()
-        {
-            $.ajax({
-                url: '@Url.Action("../Products/AddToCart")',
-                type: 'GET',
-                dataType: 'json',
-                // we set cache: false because GET requests are often cached by browsers
-                // IE is particularly aggressive in that respect
-                cache: false,
-                data: { Product: @Model.DisProd.ProductKey  }
-
-            });
-           
-
-        }
-        function Pay_Now() {
-           
-            sessionStorage["P"] = @Model.DisProd.Price;
-            var url = '@Url.Action("Payment", "SearchResult")';
-            document.location.href = url;
-
-        }
+            function  AddToCart()
+            {
+                $.ajax({
+                    url: '@Url.Action("../Products/AddToCart")',
+                    type: 'GET',
+                    dataType: 'json',
+                    // we set cache: false because GET requests are often cached by browsers
+                    // IE is particularly aggressive in that respect
+                    cache: false,
+                    data: { Product: @Model.DisProd.ProductKey  }
+                });
 
 
-    </script>
+            }
+            function Pay_Now() {
+
+                sessionStorage["P"] = @Model.DisProd.Price;
+                var url = '@Url.Action("Payment", "SearchResult")';
+                document.location.href = url;
+
+            }
+
+
+        </script>
 
 </body>
 </html>
