@@ -4295,7 +4295,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
     float: left !important;
   }
   .navbar-right {
-    float: right !important;
+    float: left !important;
   }
 }
 
