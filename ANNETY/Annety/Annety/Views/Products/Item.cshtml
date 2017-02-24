@@ -57,7 +57,7 @@
                     <div class="price">
                         <label >Price: @Model.DisProd.Price</label><br />
                         <label style="display:inline">Size:</label>
-                           @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
+                           @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control"})
                           @{ Session["TotalPayment"] = Model.DisProd.Price;
                         }
                         <label style="display:inline">Quantity</label>
@@ -122,7 +122,7 @@
                     // we set cache: false because GET requests are often cached by browsers
                     // IE is particularly aggressive in that respect
                     cache: false,
-                    data: { Product: @Model.DisProd.ProductKey  }
+                    data: { Product: @Model.DisProd.ProductKey }
                 });
 
 
