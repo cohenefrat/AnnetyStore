@@ -25,7 +25,15 @@ namespace Annety
          }
 
     }
-   
+    public partial class Product
+    {
+        public int Mone {
+            get;
+            set;
+        }
+    }
+
+
 
 
     }

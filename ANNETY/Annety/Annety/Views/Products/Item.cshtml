@@ -4,7 +4,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @*//@{ AnnetyEntities db = new AnnetyEntities();}*@
-<html>
+<html style="overflow-y:hidden;">
+<head>
+    <style>
+        .zoom {
+            display: inline-block;
+            position: relative;
+        }
+
+            /* magnifying glass icon */
+            .zoom:after {
+                content: '';
+                display: block;
+                width: 33px;
+                height: 33px;
+                position: absolute;
+                top: 0;
+                right: 0;
+                background: url(icon.png);
+            }
+
+            .zoom img {
+                display: block;
+            }
+
+                .zoom img::selection {
+                    background-color: transparent;
+                }
+
+      
+    </style>
+    @*<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>*@
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.zoom.js"></script>
+    <script>
+		$(document).ready(function(){
+			$('#ex1').zoom();
+		
+		});
+    </script>
+
+</head>
 <body>
  
 
@@ -18,8 +59,8 @@
 
         .CartImg {
             width: 60px;
-            margin-top: 20px;
-            margin-left: 28px;
+            /*margin-top: 20px;
+            margin-left: 28px;*/
         }
 
         .w3-container .itemInfo {
@@ -45,48 +86,72 @@
             width: 130px;
         }
     </style>
-    <div style="margin-top:40px">
+    <div style="margin-top:40px;">
         <h4></h4>
-        <hr />
+        
         </div>
-        <div class="w3-col l3 s6">
+        <div class="w3-col l3 s6" style="font-family:cursive">
             <div class="w3-container" style="cursor:pointer;">
-                <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.DisProd.ImagePath))" style="margin-left:10px; width:350px;height:500px;" />
-                <div class="itemInfo" style="margin-left:35px;">
-                    <p style="width:650px;font-size:25px;">@Model.DisProd.Desc</p>
-                    <div class="price">
-                        <label >Price: @Model.DisProd.Price</label><br />
-                        <label style="display:inline">Size:</label>
-                           @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control" })
-                          @{ Session["TotalPayment"] = Model.DisProd.Price;
-                        }
-                        <label style="display:inline">Quantity</label>
-                        <input type="number" value="1" style="width:50px;margin-top:10px;" /><br>
-                        <label style="display:inline">Color:</label>
-                         @*Html.DropDownListFor(Model.ProdColor, "ProductColors", htmlAttributes: new { @class = "form-control" })*@
-                        @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                    <div class="buy" style="margin-right:-150px;">
-                        <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()" >
-                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()"/>
+                <span class='zoom' id='ex1'>
+                    <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(Model.DisProd.ImagePath))" style="margin-left:10px; width:350px;height:500px;" />
+                    </span>
+                    <div class="itemInfo" style="margin-left:35px;">
+                        <p style="width:650px;font-size:25px;">@Model.DisProd.Desc</p>
+                        <div class="price" style="margin-top:10px;margin-left:16px;">
+                            <label style="top:180px;height:20px" >Price: @Model.DisProd.Price</label><br />
+                            <label style="display:inline;top:200px;height:20px">Size:</label>
+                            @Html.DropDownList("ProductSize", null, htmlAttributes: new { @class = "form-control", @style = "top:190px",@id = "SizeId" })
+                            @{ Session["TotalPayment"] = Model.DisProd.Price;
+                            }
+                            <label style="display:inline;top:260px;height:20px;">Quantity</label>
+                            <input type="number" value="1" style="width:50px;margin-top:10px;" id="Quantity" /><br>
+                            <label style="display:inline;top:315px;height:20px;">Color:</label>
+                            @*Html.DropDownListFor(Model.ProdColor, "ProductColors", htmlAttributes: new { @class = "form-control" })*@
+                            @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control",@id = "ColorId" })
                         </div>
-                        <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
+                        <div class="buy" style="margin-right:-150px;">
+                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
+                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
+                            </div>
+                            <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
-                        <div class="AddToCartBtn" id="AddToCartBtn" style="margin-left:35px">
-                            <img src="~/Images/cart pink.png" id="CartImg" onclick="AddToCart()" style="width:60px;margin-top:10px;"/>
+                            <div class="AddToCartBtn" id="AddToCartBtn" style="margin-left:35px;width:60px">
+                                <img src="~/Images/cart pink.png" id="CartImg" onclick="AddToCart()" style="width:60px;display:block;width:60px;height:50px;" />
+                            </div>
                         </div>
+
                     </div>
+
+</div>
+            <label style="position:absolute;left:830px;top:340px;font-size:20px">More things you may like</label>
+            <div class="MayLikeItems" id="MayLikeItems" style="position:absolute;margin-left:380px;top:370px;">
               
-                </div>
-
-            </div>
-            <div>
-                <label>More things you may like</label>
+               
                 @{ foreach (var item in Model.UMayLike)
                     {
-                       <div class="row">
-                           <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
-                       </div>
+
+
+
+
+                            <div class="w3-row w3-grayscale" style="float:left; margin:5px">
+                                <div class="w3-col l3 s6">
+                                    @*//onclick="@Url.Action("ProductDetails", "SearchResult", new { item.ProductKey })"*@
+                                   
+                                    <a href='../Item/  @item.ProductKey '>
+                                        <div class="w3-container" style="cursor:pointer;" onclick='ShowItem( @item.ProductKey )'>
+                                            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                                            @*<p style="width:150px;height:100px;padding-bottom:30px;text-overflow:ellipsis;"><br><b>$@item.Price</b></p>*@
+                                            <div style="text-overflow:ellipsis;width:150px;overflow:hidden; white-space: nowrap;">@item.Desc<br />
+                                            <b>$@item.Price</b></div>
+                                                
+                                            
+                                        </div>
+                                       
+                                    </a>
+                                </div>
+                            </div>
+
+
                     }
 
                 }
@@ -108,7 +173,7 @@
                 });
             });
         </script>
-        <script>
+    <script>
             PayImg.onclick = Pay_Now
             PayNowBtn.onclick = Pay_Now
             AddToCartBtn = AddToCart
@@ -122,7 +187,7 @@
                     // we set cache: false because GET requests are often cached by browsers
                     // IE is particularly aggressive in that respect
                     cache: false,
-                    data: { Product: @Model.DisProd.ProductKey  }
+                    data: { Product: @Model.DisProd.ProductKey ,Size: document.getElementById('SizeId').value,  Quantity: document.getElementById('Quantity').value,Color: document.getElementById('ColorId').value }
                 });
 
 
@@ -134,7 +199,22 @@
                 document.location.href = url;
 
             }
+            
+    function ShowItem(p) {
 
+        $.ajax({
+            url: '@Url.Action("../Products/Item")',
+            @* url: '@Url.Action("../SearchResult/ProductDetails")',*@
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: { id: p }
+
+        });
+    }
+   
 
         </script>
 

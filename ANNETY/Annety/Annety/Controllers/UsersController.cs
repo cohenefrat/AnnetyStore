@@ -47,7 +47,9 @@ namespace Annety.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Code,UserName,Email,Password,Address,Phone")] Users users)
-        {
+        { 
+        //{if(check)
+        //    ModelState.AddModelError("Email", "This Email is slready in use");
             if (ModelState.IsValid)
             {   //users.Password
                 users.Password = AccountController.HashPass(users.Password);
@@ -137,8 +139,30 @@ namespace Annety.Controllers
         public ActionResult Login(string UserName_login, string Password_login)
         {
             Users u = new Users();
-             
-            //Session["EmailLogin"] = Email;
+            List<int> l = db.WatchList.Select(p =>  p.ProductKey ).ToList();
+            Stack <Product> WL = new Stack <Product>();
+            foreach (int item in l)
+            {
+
+                Product p = db.Product.Find(item);
+                WL.Push (new Annety.Product()
+                {
+                    Image = p.Image,
+                    ImagePath = p.ImagePath,
+                    SearchWords = p.SearchWords,
+                    Stocks = p.Stocks,
+                    Desc = p.Desc,
+                    ChangeDate = p.ChangeDate,
+                    CategoryCode = p.CategoryCode,
+                    Categories = p.Categories,
+                    Barcode = p.Barcode,
+                    Price = p.Price,
+                    WatchList = p.WatchList
+
+                });
+            }
+            Session["MyWatchList"] = WL;
+           //Session["EmailLogin"] = Email;
             //Session["PassLogin"] = password;
             Password_login = AccountController.HashPass(Password_login);
             //var em = Session["EmailLogin"].ToString();
@@ -147,6 +171,7 @@ namespace Annety.Controllers
                 if (u.Password.Trim() == Password_login)
                 {
                     Session["UserDetails"] = u.UserName;
+                    Session["UserCode"] = u.Code;
                     return View("../Home/Index");
                 }
                 else
@@ -156,14 +181,14 @@ namespace Annety.Controllers
             else
                 return View();
         }
-        public JsonResult IsUserExist(string UserName)
+        public JsonResult IsUserExist(string Email)
         {
-            return IsExist1(UserName) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
+            return IsExist1(Email) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
         }
 
-        public bool IsExist1(string UserName)
+        public bool IsExist1(string Email)
         {
-            bool u = db.Users.Any(i => i.UserName == UserName);
+            bool u = db.Users.Any(i => i.Email == Email);
             if (u)
                 return true;
             else
