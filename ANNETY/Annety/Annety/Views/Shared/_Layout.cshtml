@@ -1,7 +1,12 @@
 ﻿<!DOCTYPE html>
 @{ AnnetyEntities db = new AnnetyEntities();}
 <html>
-<head style="fixed">
+<head >
+    <style>
+        SaleText {
+        color:red;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
     
     <meta charset="utf-8" />
@@ -29,7 +34,22 @@
                 <input type="text" id="Search_Box" placeholder="Search" style="margin-top:28px;height:11px;border-color:transparent;border-style:hidden;left:0; width:20%" />
 
                 <div class="col-lg-6" style="float:right; margin-left:50px;width:25px;">@Html.Partial("_LoginPartial")</div>
-                <a href='../../SearchResult/WatchList' style="float: right;margin-top: -5px;margin-left: 900px;margin-right:17px;">My WatchList</a>
+                <a href='' style="float: right;margin-top: -5px;margin-left: 900px;margin-right:17px;position:absolute"></a>
+                <div class="dropdown" style="float:right;margin-top:45px;margin-left:20px;left:80px;">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="float:right;top:15px;margin-top:-10px">
+                        My Account
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="float:left;margin-left:-30px;">
+                        <li><a href='../../SearchResult/WatchList'>WatchList</a></li>
+                        <li><a href="#">My Cart</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        @if (Session["UserDetails"] != null )
+                        {
+                            <li ><a href="#">My Profile</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
         
     </div>    
@@ -70,17 +90,20 @@
     </div>
     
     <footer class="navbar-fixed-bottom">
-        <div style="text-align:center;background-color:white;position:fixed;margin-left:670px;">@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</div>
         <div class="navbar-collapse collapse" style="text-align: center;background-color:white;background-image:url('../../Images/background.png');background-size:100% 100% ;background-repeat:no-repeat;">
-            <ol class="nav navbar-nav" style="background-color:transparent;position:center;margin-left:20%;">
+            <ol class="nav navbar-nav" style="background-color:transparent;position:center;">
 
+                @if (Session["UserDetails"] != null && Session["UserDetails"].ToString() == "Bella-Dom")
+                {
+                    <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+                }
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-          @*@if (Session["UserDetails"].ToString() == "Bella-Dom")*@
-           <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
-          
-                <li style="margin-right:150px; ">@Html.ActionLink("Sale", "Sale", "SearchResult")</li>
+                  <li id="SaleText" style="margin-right:150px;color:red; ">@Html.ActionLink("Sale", "Sale", "SearchResult")</li>
+                <li @*style="margin-right:150px; "*@>@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</li>
+                
+
             </ol>
 
         </div>

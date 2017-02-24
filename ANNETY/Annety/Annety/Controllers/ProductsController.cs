@@ -221,8 +221,9 @@ namespace Annety.Controllers
                 }   
             }
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <5 && i< pl.Count(); i++)
             {
+               
                 fpl.Add(pl[i]);
             }
             return fpl;
@@ -245,7 +246,7 @@ namespace Annety.Controllers
             return View("../Index", Price);
         }
 
-        public void AddToCart(int Product)
+        public void AddToCart(int Product, int Size, int Quantity, int Color)
         {
             
             if (Session["MyCart"] == null)

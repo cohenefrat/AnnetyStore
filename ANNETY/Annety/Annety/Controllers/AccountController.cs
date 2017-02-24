@@ -399,11 +399,11 @@ namespace Annety.Controllers
             if (Session["MyWatchlist"] != null)
             {
                 List<WatchList> WL = new List<WatchList>();
-                List<Product> f = (List<Product>)Session["MyWatchList"];
+                List <Product> f = ((Stack<Product>)Session["MyWatchList"]).ToList();
                 int mone = 0;
                 for (int i = 0; i < f.Count()||mone==10; i++)
                 {
-                    
+                    WL.Add(new WatchList());
                     WL[i].ProductKey = f[i].ProductKey;
                     WL[i].UserCode = (int)Session["UserCode"];
                     WL[i].WatchDate = DateTime.Now;
@@ -417,6 +417,7 @@ namespace Annety.Controllers
             //session מאפס את ה
             Session["UserDetails"] = null;
             Session["User"] = null;
+            Session["MyWatchList"] = null;
             //ToDo Clear the sesion 
             //   AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
            
