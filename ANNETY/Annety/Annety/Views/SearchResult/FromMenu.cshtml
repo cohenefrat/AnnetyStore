@@ -16,7 +16,7 @@
 
                 <div class="w3-container" style="cursor:pointer;" onclick='ShowItem( @item.ProductKey )'>
                     <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
-                    <p style="width:150px;height:150px;padding-bottom:30px;">@item.Desc<br><b>@item.Price</b></p>
+                    <p style="width:150px;height:150px;padding-bottom:30px;">@item.Desc<br><b>$@item.Price</b></p>
                 </div>
             </a>
         </div>

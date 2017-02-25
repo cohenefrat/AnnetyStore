@@ -147,11 +147,35 @@ namespace Annety.Controllers
                 
             return View("FromMenu",products);
         }
-
-        public ActionResult Payment()
-        {  
+        [HttpGet]
+        public ActionResult Payment(int? price)
+        {
+            Session["p"] = price;
             return File("../index.html", "text/html");
         
+        }
+
+        //[HttpPost]
+        //public ActionResult Payment(int? price)
+        //{   
+        //    if(true == true)
+
+        //    return RedirectToAction("Index", "Home");
+
+        //}
+
+        public ActionResult DisplayMyCart()
+        { List<ItemInCart> Items = new List<ItemInCart>();
+            if(Session["MyCart"]!=null)
+            {
+                Stack<ItemInCart> MyCart = (Stack<ItemInCart>)Session["MyCart"];
+                foreach (var item in MyCart)
+                {
+                    Items.Add((ItemInCart)item);
+                }
+              
+            }
+            return View("MyCart", Items);
         }
 
     }
