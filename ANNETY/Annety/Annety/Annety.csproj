@@ -251,6 +251,7 @@
     </Compile>
     <Compile Include="IServiceCollection.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemInCart.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -456,6 +457,7 @@
     <Content Include="Views\Products\PaymentPage.cshtml" />
     <Content Include="Views\Products\PayNow.cshtml" />
     <Content Include="Views\Home\UserDetails.cshtml" />
+    <Content Include="Views\SearchResult\MyCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

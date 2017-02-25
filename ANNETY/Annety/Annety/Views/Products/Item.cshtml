@@ -110,8 +110,8 @@
                             @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control",@id = "ColorId" })
                         </div>
                         <div class="buy" style="margin-right:-150px;">
-                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
-                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
+                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now(@Model.DisProd.Price)">
+                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now(@Model.DisProd.Price)" />
                             </div>
                             <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
@@ -193,10 +193,10 @@
 
 
             }
-            function Pay_Now() {
-
-                sessionStorage["P"] = @Model.DisProd.Price;
-                var url = '@Url.Action("Payment", "SearchResult")';
+            function Pay_Now(price) {
+                //var p = price;
+                //sessionStorage["P"] = price;
+                var url = '@Url.Action("Payment", "SearchResult" )';
                 document.location.href = url;
 
             }

@@ -250,10 +250,17 @@ namespace Annety.Controllers
         {
             
             if (Session["MyCart"] == null)
-                Session["MyCart"] = new Stack<Product>();
-            Stack<Product> f = (Stack<Product>)Session["MyCart"];
+                Session["MyCart"] = new Stack<ItemInCart>();
+            Stack<ItemInCart> f = (Stack<ItemInCart>)Session["MyCart"];
             Product p = db.Product.First(pr=>pr.ProductKey == Product);
-            f.Push(p);
+            ItemInCart  item = new ItemInCart();
+            item.Product = p;
+            ProductSize size = db.ProductSize.First(s => s.CodeSize == Size);
+            item.SizeDesc = size.SizeDesc;
+            Colors color = db.Colors.First(c => c.CodeColor == Color);
+            item.ColorName = color.ColorName;
+            item.Units = Quantity;
+            f.Push(item);
             Session["MyCart"] = f;
             
         }
