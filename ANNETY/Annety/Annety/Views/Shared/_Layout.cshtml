@@ -55,7 +55,7 @@
                 }
             }
             <br /><h4>Girls</h4><hr />
-            @foreach (var item  in db.Categories)
+            @foreach (var item in db.Categories)
             {
                 if (item.ParentCategory != true)
                 {  <a href='@Url.Action("FromMenu", "SearchResult", new { item.CategoryCode })'>
@@ -82,8 +82,8 @@
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-          @*@if (Session["UserDetails"].ToString() == "Bella-Dom")*@
-           <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+          @*@if (Session["UserDetails"].ToString() == "Bella-Dom" || Session["UserDetails"]== null )*@
+          <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
           
                 <li style="margin-right:150px; ">@Html.ActionLink("Sale", "Sale", "SearchResult")</li>
             </ol>
