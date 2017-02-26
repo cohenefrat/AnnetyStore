@@ -1,4 +1,4 @@
-﻿
+﻿@model Annety.Users
 @{
     ViewBag.Title = "LoginPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,8 +9,9 @@
 @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "LoginPage", @class = "navbar-right" }))
 {<div id="LoginPage" style="margin-left:380px;font-family:cursive;">
         <h1 style="font-family:cursive;margin-left:-60px;margin-top:50px;margin-bottom:30px;">Sign in to Annety</h1>
-        <input class="UserName_login" type="text" name="UserName_login" id="UserName_login" placeholder="User Name / E-mail" style="margin-bottom:15px;"/><br />
+        <input class="UserName_login" type="text" name="UserName_login" id="UserName_login" placeholder="E-mail" style="margin-bottom:15px;"/><br />
         <input class="Password_login" type="password" name="Password_login" id="Password_login" placeholder="Password" style="margin-bottom:15px;"/><br />
+     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" ,@style= "margin-left: -90px;" })
         <div><a href="javascript:document.getElementById('LoginPage').submit()" id="LogInBtn" style="margin-left:70px;font-size:20px;background-color:lightblue;">Login</a></div>
     <a href="@Url.Action("Create", "Users")" style="margin-left:-75px;font-size:20px">Don't have an account? sign up now!</a>
     </div>
@@ -22,10 +23,10 @@
         LoginSbmt.onclick = Login
 
         function Login() {
-            if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
-                document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
-            else
-                document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
+            //if (document.getElementsByTagName("BODY")[0].style.backgroundColor == "yellow")
+            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "red";
+            //else
+            //    document.getElementsByTagName("BODY")[0].style.backgroundColor = "yellow";
 
             $.ajax({
                 url: '@Url.Action("../Users/Login")',

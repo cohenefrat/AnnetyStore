@@ -2,6 +2,26 @@
 @{ AnnetyEntities db = new AnnetyEntities();}
 <html>
 <head >
+    <script type=”text/javascript”>
+        //
+        $(document).ready(function () {
+        $(“#message”).fadeIn(2000);
+        $(“#message”).delay(5000).fadeOut(1000);
+        $(“#message a.close-notify”).click(function () {
+        $(“#message”).fadeOut(“slow”);
+        return false;
+        });
+        });
+    </script>
+    <script language="javascript" type="text/javascript">
+     $(document).ready(function () {
+          $("#NotificationBox").fadeIn(5000);
+
+          if ($("#NotificationBox").attr('class').split(' ').slice(-1) == "nb-success") {
+               $("#NotificationBox").delay(3000).fadeOut(1000);
+          }
+     });
+    </script>
     <style>
         SaleText {
         color:red;
@@ -19,6 +39,8 @@
     max-width: 1270px;}*@
 </head>
 <body class="Body1">
+    @*@Html.Partial("_NotifyBar")*@
+   
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-image: url('../../Images/header.jpg');background-repeat:no-repeat;background-size:100% 100%;height:70px;">
 
         <a >
@@ -36,17 +58,18 @@
                 <div class="col-lg-6" style="float:right; margin-left:50px;width:25px;">@Html.Partial("_LoginPartial")</div>
                 <a href='' style="float: right;margin-top: -5px;margin-left: 900px;margin-right:17px;position:absolute"></a>
                 <div class="dropdown" style="float:right;margin-top:45px;margin-left:20px;left:80px;">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="float:right;top:15px;margin-top:-10px">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="float:right;top:15px;margin-top:-15px">
                         My Account
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" style="float:left;margin-left:-30px;">
                         <li><a href='../../SearchResult/WatchList'>WatchList</a></li>
-                        <li><a href="#">My Cart</a></li>
-                        <li><a href="#">My Orders</a></li>
-                        @if (Session["UserDetails"] != null )
+                        <li><a href="../../SearchResult/DisplayMyCart">My Cart</a></li>
+                        
+                        @if (Session["UserDetails"] != null)
                         {
-                            <li ><a href="#">My Profile</a></li>
+                            <li><a href="#">My Orders</a></li>
+                            <li ><a href='../../Users/ShowMyProfile'>My Profile</a></li>
                         }
                     </ul>
                 </div>
@@ -95,12 +118,12 @@
 
                 @if (Session["UserDetails"] != null && Session["UserDetails"].ToString() == "Bella-Dom")
                 {
-                    <li style="margin-right:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
+                    <li style="margin-right:150px;margin-left:150px">@Html.ActionLink("For Manager", "Manage", "Home")</li>
                 }
                 <li style="margin-right:150px">@Html.ActionLink("About Us", "About", "Home")</li>
                 <li style="margin-right:150px">@Html.ActionLink("Contact Us", "Contact", "Home")</li>
 
-                  <li id="SaleText" style="margin-right:150px;color:red; ">@Html.ActionLink("Sale", "Sale", "SearchResult")</li>
+                  <li id="SaleText" style="margin-right:150px;color:red; font-weight:bold;font-size:20px;">@Html.ActionLink("Sale", "Sale", "SearchResult")</li>
                 <li @*style="margin-right:150px; "*@>@Html.ActionLink("New Arrival", "NewArrival", "SearchResult")</li>
                 
 
@@ -123,6 +146,7 @@
             document.location.href = url;
 
         }
+
 
 
     </script>

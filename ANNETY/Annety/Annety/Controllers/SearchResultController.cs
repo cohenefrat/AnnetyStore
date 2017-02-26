@@ -153,6 +153,20 @@ namespace Annety.Controllers
             return File("../index.html", "text/html");
         
         }
+        public ActionResult DisplayMyCart()
+        {
+            List<ItemInCart> Items = new List<ItemInCart>();
+            if (Session["MyCart"] != null)
+            {
+                Stack<ItemInCart> MyCart = (Stack<ItemInCart>)Session["MyCart"];
+                foreach (var item in MyCart)
+                {
+                    Items.Add((ItemInCart)item);
+                }
+
+            }
+            return View("MyCart", Items);
+        }
 
     }
 }

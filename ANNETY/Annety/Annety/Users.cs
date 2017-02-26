@@ -11,7 +11,8 @@ namespace Annety
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,17 @@ namespace Annety
         }
     
         public int Code { get; set; }
+        [Required(ErrorMessage = "Please enter a valid UserName")]
         public string UserName { get; set; }
+        [Required (ErrorMessage="Please enter a valid email")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Please use password between 6-10 chars")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Please enter your address")]
         public string Address { get; set; }
+        [Phone(ErrorMessage = "Please enter a valid phone")]
+        [Required(ErrorMessage = "Please enter a valid phone")]
         public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

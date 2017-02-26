@@ -19,7 +19,12 @@ namespace Annety.Controllers
         {
             return View(db.Users.ToList());
         }
-
+        public ActionResult ShowMyProfile()
+        {
+            int id = (int)Session["UserCode"];
+            Users users = db.Users.Find(id);
+            return View(users);
+        }
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,16 +45,25 @@ namespace Annety.Controllers
         {
             return View();
         }
-        
+
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Code,UserName,Email,Password,Address,Phone")] Users users)
-        { 
-        //{if(check)
-        //    ModelState.AddModelError("Email", "This Email is slready in use");
+        {
+            bool u = db.Users.Any(i => i.Email == users.Email);
+            //var Email = db.Users.Find(users.Email);
+            if (u)
+            {
+                ModelState.AddModelError("Email", "This Email is already in use");
+            }
+            if (users.Password == null || users.Password.Length > 10 || users.Password.Length < 6)
+            {
+                ModelState.AddModelError("Password", "Please use password between 6-10 chars");
+            }
+
             if (ModelState.IsValid)
             {   //users.Password
                 users.Password = AccountController.HashPass(users.Password);
@@ -57,13 +71,13 @@ namespace Annety.Controllers
                 Session["UserDetails"] = users.UserName;
                 Session["UserCode"] = users.Code;
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             Session["User"] = users;
             return View(users);
         }
 
-        
+
 
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
@@ -77,6 +91,7 @@ namespace Annety.Controllers
             {
                 return HttpNotFound();
             }
+            users.Password = "";
             return View(users);
         }
 
@@ -89,7 +104,20 @@ namespace Annety.Controllers
         {
             if (ModelState.IsValid)
             {
+                Users u = db.Users.Find(users.Code);
+
+                //DBבמצע בדיקה- אם היוזר רכן שינה את הסיסמא- שולח אותה להצפנה ושומר ב
+                if (users.Password != null)
+                {
+                    users.Password = AccountController.HashPass(users.Password);
+                }
+                //DBאם היוזר לא שינה את הסיסמא שלו - מחזיר את הסיסמא הישנה שלו ושומר ב
+                else
+                {
+                    users.Password = u.Password;
+                }
                 db.Entry(users).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -139,13 +167,13 @@ namespace Annety.Controllers
         public ActionResult Login(string UserName_login, string Password_login)
         {
             Users u = new Users();
-            List<int> l = db.WatchList.Select(p =>  p.ProductKey ).ToList();
-            Stack <Product> WL = new Stack <Product>();
+            List<int> l = db.WatchList.Select(p => p.ProductKey).ToList();
+            Stack<Product> WL = new Stack<Product>();
             foreach (int item in l)
             {
 
                 Product p = db.Product.Find(item);
-                WL.Push (new Annety.Product()
+                WL.Push(new Annety.Product()
                 {
                     Image = p.Image,
                     ImagePath = p.ImagePath,
@@ -162,10 +190,15 @@ namespace Annety.Controllers
                 });
             }
             Session["MyWatchList"] = WL;
-           //Session["EmailLogin"] = Email;
+            //Session["EmailLogin"] = Email;
             //Session["PassLogin"] = password;
             Password_login = AccountController.HashPass(Password_login);
             //var em = Session["EmailLogin"].ToString();
+            if (UserName_login == "")
+            {
+                ModelState.AddModelError("Password", "Please enter your Email and password to login your account");
+                return View("LoginPage");
+            }
             u = db.Users.FirstOrDefault (i => i.Email == UserName_login );
             if (u != null && u.UserName!=string.Empty )
                 if (u.Password.Trim() == Password_login)
@@ -175,11 +208,17 @@ namespace Annety.Controllers
                     return View("../Home/Index");
                 }
                 else
-                    //add error message for user theat insert incorrect password or email
-
-                    return View();
+                { 
+                    ModelState.AddModelError("Password", "The UserName or Password is incorrect. Please try again.");
+                    return View("LoginPage");
+                }
             else
-                return View();
+            {
+                ModelState.AddModelError("Password", "The UserName or Password is incorrect. Please try again.");
+                
+                    return View("LoginPage");
+                
+            }
         }
         public JsonResult IsUserExist(string Email)
         {

@@ -3,56 +3,84 @@
     ViewBag.Title = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="page1" style="margin-left:400px">
-    <h2>Manage</h2>
-    <div class="w3-row w3-grayscale" style="float:left; margin:5px">
-        <div>
-            <h4>Categories</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Category", "Create", "Categories")</li>
-                <li class="col-md-7" @*style="margin-left:-30px; width:150px;"*@>@Html.ActionLink("All Categories", "Index", "Categories")</li>
-            </ol>
+<style>
+    .w3-row w3-grayscale {
+        width:200px;
+    }
+    .nav navbar-nav row {
+        float:left;
+    }
+
+</style>
+<div class="page1" >
+    <h2 style="margin-left:420px;margin-top:50px;">Manage</h2>
+
+    <div class="MenagePage" style="float:left;margin-top:20px; ">
+       
+        <div class="w3-row w3-grayscale" style="float:left;margin-left:20px; margin-right:20px; ">
+            <div class="w3-col l3 s6">
+
+                <h4>Categories</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Category", "Create", "Categories")</a><br />
+
+                    <a class="MenagePage" @*style="margin-left:-30px; width:150px;"*@>@Html.ActionLink("All Categories", "Index", "Categories")</a>
+                </div>
+
+            </div>
         </div>
-        <div>
-            <h4>Colors</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Color", "Create", "Colors")</li>
-                <li class="col-md-7" @*style="margin-left:-30px;"*@>@Html.ActionLink("All Colors", "Index", "Colors")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left;margin-left:20px; margin-right:20px;">
+            <div class="w3-col l3 s6">
+                <h4>Colors</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage" @*style="margin-left:-15px;"*@>@Html.ActionLink("Add New Color", "Create", "Colors")</a><br />
+                    <a class="MenagePage" @*style="margin-left:-30px;"*@>@Html.ActionLink("All Colors", "Index", "Colors")</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Products</h4>
-            <ol class="nav navbar-nav row" @*style="margin-top:-137px;margin-left:-75px;"*@>
-                <li class="co-md-7" @*style="margin-left:-70px;"*@>@Html.ActionLink("Add New Product", "Create", "Products")</li>
-                <li class="col-md-7">@Html.ActionLink("All Products", "Index", "Products")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left;margin-left:20px;  margin-right:20px;">
+            <div class="w3-col l3 s6">
+                <h4>Products</h4>
+                <div class="nav navbar-nav row" @*style="margin-top:-137px;margin-left:-75px;"*@>
+                    <a class="MenagePage" @*style="margin-left:-70px;"*@>@Html.ActionLink("Add New Product", "Create", "Products")</a><br />
+                    <a class="MenagePage">@Html.ActionLink("All Products", "Index", "Products")</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Sizes</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Add New Size", "Create", "ProductSizes")</li>
-                <li class="col-md-7">@Html.ActionLink("All Sizes", "Index", "ProductSizes")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left;margin-left:20px; margin-right:20px; ">
+            <div class="w3-col l3 s6">
+                <h4>Sizes</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage">@Html.ActionLink("Add New Size", "Create", "ProductSizes")</a><br />
+                    <a class="MenagePage">@Html.ActionLink("All Sizes", "Index", "ProductSizes")</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Stock</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Add Products To Stock", "Create", "Stocks")</li>
-                <li class="col-md-7">@Html.ActionLink("All In Stocks", "Index", "Stocks")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left; margin-left:20px; margin-right:20px;">
+            <div class="w3-col l3 s6">
+                <h4>Stock</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage">@Html.ActionLink("Add Products To Stock", "Create", "Stocks")</a><br />
+                    <a class="MenagePage">@Html.ActionLink("All In Stocks", "Index", "Stocks")</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Users</h4>
-            <ol class="nav navbar-nav row">
-                <li class="col-md-7">@Html.ActionLink("All Users", "Index", "Users")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left;margin-left:20px; margin-right:20px; ">
+            <div class="w3-col l3 s6">
+                <h4>Users</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage">@Html.ActionLink("All Users", "Index", "Users")</a>
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>UsersOrders</h4>
-            <ol class="nav navbar-nav row">
-                <li class="co-md-7">@Html.ActionLink("Create New Order", "Create", "UsersOrders")</li>
-                <li class="col-md-7">@Html.ActionLink("All The Orders", "Index", "UsersOrders")</li>
-            </ol>
+        <div class="w3-row w3-grayscale" style="float:left; margin-left:20px; margin-right:20px;">
+            <div class="w3-col l3 s6">
+                <h4>UsersOrders</h4>
+                <div class="nav navbar-nav row">
+                    <a class="MenagePage">@Html.ActionLink("Create New Order", "Create", "UsersOrders")</a><br />
+                    <a class="MenagePage">@Html.ActionLink("All The Orders", "Index", "UsersOrders")</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    </div>

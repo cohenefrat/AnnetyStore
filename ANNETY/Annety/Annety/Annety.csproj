@@ -245,12 +245,14 @@
     <Compile Include="Controllers\StocksController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UsersOrdersController.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IServiceCollection.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemInCart.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -296,12 +298,17 @@
     <Content Include="easyResponsiveTabs.js" />
     <Content Include="Images\background.png" />
     <Content Include="Images\beautiful-flowers-background_84403-1920x1200.jpg" />
+    <Content Include="Images\fail.gif" />
+    <Content Include="Images\ms0497.jpg" />
+    <Content Include="Images\ok.gif" />
     <Content Include="Images\Picture2.jpg" />
+    <Content Include="Images\warn.gif" />
+    <Content Include="Images\ברכי 4.jpg" />
+    <Content Include="Images\ברכי מהמם.jpg" />
     <Content Include="jquery-3.1.1.min.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Images\1.png" />
     <Content Include="Images\11.png" />
-    <Content Include="Images\1299-1705_big.JPG" />
     <Content Include="Images\blue down.png" />
     <Content Include="Images\blue left.png" />
     <Content Include="Images\blue right.png" />
@@ -456,6 +463,9 @@
     <Content Include="Views\Products\PaymentPage.cshtml" />
     <Content Include="Views\Products\PayNow.cshtml" />
     <Content Include="Views\Home\UserDetails.cshtml" />
+    <Content Include="Views\SearchResult\MyCart.cshtml" />
+    <Content Include="Views\Users\ShowMyProfile.cshtml" />
+    <Content Include="Views\Shared\_NotifyBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -248,14 +248,46 @@ namespace Annety.Controllers
 
         public void AddToCart(int Product, int Size, int Quantity, int Color)
         {
-            
+            int mone = 1;
             if (Session["MyCart"] == null)
-                Session["MyCart"] = new Stack<Product>();
-            Stack<Product> f = (Stack<Product>)Session["MyCart"];
-            Product p = db.Product.First(pr=>pr.ProductKey == Product);
-            f.Push(p);
-            Session["MyCart"] = f;
+                Session["MyCart"] = new Stack<ItemInCart>();
+            Stack<ItemInCart> f = (Stack<ItemInCart>)Session["MyCart"];
+            Product p = db.Product.First(pr => pr.ProductKey == Product);
+            ItemInCart item = new ItemInCart();
+            item.Product = p;
+            ProductSize size = db.ProductSize.First(s => s.CodeSize == Size);
+            item.SizeDesc = size.SizeDesc;
+            Colors color = db.Colors.First(c => c.CodeColor == Color);
+            item.ColorName = color.ColorName;
+            item.Units = Quantity;
+            List<ItemInCart> l = ((Stack<ItemInCart>)Session["MyCart"]).ToList();
+           
+           
+
             
+
+            foreach (ItemInCart o in l)
+            {
+                if (o.Product.Barcode==item.Product.Barcode)
+                {
+                    mone = 0;
+                    //To display a warning use
+                    //this.TempData["Notification"] = "This item is already exist in your cart.";
+                    //this.TempData["NotificationCSS"] = "notificationbox nb-warning";
+                }
+            }
+            if (mone==1)
+            {
+                f.Push(item);
+                //this.TempData["Notification"] = "This item has been added to your cart successfully.";
+                //this.TempData["NotificationCSS"] = "notificationbox nb-success";
+
+
+            }
+
+            Session["MyCart"] = f;
+            //return RedirectToAction("Index").SetStatusMessage("This item has been added successfuly to your cart" );
+
         }
     }
 }
