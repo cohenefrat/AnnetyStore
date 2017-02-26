@@ -162,8 +162,8 @@ color: #fff;
                             @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control",@id = "ColorId" })
                         </div>
                         <div class="buy" style="margin-right:-150px;">
-                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
-                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
+                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now(@Model.DisProd.Price)">
+                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now(@Model.DisProd.Price)" />
                             </div>
                             <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
@@ -234,36 +234,26 @@ color: #fff;
 
             function  AddToCart()
             {
-                
-                //$("#NotificationBox").fadeIn(5000);
+       $.ajax({
+                    url: '@Url.Action("../Products/AddToCart")',
+                    type: 'GET',
+                    dataType: 'json',
+                    // we set cache: false because GET requests are often cached by browsers
+                    // IE is particularly aggressive in that respect
+                    cache: false,
+                    data: { Product: @Model.DisProd.ProductKey ,Size: document.getElementById('SizeId').value,  Quantity: document.getElementById('Quantity').value,Color: document.getElementById('ColorId').value }
 
-                //if ($("#NotificationBox").attr('class').split(' ').slice(-1) == "nb-success") {
-                //    $("#NotificationBox").delay(3000).fadeOut(1000);
-                    
-               
-                    $.ajax({
-                        url: '@Url.Action("../Products/AddToCart")',
-                        type: 'GET',
-                        dataType: 'json',
-                        // we set cache: false because GET requests are often cached by browsers
-                        // IE is particularly aggressive in that respect
-                        cache: false,
-                        data: { Product: @Model.DisProd.ProductKey ,Size: document.getElementById('SizeId').value,  Quantity: document.getElementById('Quantity').value,Color: document.getElementById('ColorId').value }
-                    });
-                
-                //($("#NotificationBox").attr('class').split(' ').slice(-1) == "nb-success")
-                //$("#NotificationBox").delay(3000).fadeOut(1000);
+                });
+
+
                 alert('This item has been added to your cart successfuly');
 
 
+
                 }
-                @*function CheckQuantity(q) {
-            if (q<1) {
-               @Html.ValidationMessageFor(model => model.DisProd.Price, "", new { @class = "text-danger" })
+             
 
-            }
-
-            }*@
+            
                 function Pay_Now() {
 
                     sessionStorage["P"] = @Model.DisProd.Price;

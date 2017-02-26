@@ -6,6 +6,7 @@
 }
 
 <h2>MyCart</h2>
+<<<<<<< HEAD
 <html>
 <body>
     @foreach (var item in Model)
@@ -60,10 +61,42 @@
     function Pay_Now() {
 
 
+=======
+<html><body>
+@foreach (var item in Model)
+{
+    <div class="w3-row w3-grayscale" style="float:left; margin:5px">
+        <div class="w3-col l3 s6">
+                <div class="w3-container" style="cursor:pointer;">
+                    <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.Product.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                        @item.Product.Desc<br>
+                       <b>$@item.Product.Price</b><br />
+                       <b>Units:</b><p>@item.Units</p><br />
+                       <b>Color:</b><p>@item.ColorName</p><br />
+                       <b>Size: </b><p>@item.SizeDesc</p>
+                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now(@item.Product.Price)">
+                       <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now(@item.Product.Price)" />
+                        </div>
+                </div>
+        </div>
+    </div>
+
+}
+<script>
+
+    function Pay_Now(price) {
+
+        sessionStorage["P"] = price;
+>>>>>>> f76711f884e73311c3159de428003913a1d817bb
         var url = '@Url.Action("Payment", "SearchResult")';
         document.location.href = url;
 
     }
+<<<<<<< HEAD
             </script>
 </body>
 </html>
+=======
+</script>
+</body></html>
+>>>>>>> f76711f884e73311c3159de428003913a1d817bb

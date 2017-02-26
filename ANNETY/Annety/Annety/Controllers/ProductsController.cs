@@ -252,8 +252,10 @@ namespace Annety.Controllers
             if (Session["MyCart"] == null)
                 Session["MyCart"] = new Stack<ItemInCart>();
             Stack<ItemInCart> f = (Stack<ItemInCart>)Session["MyCart"];
+
             Product p = db.Product.First(pr => pr.ProductKey == Product);
             ItemInCart item = new ItemInCart();
+
             item.Product = p;
             ProductSize size = db.ProductSize.First(s => s.CodeSize == Size);
             item.SizeDesc = size.SizeDesc;
@@ -261,11 +263,6 @@ namespace Annety.Controllers
             item.ColorName = color.ColorName;
             item.Units = Quantity;
             List<ItemInCart> l = ((Stack<ItemInCart>)Session["MyCart"]).ToList();
-           
-           
-
-            
-
             foreach (ItemInCart o in l)
             {
                 if (o.Product.Barcode==item.Product.Barcode)

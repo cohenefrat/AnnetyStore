@@ -147,9 +147,10 @@ namespace Annety.Controllers
                 
             return View("FromMenu",products);
         }
-
-        public ActionResult Payment()
-        {  
+        [HttpGet]
+        public ActionResult Payment(int? price)
+        {
+            Session["p"] = price;
             return File("../index.html", "text/html");
         
         }
@@ -167,6 +168,9 @@ namespace Annety.Controllers
             }
             return View("MyCart", Items);
         }
+
+        
+
 
     }
 }

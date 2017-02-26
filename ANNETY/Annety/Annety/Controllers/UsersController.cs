@@ -53,6 +53,7 @@ namespace Annety.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Code,UserName,Email,Password,Address,Phone")] Users users)
         {
+
             bool u = db.Users.Any(i => i.Email == users.Email);
             //var Email = db.Users.Find(users.Email);
             if (u)
@@ -63,6 +64,7 @@ namespace Annety.Controllers
             {
                 ModelState.AddModelError("Password", "Please use password between 6-10 chars");
             }
+
 
             if (ModelState.IsValid)
             {   //users.Password
@@ -167,6 +169,7 @@ namespace Annety.Controllers
         public ActionResult Login(string UserName_login, string Password_login)
         {
             Users u = new Users();
+
             List<int> l = db.WatchList.Select(p => p.ProductKey).ToList();
             Stack<Product> WL = new Stack<Product>();
             foreach (int item in l)
@@ -190,6 +193,7 @@ namespace Annety.Controllers
                 });
             }
             Session["MyWatchList"] = WL;
+
             //Session["EmailLogin"] = Email;
             //Session["PassLogin"] = password;
             Password_login = AccountController.HashPass(Password_login);
@@ -205,6 +209,7 @@ namespace Annety.Controllers
                 {
                     Session["UserDetails"] = u.UserName;
                     Session["UserCode"] = u.Code;
+                    Session["User"] = u;
                     return View("../Home/Index");
                 }
                 else
@@ -220,14 +225,14 @@ namespace Annety.Controllers
                 
             }
         }
-        public JsonResult IsUserExist(string Email)
+        public JsonResult IsUserExist(string UserName)
         {
-            return IsExist1(Email) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
+            return IsExist1(UserName) ? Json(true, JsonRequestBehavior.AllowGet) : Json(false, JsonRequestBehavior.DenyGet);
         }
 
-        public bool IsExist1(string Email)
+        public bool IsExist1(string UserName)
         {
-            bool u = db.Users.Any(i => i.Email == Email);
+            bool u = db.Users.Any(i => i.UserName == UserName);
             if (u)
                 return true;
             else
