@@ -1,0 +1,59 @@
+﻿@model Annety.Users
+
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Profile</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+  @*      <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>*@
+
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model=>model.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(model=>model.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(model=> model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(model=> model.Phone)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=Model.Code }) |
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+
+
+</table>

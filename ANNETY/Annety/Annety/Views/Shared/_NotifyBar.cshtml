@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "_NotifyBar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_NotifyBar</h2>
+
+@if (Request.Cookies["NotifyBar"] != null)
+{
+
+    var c = new HttpCookie("NotifyBar");
+    c.Expires = DateTime.Now.AddDays(-1);
+    Response.Cookies.Add(c);
+
+}

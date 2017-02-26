@@ -34,6 +34,12 @@
 
       
     </style>
+@*@if (TempData["Notification"] != null)
+{
+    <div id="NotificationBox" class="@TempData["NotificationCSS"]" style="display: block">
+        @TempData["Notification"]
+    </div>
+}*@
     @*<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>*@
 
     <script src="~/Scripts/jquery.min.js"></script>
@@ -43,16 +49,62 @@
 			$('#ex1').zoom();
 		
 		});
+		
     </script>
 
 </head>
 <body>
+    <script>
  
+     $("#AddToCartBtn").on("click",function()
+     {        ($("#NotificationBox").attr('class').split(' ').slice(-1) == "nb-success")
+          $("#NotificationBox").delay(3000).fadeOut(1000);
+   alert('This item has been added to your cart successfuly');
+  });
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</script>
+    
+
+    @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>*@
     @*<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>*@
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    @*<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>*@
     <style>
+        #message {
+font-family:Arial,Helvetica,sans-serif;
+position:fixed;
+top:0px;
+left:0px;
+width:100%;
+z-index:105;
+text-align:center;
+font-weight:bold;
+font-size:100%;
+color:white;
+padding:10px 0px 10px 0px;
+background-color:#8E1609;
+}
+
+#message span {
+text-align: center;
+width: 95%;
+float:left;
+}
+
+.close-notify {
+white-space: nowrap;
+float:right;
+margin-right:10px;
+color:#fff;
+text-decoration:none;
+border:2px #fff solid;
+padding-left:3px;
+padding-right:3px
+}
+
+.close-notify a {
+color: #fff;
+}
         .w3-container {
             height: 350px;
         }
@@ -104,7 +156,7 @@
                             @{ Session["TotalPayment"] = Model.DisProd.Price;
                             }
                             <label style="display:inline;top:260px;height:20px;">Quantity</label>
-                            <input type="number" value="1" style="width:50px;margin-top:10px;" id="Quantity" /><br>
+                            <input type="number" value="1" style="width:50px;margin-top:10px;" id="Quantity" onfocus="CheckQuantity(Quantity.value)"/><br>
                             <label style="display:inline;top:315px;height:20px;">Color:</label>
                             @*Html.DropDownListFor(Model.ProdColor, "ProductColors", htmlAttributes: new { @class = "form-control" })*@
                             @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control",@id = "ColorId" })
@@ -123,8 +175,8 @@
                     </div>
 
 </div>
-            <label style="position:absolute;left:830px;top:340px;font-size:20px">More things you may like</label>
-            <div class="MayLikeItems" id="MayLikeItems" style="position:absolute;margin-left:380px;top:370px;">
+            <label style="position:absolute;left:830px;top:360px;font-size:20px;color:pink">More things you may like</label>
+            <div class="MayLikeItems" id="MayLikeItems" style="position:absolute;margin-left:380px;top:390px;">
               
                
                 @{ foreach (var item in Model.UMayLike)
@@ -136,7 +188,7 @@
                                    
                                     <a href='../Item/  @item.ProductKey '>
                                         <div class="w3-container" style="cursor:pointer;" onclick='ShowItem( @item.ProductKey )'>
-                                            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                                            <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.ImagePath))" style="width:120px;height:150px;margin-left:10px; " />
                                             @*<p style="width:150px;height:100px;padding-bottom:30px;text-overflow:ellipsis;"><br><b>$@item.Price</b></p>*@
                                             <div style="text-overflow:ellipsis;width:150px;overflow:hidden; white-space: nowrap;">@item.Desc<br />
                                             <b>$@item.Price</b></div>
@@ -158,9 +210,9 @@
             @*@Html.DropDownList("CodeSize", null, htmlAttributes: new { @class = "form-control", @placeholder = "Product Size" })*@
         
     </div>
-    <a href='@Url.Action("EditDetails", "Home")'>Edith user details</a>
+    @*<a href='@Url.Action("EditDetails", "Home")'>Edith user details</a>*@
 
-        <script type="text/javascript">
+        @*<script type="text/javascript">
             $(document).ready(function () {
                 $('.your-class').slick({
                     slidesToShow: 3,
@@ -169,15 +221,17 @@
                     autoplaySpeed: 2000,
                 });
             });
-        </script>
+        </script>*@
     <script>
             PayImg.onclick = Pay_Now
             PayNowBtn.onclick = Pay_Now
+            //Quantity.onfocus=CheckQuantity
             AddToCartBtn = AddToCart
+        
 
             function  AddToCart()
             {
-                $.ajax({
+       $.ajax({
                     url: '@Url.Action("../Products/AddToCart")',
                     type: 'GET',
                     dataType: 'json',
@@ -189,6 +243,7 @@
                 });
 
 
+<<<<<<< HEAD
             }
         function Pay_Now() {
             @*$.ajax({
@@ -208,25 +263,40 @@
             var Quantity = document.getElementById('Quantity').value;
             var url = '@Url.Action("BeforPayment", "SearchResult")?Product='+ p + '&Size=' + size + '&Quantity=' + Quantity + '&Color=' + Color;
                 document.location.href = url;
+=======
+                alert('This item has been added to your cart successfuly');
 
-            }
+
+
+                }
+             
+>>>>>>> 9159800c3b812ef2d9726b83d555385694dd5cea
+
             
-    function ShowItem(p) {
+                function Pay_Now() {
 
-        $.ajax({
-            url: '@Url.Action("../Products/Item")',
-            @* url: '@Url.Action("../SearchResult/ProductDetails")',*@
-            type: 'GET',
-            dataType: 'json',
-            // we set cache: false because GET requests are often cached by browsers
-            // IE is particularly aggressive in that respect
-            cache: false,
-            data: { id: p }
+                    sessionStorage["P"] = @Model.DisProd.Price;
+                    var url = '@Url.Action("Payment", "SearchResult")';
+                    document.location.href = url;
 
-        });
-    }
-   
+                }
 
+                function ShowItem(p) {
+
+                    $.ajax({
+                        url: '@Url.Action("../Products/Item")',
+                        @* url: '@Url.Action("../SearchResult/ProductDetails")',*@
+                        type: 'GET',
+                        dataType: 'json',
+                        // we set cache: false because GET requests are often cached by browsers
+                        // IE is particularly aggressive in that respect
+                        cache: false,
+                        data: { id: p }
+
+                    });
+                }
+
+            
         </script>
 
 </body>

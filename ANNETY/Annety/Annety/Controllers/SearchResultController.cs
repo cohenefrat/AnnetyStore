@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -148,80 +147,30 @@ namespace Annety.Controllers
                 
             return View("FromMenu",products);
         }
-        // [HttpGet]
-        //public ActionResult Payment(ItemInCart item)
-        //{
-        //    Session["ForPay"] = item;
-        //   // return View("PaymentPage", item);
-        //   return File("../index.html", "text/html");
+        [HttpGet]
+        public ActionResult Payment(int? price)
+        {
+            Session["p"] = price;
+            return File("../index.html", "text/html");
         
-        //}
-
-        //[HttpPost]
-        public ActionResult Payment()
-        {
-            ItemInCart item = (ItemInCart)Session["ItemForPayment"];
-            ProductSize size;
-            Colors color;
-            Stocks st = new Stocks();
-
-            //ItemInCart item = (ItemInCart)Session["ForPay"];
-            //if payment success
-            var stocks = db.Stocks.Where(s => s.ProductKey == item.Product.ProductKey);
-            foreach (var i in stocks)
-            {
-                size = db.ProductSize.First(e => e.SizeDesc == item.SizeDesc);
-                if (i.CodeSize == size.CodeSize)
-                {
-                    color = db.Colors.First(c => c.ColorName == item.ColorName);
-                    if(i.ProdColorKey == color.CodeColor)
-                     {
-                        if (ModelState.IsValid)
-                        {
-                           
-                            i.UnitsInStocks = i.UnitsInStocks - item.Units;
-                            st = (Stocks)i;
-                            db.Entry(st).State = EntityState.Modified;
-
-                            
-                        }
-                    }
-                }
-            }
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
-
         }
-
-        public ActionResult BeforPayment(int? Product , int? Size , int? Quantity , int? Color)
-        {
-           Product p = db.Product.First(pr => pr.ProductKey == Product);
-            ItemInCart item = new ItemInCart();
-            item.Product = p;
-            ProductSize size = db.ProductSize.First(s => s.CodeSize == Size);
-            item.SizeDesc = size.SizeDesc;
-            Colors color = db.Colors.First(c => c.CodeColor == Color);
-            item.ColorName = color.ColorName;
-            item.Units = (int)Quantity;
-            item.Product.Price = item.Product.Price * item.Units;
-            Session["ItemForPayment"] = item;
-            return View(item);
-        }
-
-
         public ActionResult DisplayMyCart()
-        { List<ItemInCart> Items = new List<ItemInCart>();
-            if(Session["MyCart"]!=null)
+        {
+            List<ItemInCart> Items = new List<ItemInCart>();
+            if (Session["MyCart"] != null)
             {
                 Stack<ItemInCart> MyCart = (Stack<ItemInCart>)Session["MyCart"];
                 foreach (var item in MyCart)
                 {
                     Items.Add((ItemInCart)item);
                 }
-              
+
             }
             return View("MyCart", Items);
         }
+
+        
+
 
     }
 }

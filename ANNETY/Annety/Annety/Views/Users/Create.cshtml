@@ -19,7 +19,9 @@
             @*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder="UserName" ,@style="float:left"} })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+               <br />
+                <br />
+                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -27,6 +29,8 @@
             @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10"  >
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @placeholder = "E-mail", @style = "float:left" } })
+                <br />
+                <br />
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,8 +38,10 @@
         <div class="form-group">
             @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password@*DisplayPassword*@, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @style = "float:left", @type="password"} })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Password@*DisplayPassword*@, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @style = "float:left;", @type="password"} })
+                <br />
+                <br />      
+                          @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -43,6 +49,8 @@
             @*@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @style = "float:left" } })
+                <br />
+                <br />
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,6 +59,8 @@
             @*@Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control",@placeholder = "Phone", @style = "float:left" } })
+                <br />
+                <br />
                 @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
             </div>
         </div>
