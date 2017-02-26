@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Annety.ItemInCart>
+
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyCart</h2>
+<html>
+<body>
+    @foreach (var item in Model)
+    {
+        @*<div class="w3-row w3-grayscale" style="float:left; margin:5px">
+            <div class="w3-col l3 s6">
+                <div class="w3-container" style="cursor:pointer;">
+                    <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.Product.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                    @item.Product.Desc<br>
+                    <b>$@item.Product.Price</b><br />
+                    <b>Units:</b><p>@item.Units</p><br />
+                    <b>Color:</b><p>@item.ColorName</p><br />
+                    <b>Size: </b><p>@item.SizeDesc</p>
+                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
+                        <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="w3-col l3 s6" style="font-family:cursive">
+            <div class="w3-container" style="cursor:pointer;">
+                <span class='zoom' id='ex1'>
+                    <img src="@Url.Content("~/ProductImages/" + System.IO.Path.GetFileName(item.Product.ImagePath))" style="width:150px;height:200px;margin-left:10px; " />
+                </span>
+                <div class="itemInfo" style="margin-left:35px;position:relative;top:-210px;left:150px;">
+                    <p style="width:650px;font-size:20px;width:900px;">@item.Product.Desc</p>
+                    <div class="price" style="margin-top:10px;margin-left:16px;">
+                        <label style="top:180px;height:20px;font-size:17px;">Price: $@item.Product.Price</label><br />
+                        <label style="display:inline;top:200px;height:20px;font-size:17px;">Size:@item.SizeDesc</label><br />
+                        
+                        @{ Session["TotalPayment"] = item.Product.Price;
+                        }
+                        <label style="display:inline;top:260px;height:20px;font-size:17px;">Quantity: @item.Units</label><br />
+                           
+                        <label style="display:inline;top:315px;height:20px;font-size:17px;">Color: @item.ColorName</label><br />
+                        
+                        </div>
+                    <div class="buy" >
+                        <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
+                            <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" style="margin-top:-50px;width:105px;margin-left:400px;" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+                            }
+            <script>
+
+    function Pay_Now() {
+
+
+        var url = '@Url.Action("Payment", "SearchResult")';
+        document.location.href = url;
+
+    }
+            </script>
+</body>
+</html>
