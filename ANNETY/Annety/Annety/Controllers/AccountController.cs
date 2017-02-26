@@ -397,22 +397,64 @@ namespace Annety.Controllers
         public ActionResult LogOff()
         {
             if (Session["MyWatchlist"] != null)
-            {
+            {  
                 List<WatchList> WL = new List<WatchList>();
                 List <Product> f = ((Stack<Product>)Session["MyWatchList"]).ToList();
+                WatchList Pcheck = new WatchList();
                 int mone = 0;
+                int user = (int)Session["UserCode"];
+                List<WatchList> AllWatchList = (db.WatchList.Where(w => w.UserCode == user)).ToList();
                 for (int i = 0; i < f.Count()||mone==10; i++)
                 {
-                    WL.Add(new WatchList());
-                    WL[i].ProductKey = f[i].ProductKey;
-                    WL[i].UserCode = (int)Session["UserCode"];
-                    WL[i].WatchDate = DateTime.Now;
-                    db.WatchList.Add(WL[i]);
-                    db.SaveChanges();
-                    mone++;
+                    int Pk = f[i].ProductKey;
+                    Pcheck = AllWatchList.FirstOrDefault(h=>h.ProductKey == Pk);
+                    if (Pcheck == null)
+                    {
+                        WL.Add(new WatchList());
+                        WL[i].WatchCode = 0;
+                        WL[i].ProductKey = f[i].ProductKey;
+                        WL[i].UserCode = (int)Session["UserCode"];
+                        WL[i].WatchDate = DateTime.Now;
+                        db.WatchList.Add(WL[i]);
+                        mone++;
+                    }
+                    else
+                        Pcheck = new WatchList();
                 }
-                //todo sava the WL in the db
-               
+                db.SaveChanges();
+                //todo save the WL in the db
+
+                // save MyCart in db:
+
+                if (Session["MyCart"] != null)
+                {
+                    Cart NewCart = new Annety.Cart();
+                    Colors color = new Colors();
+                    ProductSize size = new ProductSize();
+                    Stack<ItemInCart> MyCart = (Stack<ItemInCart>)Session["MyCart"];
+                    var Cart = db.Cart.Where(c => c.UserCode == (int)Session["UserCode"]);
+                    foreach (var item in MyCart)
+                    {
+                        if (item.Code == 0) // not exist
+                        {
+                            // NewCart = Cart.First(a => a.CartCode == item.Code);
+                                NewCart.UserCode = (int)Session["UserCode"];
+                                NewCart.ProductKey = item.Product.ProductKey;
+                                color = db.Colors.First(v => v.ColorName == item.ColorName);
+                                NewCart.Color = color.CodeColor;
+                                size = db.ProductSize.First(x => x.SizeDesc == item.SizeDesc);
+                                NewCart.Size = size.CodeSize;
+                                NewCart.Units = item.Units;
+                                db.Cart.Add(NewCart);
+
+                            
+                            NewCart = new Annety.Cart();
+                        }
+                        db.SaveChanges();
+                    }
+                   
+
+                }
             }
             //session מאפס את ה
             Session["UserDetails"] = null;
@@ -420,7 +462,7 @@ namespace Annety.Controllers
             Session["MyWatchList"] = null;
             //ToDo Clear the sesion 
             //   AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-           
+            
             return RedirectToAction("Index", "Home");
         }
 

@@ -18,8 +18,8 @@
                        <b>Units:</b><p>@item.Units</p><br />
                        <b>Color:</b><p>@item.ColorName</p><br />
                        <b>Size: </b><p>@item.SizeDesc</p>
-                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now(@item.Product.Price)">
-                       <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now(@item.Product.Price)" />
+                    <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
+                       <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
                         </div>
                 </div>
         </div>
@@ -30,7 +30,6 @@
 
     function Pay_Now(price) {
 
-        sessionStorage["P"] = price;
         var url = '@Url.Action("Payment", "SearchResult")';
         document.location.href = url;
 

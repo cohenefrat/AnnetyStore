@@ -110,8 +110,8 @@
                             @Html.DropDownList("ProductColors", null, htmlAttributes: new { @class = "form-control",@id = "ColorId" })
                         </div>
                         <div class="buy" style="margin-right:-150px;">
-                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now(@Model.DisProd.Price)">
-                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now(@Model.DisProd.Price)" />
+                            <div class="PayNowBtn" id="PayNowBtn" onclick="Pay_Now()">
+                                <img id="PayImg" src="~/Images/pay now.png" onclick="Pay_Now()" />
                             </div>
                             <label style="margin-left:20px;margin-top:10px;">Or add to cart</label>
 
@@ -129,9 +129,6 @@
                
                 @{ foreach (var item in Model.UMayLike)
                     {
-
-
-
 
                             <div class="w3-row w3-grayscale" style="float:left; margin:5px">
                                 <div class="w3-col l3 s6">
@@ -193,10 +190,23 @@
 
 
             }
-            function Pay_Now(price) {
-                //var p = price;
-                //sessionStorage["P"] = price;
-                var url = '@Url.Action("Payment", "SearchResult" )';
+        function Pay_Now() {
+            @*$.ajax({
+                url: '@Url.Action("../SearchResult/BeforPayment")',
+                type: 'GET',
+                dataType: 'json',
+                // we set cache: false because GET requests are often cached by browsers
+                // IE is particularly aggressive in that respect
+                cache: false,
+                data: { Product: @Model.DisProd.ProductKey ,Size: document.getElementById('SizeId').value,  Quantity: document.getElementById('Quantity').value, Color: document.getElementById('ColorId').value }
+
+            });*@
+
+            var p = @Model.DisProd.ProductKey;
+            var Color = document.getElementById('ColorId').value;
+            var size = document.getElementById('SizeId').value;
+            var Quantity = document.getElementById('Quantity').value;
+            var url = '@Url.Action("BeforPayment", "SearchResult")?Product='+ p + '&Size=' + size + '&Quantity=' + Quantity + '&Color=' + Color;
                 document.location.href = url;
 
             }

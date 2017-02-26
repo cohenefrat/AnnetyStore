@@ -458,6 +458,7 @@
     <Content Include="Views\Products\PayNow.cshtml" />
     <Content Include="Views\Home\UserDetails.cshtml" />
     <Content Include="Views\SearchResult\MyCart.cshtml" />
+    <Content Include="Views\SearchResult\BeforPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

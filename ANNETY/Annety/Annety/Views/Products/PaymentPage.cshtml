@@ -1,5 +1,6 @@
 ﻿
-@*@model IEnumerable<decimal>*@
+@model Annety.Product
+
     ViewBag.Title = "PaymentPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -15,7 +16,11 @@
 
             Total = (a + b)/10;
         }}*@
-    <title>Total $@Session["P"]</title>
+    @{ 
+        var p = (Product)Session["ForPay"];
+
+    }
+    <title>For payment: @Model.Price</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,6 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="sap_tabs">
                 <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                     <div class="pay-tabs">
+    
                         <h2>Select Payment Method</h2>
                         <ul class="resp-tabs-list">
                             <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span><label class="pic1"></label>Credit Card</span></li>

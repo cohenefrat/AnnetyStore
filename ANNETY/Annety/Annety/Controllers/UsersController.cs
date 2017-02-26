@@ -137,7 +137,7 @@ namespace Annety.Controllers
         }
         [HttpPost]
         public ActionResult Login(string UserName_login, string Password_login)
-        {
+        {    
             Users u = new Users();
             List<int> l = db.WatchList.Select(p =>  p.ProductKey ).ToList();
             Stack <Product> WL = new Stack <Product>();
@@ -160,13 +160,35 @@ namespace Annety.Controllers
                     WatchList = p.WatchList
 
                 });
+                u = db.Users.FirstOrDefault(i => i.Email == UserName_login);
+                Session["UserCode"] = u.Code;
+                //MyCart
+                Stack<ItemInCart> f = new Stack<ItemInCart> ();
+                ItemInCart ItemInCart = new ItemInCart();
+                var MyCart = db.Cart.Where(d => d.UserCode == u.Code);
+                if (Session["MyCart"] == null)
+                    Session["MyCart"] = new Stack<ItemInCart>();
+                foreach (var i in MyCart)
+                {
+                    ItemInCart.Code = i.CartCode;
+                    ItemInCart.Product = db.Product.First(c => c.ProductKey == i.ProductKey);
+                    ProductSize size = db.ProductSize.First(z => z.CodeSize == i.Size);
+                    ItemInCart.SizeDesc = size.SizeDesc;
+                    ItemInCart.Units = (int)i.Units;
+                    Colors color = db.Colors.First(c => c.CodeColor == i.Color);
+                    ItemInCart.ColorName = color.ColorName;
+                    f.Push(ItemInCart);
+                    ItemInCart = new ItemInCart();
+                }
+                Session["MyCart"] = f;
+                //endmycart
             }
             Session["MyWatchList"] = WL;
            //Session["EmailLogin"] = Email;
             //Session["PassLogin"] = password;
             Password_login = AccountController.HashPass(Password_login);
             //var em = Session["EmailLogin"].ToString();
-            u = db.Users.FirstOrDefault (i => i.Email == UserName_login );
+            
             if (u != null && u.UserName!=string.Empty )
                 if (u.Password.Trim() == Password_login)
                 {
